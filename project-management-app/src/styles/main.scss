@@ -1,2 +1,8 @@
 @use 'base';
 @use 'abstracts';
+
+@use './abstracts/mixins' as *;
+
+body {
+  @include alegreya;
+}
