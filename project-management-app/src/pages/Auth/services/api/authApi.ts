@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { backendUrl } from 'data/backendUrl';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://blooming-brook-52637.herokuapp.com',
+    baseUrl: backendUrl,
   }),
   endpoints: (build) => ({
     signup: build.mutation({
