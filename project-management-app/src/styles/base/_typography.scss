@@ -1,0 +1,32 @@
+@font-face {
+  font-family: 'Alegreya';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Alegreya'),
+    url('../../../public/assets/fonts/Alegreya-Regular.woff2') format('woff2'),
+    url('../../../public/assets/fonts/Alegreya-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Alegreya-Bold';
+  font-style: normal;
+  font-weight: 700;
+  src: local(''),
+    url('../../../public/assets/fonts/Alegreya-Bold.woff2') format('woff2'),
+    url('../../../public/assets/fonts/Alegreya-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lora'),
+    url('../../../public/assets/fonts/Lora-Regular.woff2') format('woff2'),
+    url('../../../public/assets/fonts/Lora-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Lora-Bold';
+  font-style: normal;
+  font-weight: 700;
+  src: local(''),
+    url('../../../public/assets/fonts/Lora-Bold.woff2') format('woff2'),
+    url('../../../public/assets/fonts/Lora-Bold.woff') format('woff');
+}
