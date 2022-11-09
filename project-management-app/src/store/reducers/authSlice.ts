@@ -14,8 +14,8 @@ type SignUpFields = {
 };
 
 type SignInFields = {
-  login: string;
-  password: string;
+  login?: string;
+  password?: string;
 };
 
 const initialState: AuthForm = {
@@ -36,11 +36,15 @@ export const authSlice = createSlice({
     setSignupValues: (state, action: PayloadAction<SignUpFields>) => {
       state.signUpForm = action.payload;
     },
+    setSigninValues: (state, action: PayloadAction<SignInFields>) => {
+      state.signInForm = action.payload;
+    },
   },
 });
 
-export const { setSignupValues } = authSlice.actions;
+export const { setSignupValues, setSigninValues } = authSlice.actions;
 
 export const signupValues = (state: RootState) => state.auth.signUpForm;
+export const signinValues = (state: RootState) => state.auth.signInForm;
 
 export default authSlice.reducer;

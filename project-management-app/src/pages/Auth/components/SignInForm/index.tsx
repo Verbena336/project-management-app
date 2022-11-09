@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import styles from './SignupForm.module.scss';
+import styles from './SignInForm.module.scss';
 
 import MuiButton from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -9,30 +9,32 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { setSignupValues, signupValues } from 'store/reducers/authSlice';
-import { useSignupMutation } from 'store/services/authApi';
+import { setSigninValues, signinValues } from 'store/reducers/authSlice';
+import { useSigninMutation } from 'store/services/authApi';
 
 import { useForm } from 'react-hook-form';
 
 import { Inputs, ResponseUser } from './types';
 
-function SignupForm() {
+function SigninForm() {
   const dispatch = useAppDispatch();
-  const signupValuesStore = useAppSelector(signupValues);
-  const { name, login, password } = signupValuesStore;
-  const [signup] = useSignupMutation();
+  const signinValuesStore = useAppSelector(signinValues);
+  const { login, password } = signinValuesStore;
+  const [signin] = useSigninMutation();
 
-  const createUser = async (value: Inputs) => {
+  const loginUser = async (value: Inputs) => {
     try {
-      const response: ResponseUser = await signup(value).unwrap();
-      if (response.id) {
-        toast.success(`Hello, ${response.login}`);
+      const response: ResponseUser = await signin(value).unwrap();
+      if (response.token) {
+        toast.success(`Hello, ${login}`);
+      } else {
+        throw new Error();
       }
     } catch (e) {
       const error = e as ResponseUser;
       switch (error.status) {
-        case 409:
-          toast.error('User already exist');
+        case 403:
+          toast.error('User was not founded!');
           break;
         default:
           toast.error('Unknown error');
@@ -49,13 +51,12 @@ function SignupForm() {
 
   useEffect(() => {
     watch((value) => {
-      const { name, login, password } = value;
-      dispatch(setSignupValues({ name, login, password }));
+      dispatch(setSigninValues(value));
     });
   }, []);
 
   const onSubmit = (data: Inputs) => {
-    createUser(data);
+    loginUser(data);
   };
 
   return (
@@ -101,22 +102,6 @@ function SignupForm() {
               },
             }}
             size="small"
-            id="name"
-            label={errors.name ? '⚠Name is required' : 'Name'}
-            variant="outlined"
-            error={errors.name ? true : false}
-            value={name}
-            {...register('name', {
-              required: true,
-            })}
-          />
-          <TextField
-            sx={{
-              '& .MuiInputBase-input': {
-                color: '#1740A9',
-              },
-            }}
-            size="small"
             id="login"
             label={errors.login ? '⚠Login is required' : 'Login'}
             variant="outlined"
@@ -144,7 +129,7 @@ function SignupForm() {
             })}
           />
           <MuiButton type="submit" variant="contained">
-            Sign Up
+            Sign In
           </MuiButton>
           <div className={styles.line}>
             <hr />
@@ -157,4 +142,4 @@ function SignupForm() {
   );
 }
 
-export default SignupForm;
+export default SigninForm;
