@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSigninMutation, useSignupMutation } from './services/api/authApi';
+import { useSigninMutation, useSignupMutation } from '../../../store/services/authApi';
 
 function Auth() {
   const [signup] = useSignupMutation();
