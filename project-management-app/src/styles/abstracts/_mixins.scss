@@ -6,7 +6,7 @@
   $fs: 1.6rem,
   $fw: 400,
   $lh: 1.2,
-  $color: $primary-color,
+  $color: $primary-color
 ) {
   font-family: $ff;
   font-size: $fs;
@@ -15,13 +15,7 @@
   color: $color;
 }
 
-@mixin lora(
-  $ff: $ff-lora-regular,
-  $fs: 1.6rem,
-  $fw: 400,
-  $lh: 1.2,
-  $color: $primary-color,
-) {
+@mixin lora($ff: $ff-lora-regular, $fs: 1.6rem, $fw: 400, $lh: 1.2, $color: $primary-color) {
   font-family: $ff;
   font-size: $fs;
   font-weight: $fw;
