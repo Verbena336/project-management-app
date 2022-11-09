@@ -1,5 +1,7 @@
 import React from 'react';
 
+import MainPaper from '../MainPaper';
+
 import styles from './index.module.scss';
 
 const WelcomeMain = () => {
@@ -13,40 +15,56 @@ const WelcomeMain = () => {
             </div>
             <div className={styles.content}>
               <h1 className={styles.title}>KanBan</h1>
-              <div className={styles.text}>
-                Текст какой-то Текст какой-то Текст какой-то Текст какой-то
-              </div>
+              <MainPaper>Текст какой-то Текст какой-то Текст какой-то Текст какой-то</MainPaper>
             </div>
           </section>
           <section className={styles.section}>
             <h2 className="title">About App</h2>
             <div className={styles['about-app-content']}>
-              <div className={styles['about-app-text']}></div>
-              <div className={styles['about-app-image-box']}></div>
+              <MainPaper>
+                <div className={styles['paper-content']}>
+                  <div className={styles['about-app-text']}>
+                    Some text Some text Some text Some text Some text Some text Some text Some text
+                    Some text Some text Some text Some text Some text Some textSome text Some text
+                    Some text Some text Some text
+                  </div>
+                  <img src="./assets/images/about-app.png" />
+                </div>
+              </MainPaper>
             </div>
           </section>
-          <section className="about-team section">
+          <section className={styles.section}>
             <h2 className="title">About Team</h2>
             <div className={styles['about-team-content']}>
-              <div className={styles['about-team-img-box']}></div>
+              <img className={styles['about-team-img']} src="./assets/images/about-team.png" />
               <div className={styles.participants}>
-                <div className={styles.participant}></div>
-                <div className={styles.participant}></div>
-                <div className={styles.participant}></div>
+                <MainPaper>
+                  Some text Some text Some text Some text Some text Some text Some text Some text
+                  Some text Some text Some text Some text
+                </MainPaper>
+                <MainPaper>
+                  Some text Some text Some text Some text Some text Some text Some text Some text
+                  Some text Some text Some text Some text
+                </MainPaper>
+                <MainPaper>
+                  Some text Some text Some text Some text Some text Some text Some text Some text
+                  Some text Some text Some text Some text
+                </MainPaper>
               </div>
             </div>
           </section>
-          <section className="about-school section">
+          <section className={`${styles.section} ${styles['about-school']}`}>
             <h2 className="title">About School</h2>
-            <div className={styles['about-school-content']}>
-              <div>
-                Some text Some text Some text Some text Some text Some text Some text Some text Some
-                text Some text Some text Some text Some text Some textSome text
-              </div>
-              <div className={styles['about-school-img-box']}>
+
+            <MainPaper>
+              <div className={styles['about-school-content']}>
+                <div className={styles['about-school-text']}>
+                  Some text Some text Some text Some text Some text Some text Some text Some text
+                  Some text Some text Some text Some text Some text Some textSome text
+                </div>
                 <img src="./assets/images/about-school.png" />
               </div>
-            </div>
+            </MainPaper>
           </section>
         </div>
       </div>
