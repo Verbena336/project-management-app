@@ -1,13 +1,11 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { ToastContainer } from 'react-toastify';
 
 import Paper from '@mui/material/Paper';
 
 import styles from './AuthWrap.module.scss';
 
-type LayoutContent = {
-  children: ReactNode;
-};
+import { LayoutContent } from 'types';
 
 function Layout({ children }: LayoutContent) {
   return (
