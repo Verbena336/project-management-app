@@ -13,16 +13,14 @@ const { inner } = styles;
 
 const WelcomeMain = () => {
   return (
-    <main className="main">
-      <div className="container">
-        <div className={inner}>
-          <HeroSection />
-          <AboutApp />
-          <AboutTeam />
-          <AboutSchool />
-        </div>
+    <div className="container">
+      <div className={inner}>
+        <HeroSection />
+        <AboutApp />
+        <AboutTeam />
+        <AboutSchool />
       </div>
-    </main>
+    </div>
   );
 };
 

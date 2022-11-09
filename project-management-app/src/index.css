@@ -30,15 +30,6 @@ body {
   background: linear-gradient(180deg, #daebff 0%, #84bcff 100%);
 }
 
-main {
-  width: 100%;
-  flex: 1 0 auto;
-}
-
-.footer {
-  flex: 0 0 auto;
-}
-
 .section {
   padding: 0 50px;
   padding-top: 15px;

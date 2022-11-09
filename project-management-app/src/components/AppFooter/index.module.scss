@@ -1,5 +1,6 @@
 .footer {
   width: 100%;
+  flex: 0 0 auto;
 }
 
 .inner {
@@ -21,6 +22,6 @@
 }
 
 .githubs {
-    display: flex;
-    gap: 15px;
+  display: flex;
+  gap: 15px;
 }
