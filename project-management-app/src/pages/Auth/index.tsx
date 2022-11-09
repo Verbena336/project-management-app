@@ -1,12 +1,18 @@
 import React from 'react';
+
+import AuthWrap from './components/AuthWrap';
 import SigninForm from './components/SignInForm';
-import SignupForm from './components/SignupForm';
+import SignupForm from './components/SignUpForm';
 
 function Auth() {
   return (
     <>
-      <SigninForm />
-      <SignupForm />
+      <AuthWrap>
+        <SigninForm />
+      </AuthWrap>
+      <AuthWrap>
+        <SignupForm />
+      </AuthWrap>
     </>
   );
 }

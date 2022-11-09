@@ -8,8 +8,11 @@ type ResponseBody = {
   message: string;
 };
 
-export type ResponseUser = {
+export type ResponseSignIn = {
   token: string;
-  status?: number;
-  data?: ResponseBody;
+};
+
+export type ErrorSignIn = {
+  status: number;
+  data: ResponseBody;
 };

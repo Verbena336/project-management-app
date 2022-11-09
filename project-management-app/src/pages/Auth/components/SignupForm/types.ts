@@ -9,10 +9,13 @@ type ResponseBody = {
   message: string;
 };
 
-export type ResponseUser = {
-  status?: number;
-  data?: ResponseBody;
-  id?: string;
-  login?: string;
-  password?: string;
+export type ResponseSignUp = {
+  id: string;
+  login: string;
+  password: string;
+};
+
+export type ErrorSignUp = {
+  status: number;
+  data: ResponseBody;
 };
