@@ -6,7 +6,7 @@ import MuiButton from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 import 'react-toastify/dist/ReactToastify.css';
-import styles from './SignupForm.module.scss';
+import styles from './index.module.scss';
 
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { setSignupValues, signupValues } from 'store/reducers/authSlice';
