@@ -1,17 +1,17 @@
 import React from 'react';
 
 import AuthWrap from './components/AuthWrap';
-import SigninForm from './components/SignInForm';
-import SignupForm from './components/SignUpForm';
+import SignInForm from './components/SignInForm';
+import SignUpForm from './components/SignUpForm';
 
 function Auth() {
   return (
     <>
       <AuthWrap>
-        <SigninForm />
+        <SignInForm />
       </AuthWrap>
       <AuthWrap>
-        <SignupForm />
+        <SignUpForm />
       </AuthWrap>
     </>
   );

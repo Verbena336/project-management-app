@@ -14,7 +14,7 @@ import { useSigninMutation } from 'store/services/authApi';
 
 import { Inputs, ResponseSignIn, ErrorSignIn } from './types';
 
-function SigninForm() {
+function SignInForm() {
   const dispatch = useAppDispatch();
   const signinValuesStore = useAppSelector(signinValues);
   const { login, password } = signinValuesStore;
@@ -102,4 +102,4 @@ function SigninForm() {
   );
 }
 
-export default SigninForm;
+export default SignInForm;
