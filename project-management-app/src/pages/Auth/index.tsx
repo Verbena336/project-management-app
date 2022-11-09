@@ -2,7 +2,7 @@ import React from 'react';
 
 import AuthWrap from './components/AuthWrap';
 import SignInForm from './components/SignInForm';
-import SignUpForm from './components/SignUp';
+import SignUpForm from './components/SignUpForm';
 
 const Auth = () => {
   return (
