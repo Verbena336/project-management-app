@@ -1,0 +1,61 @@
+.inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.section {
+  background-color: #fbfbfb;
+  padding: 0 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero {
+  display: flex;
+}
+
+
+.image-box {
+  flex: 0 1 50%;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.content {
+  flex: 0 1 50%;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.title {
+  font-family: 'Alegreya';
+  font-size: 128px;
+}
+
+.text {
+  background-color: #fff;
+}
+
+
+// About Team
+
+.about-team-content {
+  display: flex;
+}
+
+
+.about-app-content {
+  display: flex;
+}
+
+.about-school-content {
+  display: flex;
+  padding: 0 50px;
+}
