@@ -1,0 +1,25 @@
+.hero {
+  display: flex;
+}
+
+.img {
+  flex: 0 1 50%;
+  height: auto;
+}
+
+.content {
+  flex: 0 1 50%;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.title {
+  font-family: 'Alegreya';
+  font-size: 128px;
+}
+
+.text {
+  background-color: #fff;
+}

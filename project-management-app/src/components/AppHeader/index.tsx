@@ -13,20 +13,10 @@ const AppHeader = () => {
           <div className={styles.logo}>logo</div>
           <div>
             <Switch defaultChecked />
-            <MuiButton
-              aria-label="Sign In"
-              className={styles.btn}
-              type="submit"
-              variant="contained"
-            >
+            <MuiButton aria-label="Sign In" type="submit" variant="contained">
               Sign In
             </MuiButton>
-            <MuiButton
-              aria-label="Sign Up"
-              className={styles.btn}
-              type="submit"
-              variant="contained"
-            >
+            <MuiButton aria-label="Sign Up" type="submit" variant="contained">
               Sign Up
             </MuiButton>
           </div>
