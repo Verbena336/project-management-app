@@ -4,7 +4,7 @@ import AuthWrap from './components/AuthWrap';
 import SignInForm from './components/SignInForm';
 import SignUpForm from './components/SignUpForm';
 
-function Auth() {
+const Auth = () => {
   return (
     <>
       <AuthWrap>
@@ -15,6 +15,6 @@ function Auth() {
       </AuthWrap>
     </>
   );
-}
+};
 
 export default Auth;
