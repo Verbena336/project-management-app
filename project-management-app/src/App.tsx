@@ -1,10 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
     <div className="App">
+      <ToastContainer style={{ fontSize: '15px' }} />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
