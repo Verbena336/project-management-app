@@ -1,11 +1,13 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
+import { PATH } from '../types';
+
 const RootRedirect = () => {
   return localStorage.getItem('KanBanToken') ? (
-    <Navigate to="/boards" />
+    <Navigate to={PATH.BOARDS} />
   ) : (
-    <Navigate to="/Welcome" />
+    <Navigate to={PATH.WELCOME} />
   );
 };
 
