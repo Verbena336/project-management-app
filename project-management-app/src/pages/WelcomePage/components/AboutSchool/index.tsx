@@ -8,6 +8,7 @@ const { about, content, text } = styles;
 const AboutSchool = () => (
   <section className={`section ${about}`}>
     <h2 className="title">About School</h2>
+    <div className="underline"></div>
     <MainPaper>
       <div className={content}>
         <div className={text}>
