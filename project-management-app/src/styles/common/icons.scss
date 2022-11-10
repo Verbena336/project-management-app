@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('../../../public/assets/iconFonts/icomoon.eot?qx5v9e');
-  src:  url('../../../public/assets/iconFonts/icomoon.eot?qx5v9e#iefix') format('embedded-opentype'),
+  src: url('../../../public/assets/iconFonts/icomoon.eot?qx5v9e');
+  src: url('../../../public/assets/iconFonts/icomoon.eot?qx5v9e#iefix') format('embedded-opentype'),
     url('../../../public/assets/iconFonts/icomoon.ttf?qx5v9e') format('truetype'),
     url('../../../public/assets/iconFonts/icomoon.woff?qx5v9e') format('woff'),
     url('../../../public/assets/iconFonts/icomoon.svg?qx5v9e#icomoon') format('svg');
@@ -10,7 +10,8 @@
   font-display: block;
 }
 
-[class^="icon-"]::before, [class*=" icon-"]::before {
+[class^='icon-']::before,
+[class*=' icon-']::before {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: never;
@@ -26,10 +27,21 @@
 }
 
 .icon-app-logo:before {
-  content: "\e900";
+  content: '\e900';
   font-size: 50px;
 }
+
+.icon-app-logo:hover {
+  cursor: pointer;
+  color: #000;
+}
+
 .icon-school-logo:before {
-  content: "\e901";
+  content: '\e901';
   font-size: 50px;
+}
+
+.icon-school-logo:hover {
+  cursor: pointer;
+  color: #000;
 }
