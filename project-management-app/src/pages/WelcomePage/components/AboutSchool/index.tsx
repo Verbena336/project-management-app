@@ -1,8 +1,9 @@
 import React from 'react';
 
-import MainPaper from '../../../../components/MainPaper';
+import MainPaper from 'components/MainPaper';
 
 import styles from './index.module.scss';
+
 const { about, content, text } = styles;
 
 const AboutSchool = () => (

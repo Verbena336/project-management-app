@@ -1,8 +1,8 @@
 import React from 'react';
 
-import styles from './index.module.scss';
+import MainPaper from 'components/MainPaper';
 
-import MainPaper from '../../../../components/MainPaper';
+import styles from './index.module.scss';
 
 const { info, content, participants, participant, img, definition } = styles;
 
