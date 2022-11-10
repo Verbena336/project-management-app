@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
-const Redirect = () => {
+const RootRedirect = () => {
   return localStorage.getItem('KanBanToken') ? (
     <Navigate to="/boards" />
   ) : (
@@ -9,4 +9,4 @@ const Redirect = () => {
   );
 };
 
-export default Redirect;
+export default RootRedirect;
