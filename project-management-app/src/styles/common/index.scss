@@ -1,6 +1,8 @@
 @use '../abstracts/mixins' as *;
 @use '../base/vars' as *;
 
+@import './icons.scss';
+
 body {
   @include alegreya;
 }
@@ -15,4 +17,29 @@ body {
   @include media-mobile {
     padding: 0 10px;
   }
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+}
+
+a:link {
+  color: $primary-color;
+}
+
+a:visited {
+  color: $primary-color;
+}
+
+a:focus {
+  color: $primary-color;
+}
+
+a:hover {
+  color: $primary-color;
+}
+
+a:active {
+  color: $primary-color;
 }

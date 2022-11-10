@@ -2,15 +2,20 @@ import React from 'react';
 
 import styles from './index.module.scss';
 
-const { footer, inner, logo, created, githubs } = styles;
-
 import { developers } from '../../constants';
+
+const { footer, inner, created, githubs } = styles;
 
 const AppFooter = () => (
   <footer className={footer}>
     <div className="container">
       <div className={inner}>
-        <div className={logo}>logo</div>
+        <a
+          target="_blank"
+          href="https://rs.school/"
+          className="icon-school-logo"
+          rel="noreferrer"
+        ></a>
         <div className={created}>2022</div>
         <div className={githubs}>
           {developers.map((person, i) => (

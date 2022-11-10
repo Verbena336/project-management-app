@@ -13,7 +13,7 @@ const AppHeader = () => {
     <header className={header}>
       <div className="container">
         <div className={inner}>
-          <div className={logo}>logo</div>
+          <a href="#" className="icon-app-logo"></a>
           <div>
             <Switch defaultChecked />
             <MuiButton aria-label={SignIn} type="submit" variant="contained">
