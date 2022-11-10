@@ -26,3 +26,17 @@
 .text {
   padding: 50px 15px;
 }
+
+.paper {
+  position: relative;
+}
+
+.line {
+  border-radius: 10px 0 0 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 100%;
+  background-color: #FF6584;
+}

@@ -3,6 +3,7 @@
 }
 
 .content {
+  position: relative;
   padding: 0 50px;
   padding-top: 30px;
   display: flex;
@@ -13,4 +14,14 @@
 .text {
   padding: 10px;
   text-align: center;
+}
+
+.line {
+  border-radius: 10px 0 0 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 100%;
+  background-color: #8B49BF;
 }

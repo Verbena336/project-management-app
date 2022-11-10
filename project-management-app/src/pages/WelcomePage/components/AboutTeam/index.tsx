@@ -4,7 +4,8 @@ import MainPaper from 'components/MainPaper';
 
 import styles from './index.module.scss';
 
-const { info, content, participants, participant, img, definition } = styles;
+const { info, content, participants, participant, img, definition, line, blue, green, yellow } =
+  styles;
 
 const AboutTeam = () => (
   <section className="section">
@@ -15,6 +16,7 @@ const AboutTeam = () => (
       <div className={participants}>
         <MainPaper>
           <div className={participant}>
+            <div className={`${line} ${blue}`}></div>
             <div className={info}>
               <img src="./assets/images/participants.png" className={img} />
               <div>Наташа</div>
@@ -27,6 +29,7 @@ const AboutTeam = () => (
         </MainPaper>
         <MainPaper>
           <div className={participant}>
+            <div className={`${line} ${green}`}></div>
             <div className={info}>
               <img src="./assets/images/participants.png" className={img} />
               <div>Никита</div>
@@ -39,6 +42,7 @@ const AboutTeam = () => (
         </MainPaper>
         <MainPaper>
           <div className={participant}>
+            <div className={`${line} ${yellow}`}></div>
             <div className={info}>
               <img src="./assets/images/participants.png" className={img} />
               <div>Виталий</div>

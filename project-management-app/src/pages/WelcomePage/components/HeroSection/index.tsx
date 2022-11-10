@@ -4,7 +4,7 @@ import MainPaper from 'components/MainPaper';
 
 import styles from './index.module.scss';
 
-const { hero, img, content, title, text } = styles;
+const { hero, img, content, title, text, paper, line } = styles;
 
 const HeroSection = () => (
   <section className={hero}>
@@ -12,7 +12,10 @@ const HeroSection = () => (
     <div className={content}>
       <h1 className={title}>KanBan</h1>
       <MainPaper>
-        <div className={text}>Текст какой-то Текст какой-то Текст какой-то Текст какой-то</div>
+        <div className={paper}>
+          <div className={line}></div>
+          <div className={text}>Текст какой-то Текст какой-то Текст какой-то Текст какой-то</div>
+        </div>
       </MainPaper>
     </div>
   </section>

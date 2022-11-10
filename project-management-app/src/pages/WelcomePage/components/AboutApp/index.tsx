@@ -4,7 +4,7 @@ import MainPaper from 'components/MainPaper';
 
 import styles from './index.module.scss';
 
-const { paper, content, text } = styles;
+const { paper, content, text, line } = styles;
 
 const AboutApp = () => (
   <section className="section">
@@ -13,6 +13,7 @@ const AboutApp = () => (
     <div className={content}>
       <MainPaper>
         <div className={paper}>
+          <div className={line}></div>
           <div className={text}>
             Some text Some text Some text Some text Some text Some text Some text Some text Some
             text Some text Some text Some text Some text Some textSome text Some text Some text Some

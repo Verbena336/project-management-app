@@ -4,7 +4,7 @@ import MainPaper from 'components/MainPaper';
 
 import styles from './index.module.scss';
 
-const { about, content, text } = styles;
+const { about, content, text, line } = styles;
 
 const AboutSchool = () => (
   <section className={`section ${about}`}>
@@ -12,6 +12,7 @@ const AboutSchool = () => (
     <div className="underline"></div>
     <MainPaper>
       <div className={content}>
+        <div className={line}></div>
         <div className={text}>
           Some text Some text Some text Some text Some text Some text Some text Some text Some text
           Some text Some text Some text Some text Some textSome text
