@@ -4,7 +4,7 @@ import styles from './index.module.scss';
 
 import { developers } from '../../constants';
 
-const { footer, inner, created, githubs } = styles;
+const { footer, inner, created, githubs, link } = styles;
 
 const AppFooter = () => (
   <footer className={footer}>
@@ -19,7 +19,7 @@ const AppFooter = () => (
         <div className={created}>2022</div>
         <div className={githubs}>
           {developers.map((person, i) => (
-            <a key={i} href={person.url} target="_blank" rel="noreferrer">
+            <a className={link} key={i} href={person.url} target="_blank" rel="noreferrer">
               {person.name}
             </a>
           ))}
