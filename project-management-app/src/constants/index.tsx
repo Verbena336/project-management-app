@@ -1,14 +1,14 @@
 export const developers = [
   {
     url: 'https://github.com/verbena336',
-    name: 'Наташа',
+    name: 'verbena336',
   },
   {
     url: 'https://github.com/rewired25',
-    name: 'Никита',
+    name: 'rewired25',
   },
   {
     url: 'https://github.com/bloodsuckers-spb',
-    name: 'Виталик',
+    name: 'bloodsuckers-spb',
   },
 ];
