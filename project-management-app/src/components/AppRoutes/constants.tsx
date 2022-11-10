@@ -1,7 +1,6 @@
 import RootRedirect from './components/RootRedirect';
 import SignInPage from 'pages/SignInPage';
 import SignUpPage from 'pages/SignUpPage';
-import ErrorPage from 'pages/ErrorPage';
 import Page404 from 'pages/page404';
 
 import WelcomePage from './plugs/WelcomePage';
@@ -19,5 +18,4 @@ export const PAGES_FOR_ROUTES = [
   { path: PATH.SIGN_UP, page: <SignUpPage /> },
   { path: PATH.EDIT_PROFILE, page: <EditProfilePage /> },
   { path: PATH.ROUTES_404, page: <Page404 /> },
-  { path: PATH.ERROR, page: <ErrorPage /> },
 ];

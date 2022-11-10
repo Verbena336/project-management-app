@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import { PAGES_FOR_ROUTES } from './constants';
 
-const Router = () => {
+const AppRoutes = () => {
   return (
     <Routes>
       {PAGES_FOR_ROUTES.map(({ path, page }, index) => (
@@ -13,4 +13,4 @@ const Router = () => {
   );
 };
 
-export default Router;
+export default AppRoutes;

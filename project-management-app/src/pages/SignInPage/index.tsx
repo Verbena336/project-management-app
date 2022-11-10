@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom';
 import MainPaper from 'components/MainPaper';
 import SignInForm from './components/SignInForm';
 
-import { PATH } from 'components/Router/types';
+import { PATH } from 'components/AppRoutes/types';
 
 import styles from './SignInPage.module.scss';
 

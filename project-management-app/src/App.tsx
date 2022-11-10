@@ -1,12 +1,12 @@
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 
-import Router from 'components/Router';
+import AppRoutes from 'components/AppRoutes';
 
 function App() {
   return (
     <>
-      <Router />
+      <AppRoutes />
       <ToastContainer style={{ fontSize: '15px' }} />
     </>
   );
