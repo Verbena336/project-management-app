@@ -5,7 +5,7 @@ import Switch from '@mui/material/Switch';
 
 import styles from './index.module.scss';
 
-const { header, inner, control } = styles;
+const { header, inner, control, link } = styles;
 
 const AppHeader = () => {
   const SignIn = 'Sign In';
@@ -14,10 +14,12 @@ const AppHeader = () => {
     <header className={header}>
       <div className="container">
         <div className={inner}>
-          <a href="#" className="icon-app-logo"></a>
+          <div className={link}>
+            <a href="#" className={`icon-app-logo`}></a>
+          </div>
           <div className={control}>
             <Switch defaultChecked />
-            <MuiButton aria-label={SignIn} type="submit" variant="contained">
+            <MuiButton aria-label={SignIn} type="submit" variant="outlined">
               {SignIn}
             </MuiButton>
             <MuiButton aria-label={SignUp} type="submit" variant="contained">

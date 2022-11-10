@@ -1,3 +1,5 @@
+@import '../../styles/base/vars';
+
 .header {
   width: 100%;
 }
@@ -12,4 +14,18 @@
 .control {
   display: flex;
   gap: 10px;
+}
+
+.link {
+  position: relative;
+  display: block;
+  transition: all linear 0.3s;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.link:hover {
+  background-color: $light-gray-second-color;
+  box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.2);
 }

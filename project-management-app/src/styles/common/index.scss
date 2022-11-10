@@ -21,7 +21,7 @@ body {
 
 a {
   color: $primary-color;
-  transition: all linear .5s;
+  transition: all linear 0.5s;
   text-decoration: none;
 }
 
@@ -38,7 +38,7 @@ a:focus {
 }
 
 a:hover {
-  color: #000;
+  color: $primary-color;
 }
 
 a:active {
