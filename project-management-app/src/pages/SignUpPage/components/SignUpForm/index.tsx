@@ -1,30 +1,43 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 
 import MuiButton from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import Spiner from '@mui/material/CircularProgress';
 
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './index.module.scss';
+import { muiInputStyle } from 'data/styles';
 
-import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { setSignupValues, signupValues } from 'store/reducers/authSlice';
-import { useSignupMutation } from 'store/services/authApi';
+import { useSigninMutation, useSignupMutation } from 'store/services/authApi';
 
 import { ErrorSignUp, Inputs, ResponseSignUp } from './types';
+import { ResponseSignIn } from '../../../SignInPage/components/SignInForm/types';
 
 function SignUpForm() {
-  const dispatch = useAppDispatch();
-  const signupValuesStore = useAppSelector(signupValues);
-  const { name, login, password } = signupValuesStore;
-  const [signUp] = useSignupMutation();
+  const [signIn] = useSigninMutation();
+  const [signUp, { isLoading }] = useSignupMutation();
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<Inputs>({ mode: 'onSubmit' });
 
   const createUser = async (value: Inputs) => {
+    const { login, password } = value;
     try {
       const response: ResponseSignUp = await signUp(value).unwrap();
       if (response.id) {
-        toast.success(`Hello, ${response.login}`);
+        const response: ResponseSignIn = await signIn({ login, password }).unwrap();
+        if (response.token) {
+          localStorage.setItem('KanBanToken', response.token);
+          localStorage.setItem('KanBanLogin', value.login);
+          toast.success(`Hello, ${value.login}`);
+        } else {
+          throw new Error();
+        }
       }
     } catch (err) {
       const error = err as ErrorSignUp;
@@ -32,74 +45,53 @@ function SignUpForm() {
         case 409:
           toast.error('User already exist');
           break;
+        case 403:
+          toast.error('User was not founded!');
+          break;
         default:
           toast.error('Unknown error');
       }
     }
   };
 
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-    watch,
-  } = useForm<Inputs>({ mode: 'onSubmit' });
-
-  useEffect(() => {
-    watch((value) => {
-      dispatch(setSignupValues(value));
-    });
-  }, []);
-
   const onSubmit = (data: Inputs) => createUser(data);
 
-  return (
+  return isLoading ? (
+    <div className={styles.spinWrapper}>
+      <Spiner color="inherit" />
+    </div>
+  ) : (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <TextField
-        sx={{
-          '& .MuiInputBase-input': {
-            color: '#1740A9',
-          },
-        }}
+        sx={muiInputStyle}
         size="small"
         id="name"
         label={errors.name ? '⚠Name is required' : 'Name'}
         variant="outlined"
         error={errors.name ? true : false}
-        value={name}
         {...register('name', {
           required: true,
         })}
       />
       <TextField
-        sx={{
-          '& .MuiInputBase-input': {
-            color: '#1740A9',
-          },
-        }}
+        sx={muiInputStyle}
         size="small"
         id="login"
         label={errors.login ? '⚠Login is required' : 'Login'}
         variant="outlined"
         error={errors.login ? true : false}
-        value={login}
         {...register('login', {
           required: true,
         })}
       />
       <TextField
-        sx={{
-          '& .MuiInputBase-input': {
-            color: '#1740A9',
-          },
-        }}
+        sx={muiInputStyle}
         size="small"
         type="password"
         id="password"
         label={errors.password ? '⚠Password is required' : 'Password'}
         variant="outlined"
         error={errors.password ? true : false}
-        value={password}
         {...register('password', {
           required: true,
         })}
