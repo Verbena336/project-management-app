@@ -4,20 +4,23 @@ import MuiButton from '@mui/material/Button';
 import Switch from '@mui/material/Switch';
 
 import styles from './index.module.scss';
+const { header, inner, logo } = styles;
 
 const AppHeader = () => {
+  const SignIn = 'Sign In';
+  const SignUp = 'Sign Up';
   return (
-    <header className={styles.header}>
+    <header className={header}>
       <div className="container">
-        <div className={styles.inner}>
-          <div className={styles.logo}>logo</div>
+        <div className={inner}>
+          <div className={logo}>logo</div>
           <div>
             <Switch defaultChecked />
-            <MuiButton aria-label="Sign In" type="submit" variant="contained">
-              Sign In
+            <MuiButton aria-label={SignIn} type="submit" variant="contained">
+              {SignIn}
             </MuiButton>
-            <MuiButton aria-label="Sign Up" type="submit" variant="contained">
-              Sign Up
+            <MuiButton aria-label={SignUp} type="submit" variant="contained">
+              {SignUp}
             </MuiButton>
           </div>
         </div>

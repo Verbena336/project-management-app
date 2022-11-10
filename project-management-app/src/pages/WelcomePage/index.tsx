@@ -1,20 +1,14 @@
 import React from 'react';
 
-import AppHeader from 'components/AppHeader';
-import AppMain from 'components/AppMain';
+import AppLayout from 'components/AppLayout';
 import WelcomeMain from 'pages/WelcomePage/components/WelcomeMain';
-import AppFooter from 'components/AppFooter';
 
-const WelcomePage = () => {
-  return (
-    <>
-      <AppHeader />
-      <AppMain>
-        <WelcomeMain />
-      </AppMain>
-      <AppFooter />
-    </>
-  );
-};
+import './index.scss';
+
+const WelcomePage = () => (
+  <AppLayout>
+    <WelcomeMain />
+  </AppLayout>
+);
 
 export default WelcomePage;

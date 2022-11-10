@@ -6,8 +6,6 @@ import { LayoutContent } from 'types';
 
 const { main } = styles;
 
-const AppMain = ({ children }: LayoutContent) => {
-  return <main className={main}>{children}</main>;
-};
+const AppMain = ({ children }: LayoutContent) => <main className={main}>{children}</main>;
 
 export default AppMain;
