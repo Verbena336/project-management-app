@@ -2,16 +2,22 @@ import React from 'react';
 
 import styles from './index.module.scss';
 
+const { footer, inner, logo, created, githubs } = styles;
+
+import { developers } from '../../constants';
+
 const AppFooter = () => (
-  <footer className={styles.footer}>
+  <footer className={footer}>
     <div className="container">
-      <div className={styles.inner}>
-        <div className={styles.logo}>logo</div>
-        <div className={styles.created}>2022</div>
-        <div className={styles.githubs}>
-          <a href="#">ссылка 1</a>
-          <a href="#">ссылка 2</a>
-          <a href="#">ссылка 3</a>
+      <div className={inner}>
+        <div className={logo}>logo</div>
+        <div className={created}>2022</div>
+        <div className={githubs}>
+          {developers.map((person, i) => (
+            <a key={i} href={person.url} target="_blank" rel="noreferrer">
+              {person.name}
+            </a>
+          ))}
         </div>
       </div>
     </div>
