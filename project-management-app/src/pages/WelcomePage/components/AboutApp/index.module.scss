@@ -1,7 +1,12 @@
+.content {
+  padding-top: 30px;
+}
+
 .paper {
+  padding: 0 70px;
+  padding-top: 30px;
   display: flex;
   gap: 50px;
-  padding: 0 70px;
   justify-content: center;
   align-items: center;
 }

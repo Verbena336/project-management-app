@@ -4,7 +4,13 @@
 
 .content {
   padding: 0 50px;
+  padding-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.text {
+  padding: 10px;
+  text-align: center;
 }
