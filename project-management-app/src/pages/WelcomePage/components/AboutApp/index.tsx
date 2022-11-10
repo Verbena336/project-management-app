@@ -9,7 +9,6 @@ const { paper, content, text, line } = styles;
 const AboutApp = () => (
   <section className="section">
     <h2 className="title">About App</h2>
-    <div className="underline"></div>
     <div className={content}>
       <MainPaper>
         <div className={paper}>

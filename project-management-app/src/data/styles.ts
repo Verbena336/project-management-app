@@ -1,7 +1,7 @@
-const muiInputStyle = {
+export const muiInputStyle = {
   '& .MuiInputBase-input': {
     color: '#1740A9',
   },
 };
 
-export { muiInputStyle };
+export const muiPaperStyle = { borderRadius: '10px', backgroundColor: '#fbfbfb' };

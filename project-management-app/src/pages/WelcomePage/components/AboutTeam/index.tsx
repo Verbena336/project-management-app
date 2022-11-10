@@ -10,7 +10,6 @@ const { info, content, participants, participant, img, definition, line, blue, g
 const AboutTeam = () => (
   <section className="section">
     <h2 className="title">About Team</h2>
-    <div className="underline"></div>
     <div className={content}>
       <img className={img} src="./assets/images/about-team.png" />
       <div className={participants}>
