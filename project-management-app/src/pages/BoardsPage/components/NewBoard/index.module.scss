@@ -1,0 +1,29 @@
+@import 'styles/base/vars';
+
+.newBoard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  max-width: 400px;
+  min-width: 300px;
+  width: 100%;
+  height: 170px;
+  border: 1px dashed $new-border-dashed;
+  background-color: transparent;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.newBoardIcon {
+  width: 70px;
+  height: 50px;
+  border: 1px solid rgb(83, 83, 255);
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.newBoard:hover .newBoardIcon {
+  transform: scale(1.1);
+  border-color: rgb(12, 12, 151);
+}

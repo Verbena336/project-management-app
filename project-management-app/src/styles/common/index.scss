@@ -1,4 +1,6 @@
-@use '../abstracts/mixins' as *;
+// @use '../abstracts/mixins' as *;
+
+@import '../abstracts/mixins';
 
 body {
   @include alegreya;

@@ -1,0 +1,68 @@
+@import 'styles/abstracts/mixins';
+
+.boardSection,
+.boardContentWrapper {
+  box-sizing: border-box;
+}
+
+.boardSection,
+.boardContentWrapper {
+  max-width: 400px;
+  min-width: 300px;
+  width: 100%;
+  height: 170px;
+}
+
+.boardContentWrapper {
+  padding: 10px;
+  font-size: 24px;
+  color: $primary-color;
+  @include media-mobile {
+    font-size: 18px;
+  }
+}
+
+.boardTitle,
+.boardDescription {
+  margin: 0;
+}
+
+.boardHeader {
+  position: relative;
+  padding-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid $primary-color;
+}
+
+.boardButtonWrapper {
+  position: absolute;
+  left: calc(100% - 60px);
+  top: 5px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  @include media-mobile {
+    top: 0;
+    gap: 5px;
+    font-size: 18px;
+  }
+}
+
+.boardDescriptionWrapper {
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 30px 0;
+  height: calc(100% - 35px);
+  display: flex;
+  justify-content: center;
+}
+
+.boardEdit,
+.boardRemove {
+  cursor: pointer;
+}
+
+.boardDescription {
+  text-align: center;
+}

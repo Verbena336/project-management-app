@@ -4,7 +4,7 @@ import SignUpPage from 'pages/SignUpPage';
 import Page404 from 'pages/page404';
 
 import WelcomePage from './plugs/WelcomePage';
-import BoardsPage from './plugs/BoardsPage';
+import BoardsPage from 'pages/BoardsPage';
 import EditProfilePage from './plugs/EditProfilePage';
 
 import { PATH } from './types';
