@@ -1,7 +1,13 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
 
-import Welcome from './pages/Welcome';
+import AppRoutes from 'components/AppRoutes';
 
-const App = () => <Welcome />;
+const App = () => (
+  <>
+    <AppRoutes />
+    <ToastContainer style={{ fontSize: '15px' }} />
+  </>
+);
 
 export default App;
