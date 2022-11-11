@@ -6,7 +6,7 @@ import { developers } from '../../constants';
 
 const { footer, inner, created, githubs, link } = styles;
 
-const AppFooter = () => (
+const Footer = () => (
   <footer className={footer}>
     <div className="container">
       <div className={inner}>
@@ -18,9 +18,9 @@ const AppFooter = () => (
         ></a>
         <div className={created}>2022</div>
         <div className={githubs}>
-          {developers.map((person, i) => (
-            <a className={link} key={i} href={person.url} target="_blank" rel="noreferrer">
-              {person.name}
+          {developers.map(({ name, url }, i) => (
+            <a className={link} key={i} href={url} target="_blank" rel="noreferrer">
+              {name}
             </a>
           ))}
         </div>
@@ -29,4 +29,4 @@ const AppFooter = () => (
   </footer>
 );
 
-export default AppFooter;
+export default Footer;

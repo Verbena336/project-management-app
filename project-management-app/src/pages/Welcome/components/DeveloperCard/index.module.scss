@@ -1,17 +1,3 @@
-.content {
-  padding-bottom: 70px;
-  display: flex;
-  align-items: center;
-  gap: 50px;
-}
-
-.participants {
-  padding-top: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
 .participant {
   position: relative;
   display: flex;
@@ -42,16 +28,4 @@
   left: 0;
   width: 10px;
   height: 100%;
-}
-
-.blue {
-  background-color: #1740a9
-}
-
-.green {
-  background-color: #24cc49;
-}
-
-.yellow {
-  background-color: #ffdd65;
 }

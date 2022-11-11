@@ -1,7 +1,7 @@
 import React from 'react';
 
-import WelcomePage from './pages/WelcomePage';
+import Welcome from './pages/Welcome';
 
-const App = () => <WelcomePage />;
+const App = () => <Welcome />;
 
 export default App;

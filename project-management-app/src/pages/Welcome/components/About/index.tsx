@@ -6,7 +6,7 @@ import styles from './index.module.scss';
 
 const { paper, content, text, line } = styles;
 
-const AboutApp = () => (
+const About = () => (
   <section className="section">
     <h2 className="title">About App</h2>
     <div className={content}>
@@ -25,4 +25,4 @@ const AboutApp = () => (
   </section>
 );
 
-export default AboutApp;
+export default About;

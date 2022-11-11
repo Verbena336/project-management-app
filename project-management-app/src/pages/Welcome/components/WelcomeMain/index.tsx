@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './index.module.scss';
 
 import HeroSection from '../HeroSection';
-import AboutApp from '../AboutApp';
+import AboutApp from '../About';
 import AboutTeam from '../AboutTeam';
 import AboutSchool from '../AboutSchool';
 

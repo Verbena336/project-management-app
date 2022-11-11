@@ -6,10 +6,10 @@ import { muiButtonStyle } from '../../data/styles';
 
 import { LayoutContent } from 'types';
 
-const SignUpBtn = ({ children }: LayoutContent) => (
+const SignBtn = ({ children }: LayoutContent) => (
   <MuiButton type="submit" variant="contained" sx={muiButtonStyle}>
     {children}
   </MuiButton>
 );
 
-export default SignUpBtn;
+export default SignBtn;

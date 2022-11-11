@@ -1,8 +1,8 @@
 import React from 'react';
 
-import AppHeader from 'components/AppHeader';
-import AppMain from 'components/AppMain';
-import AppFooter from 'components/AppFooter';
+import AppHeader from 'components/Header';
+import AppMain from 'components/Main';
+import AppFooter from 'components/Footer';
 
 import { LayoutContent } from 'types';
 
