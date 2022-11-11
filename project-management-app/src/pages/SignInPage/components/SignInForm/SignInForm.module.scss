@@ -44,3 +44,21 @@ hr {
     text-decoration: underline;
   }
 }
+
+.link {
+  color: $primary-color;
+  font-size: 18px;
+  text-decoration: none;
+  transition: all .3s;
+  &:hover {
+    color: $bright-blue-color;
+  }
+}
+
+.linkWrapper {
+  display: flex;
+  width: 100%;
+  gap: 5px;
+  flex-direction: column;
+  align-items: center;
+}

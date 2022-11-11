@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
-import { Navigate } from 'react-router-dom';
+import { Navigate, NavLink } from 'react-router-dom';
 
 import MuiButton from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -86,10 +86,15 @@ function SignInForm() {
           <MuiButton type="submit" variant="contained">
             Sign In
           </MuiButton>
-          <div className={styles.line}>
-            <hr />
-            OR
-            <hr />
+          <div className={styles.linkWrapper}>
+            <div className={styles.line}>
+              <hr />
+              OR
+              <hr />
+            </div>
+            <NavLink className={styles.link} to={PATH.SIGN_UP}>
+              Sign Up
+            </NavLink>
           </div>
         </form>
       )}
