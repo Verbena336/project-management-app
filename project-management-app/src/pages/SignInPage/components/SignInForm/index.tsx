@@ -1,5 +1,6 @@
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
+import { Navigate } from 'react-router-dom';
 
 import MuiButton from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -12,9 +13,10 @@ import { muiInputStyle } from 'data/styles';
 import { useSigninMutation } from 'store/services/authApi';
 
 import { Inputs, ResponseSignIn, ErrorSignIn } from './types';
+import { PATH } from 'components/AppRoutes/types';
 
 function SignInForm() {
-  const [signIn, { isLoading }] = useSigninMutation();
+  const [signIn, { isLoading, isSuccess }] = useSigninMutation();
 
   const {
     register,
@@ -46,44 +48,49 @@ function SignInForm() {
 
   const onSubmit = (data: Inputs) => loginUser(data);
 
-  return isLoading ? (
-    <div className={styles.spinWrapper}>
-      <Spiner color="inherit" />
-    </div>
-  ) : (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <TextField
-        sx={muiInputStyle}
-        size="small"
-        id="login"
-        label={errors.login ? '⚠Login is required' : 'Login'}
-        variant="outlined"
-        error={!!errors.login}
-        {...register('login', {
-          required: true,
-        })}
-      />
-      <TextField
-        sx={muiInputStyle}
-        size="small"
-        type="password"
-        id="password"
-        label={errors.password ? '⚠Password is required' : 'Password'}
-        variant="outlined"
-        error={!!errors.password}
-        {...register('password', {
-          required: true,
-        })}
-      />
-      <MuiButton type="submit" variant="contained">
-        Sign In
-      </MuiButton>
-      <div className={styles.line}>
-        <hr />
-        OR
-        <hr />
-      </div>
-    </form>
+  return (
+    <>
+      {isSuccess && <Navigate to={PATH.BOARDS} />}
+      {isLoading ? (
+        <div className={styles.spinWrapper}>
+          <Spiner color="inherit" />
+        </div>
+      ) : (
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+          <TextField
+            sx={muiInputStyle}
+            size="small"
+            id="login"
+            label={errors.login ? '⚠Login is required' : 'Login'}
+            variant="outlined"
+            error={!!errors.login}
+            {...register('login', {
+              required: true,
+            })}
+          />
+          <TextField
+            sx={muiInputStyle}
+            size="small"
+            type="password"
+            id="password"
+            label={errors.password ? '⚠Password is required' : 'Password'}
+            variant="outlined"
+            error={!!errors.password}
+            {...register('password', {
+              required: true,
+            })}
+          />
+          <MuiButton type="submit" variant="contained">
+            Sign In
+          </MuiButton>
+          <div className={styles.line}>
+            <hr />
+            OR
+            <hr />
+          </div>
+        </form>
+      )}
+    </>
   );
 }
 
