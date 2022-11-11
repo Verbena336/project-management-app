@@ -66,9 +66,7 @@ function SignUpForm() {
     <>
       {isSuccess && <Navigate to={PATH.BOARDS} />}
       {isLoading ? (
-        <div className={styles.spinWrapper}>
-          <Spiner color="inherit" />
-        </div>
+        <Spiner color="inherit" />
       ) : (
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <TextField

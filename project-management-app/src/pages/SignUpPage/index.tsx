@@ -14,7 +14,9 @@ const SignUpPage = () => {
   return (
     <div className={styles.wrapper}>
       <MainPaper>
-        <SignUpForm />
+        <div className={styles.content}>
+          <SignUpForm />
+        </div>
       </MainPaper>
     </div>
   );

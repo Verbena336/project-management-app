@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
@@ -16,7 +17,8 @@ import { Inputs, ResponseSignIn, ErrorSignIn } from './types';
 import { PATH } from 'components/AppRoutes/types';
 
 function SignInForm() {
-  const [signIn, { isLoading, isSuccess }] = useSigninMutation();
+  const [signIn, { isSuccess }] = useSigninMutation();
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -26,7 +28,9 @@ function SignInForm() {
 
   const loginUser = async (value: Inputs) => {
     try {
+      setIsLoading(true);
       const response: ResponseSignIn = await signIn(value).unwrap();
+      setIsLoading(false);
       if (response.token) {
         localStorage.setItem('KanBanToken', response.token);
         localStorage.setItem('KanBanLogin', value.login);
@@ -36,6 +40,7 @@ function SignInForm() {
       }
     } catch (err) {
       const error = err as ErrorSignIn;
+      setIsLoading(false);
       switch (error.status) {
         case 403:
           toast.error('User was not founded!');
@@ -52,9 +57,7 @@ function SignInForm() {
     <>
       {isSuccess && <Navigate to={PATH.BOARDS} />}
       {isLoading ? (
-        <div className={styles.spinWrapper}>
-          <Spiner color="inherit" />
-        </div>
+        <Spiner color="inherit" />
       ) : (
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <TextField
