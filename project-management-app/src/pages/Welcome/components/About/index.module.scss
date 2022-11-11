@@ -1,0 +1,28 @@
+.content {
+  padding-top: 30px;
+}
+
+.paper {
+  position: relative;
+  padding: 0 70px;
+  padding-top: 30px;
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.text {
+  max-width: 580px;
+}
+
+.line {
+  border-radius: 10px 0 0 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 100%;
+  background-color: #5C29ED;
+}

@@ -1,5 +1,46 @@
 @use '../abstracts/mixins' as *;
+@use '../base/vars' as *;
+
+@import './icons.scss';
 
 body {
   @include alegreya;
+}
+
+.container {
+  max-width: $content-width;
+  margin: 0 auto;
+  padding: 0 40px;
+  @include media-tablet {
+    padding: 0 30px;
+  }
+  @include media-mobile {
+    padding: 0 10px;
+  }
+}
+
+a {
+  color: $primary-color;
+  transition: all linear 0.5s;
+  text-decoration: none;
+}
+
+a:link {
+  color: $primary-color;
+}
+
+a:visited {
+  color: $primary-color;
+}
+
+a:focus {
+  color: $primary-color;
+}
+
+a:hover {
+  color: $primary-color;
+}
+
+a:active {
+  color: $primary-color;
 }

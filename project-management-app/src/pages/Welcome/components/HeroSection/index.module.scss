@@ -1,0 +1,44 @@
+.hero {
+  padding: 0 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.img {
+  flex: 0 1 50%;
+  height: auto;
+}
+
+.content {
+  flex: 0 0 50%;
+  padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  max-width: 600px;
+}
+
+.title {
+  font-family: 'Alegreya';
+  font-size: 140px;
+}
+
+.text {
+  padding: 50px 15px;
+}
+
+.paper {
+  position: relative;
+}
+
+.line {
+  border-radius: 10px 0 0 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 100%;
+  background-color: #ff6584;
+}
