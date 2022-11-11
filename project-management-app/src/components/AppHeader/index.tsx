@@ -5,7 +5,7 @@ import SignUpBtn from 'components/SignUpBtn';
 import MuiButton from '@mui/material/Button';
 import Switch from '@mui/material/Switch';
 
-import { muiSignInBtn } from '../../data/styles';
+import { muiSignInBtn, muiSwitcherStyle } from '../../data/styles';
 
 import styles from './index.module.scss';
 
@@ -22,7 +22,7 @@ const AppHeader = () => {
             <a href="#" className="icon-app-logo"></a>
           </div>
           <div className={control}>
-            <Switch defaultChecked />
+            <Switch defaultChecked color="default" sx={muiSwitcherStyle} />
             <MuiButton aria-label={SignIn} type="submit" variant="outlined" sx={muiSignInBtn}>
               {SignIn}
             </MuiButton>

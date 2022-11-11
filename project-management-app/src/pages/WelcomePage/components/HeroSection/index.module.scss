@@ -1,6 +1,7 @@
 .hero {
+  padding: 0 100px;
   display: flex;
-  gap: 50px;
+  justify-content: space-between;
 }
 
 .img {
@@ -9,19 +10,19 @@
 }
 
 .content {
-  flex: 0 1 50%;
-  padding: 0 15px;
+  flex: 0 0 50%;
+  padding: 0 30px;
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
+  align-items: center;
   max-width: 600px;
 }
 
 .title {
-  margin: 0;
   font-family: 'Alegreya';
-  font-size: 128px;
+  font-size: 140px;
 }
 
 .text {
