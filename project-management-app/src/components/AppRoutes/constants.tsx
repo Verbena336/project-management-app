@@ -3,14 +3,14 @@ import SignInPage from 'pages/SignInPage';
 import SignUpPage from 'pages/SignUpPage';
 import Page404 from 'pages/page404';
 
-import WelcomePage from './plugs/WelcomePage';
+import Welcome from 'pages/Welcome';
 import BoardsPage from './plugs/BoardsPage';
 import EditProfilePage from './plugs/EditProfilePage';
 
 import { PATH } from './types';
 
 export const PAGES_FOR_ROUTES = [
-  { path: PATH.WELCOME, page: <WelcomePage /> },
+  { path: PATH.WELCOME, page: <Welcome /> },
   { path: PATH.ROOT, page: <RootRedirect /> },
   { path: PATH.BOARDS, page: <BoardsPage /> },
   { path: PATH.BOARDS_ID, page: <BoardsPage /> },
