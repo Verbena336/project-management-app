@@ -1,17 +1,19 @@
+@use '../base/vars' as *;
+
 @font-face {
   font-family: 'icomoon';
-  src: url('../../../public/assets/iconFonts/icomoon.eot?qx5v9e');
-  src: url('../../../public/assets/iconFonts/icomoon.eot?qx5v9e#iefix') format('embedded-opentype'),
-    url('../../../public/assets/iconFonts/icomoon.ttf?qx5v9e') format('truetype'),
-    url('../../../public/assets/iconFonts/icomoon.woff?qx5v9e') format('woff'),
-    url('../../../public/assets/iconFonts/icomoon.svg?qx5v9e#icomoon') format('svg');
+  src: url('../../../public/assets/iconFonts/icomoon.eot?bs0osu');
+  src: url('../../../public/assets/iconFonts/icomoon.eot?bs0osu#iefix') format('embedded-opentype'),
+    url('../../../public/assets/iconFonts/icomoon.ttf?bs0osu') format('truetype'),
+    url('../../../public/assets/iconFonts/icomoon.woff?bs0osu') format('woff'),
+    url('../../../public/assets/iconFonts/icomoon.svg?bs0osu#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^='icon-']::before,
-[class*=' icon-']::before {
+[class^="icon-"]::before,
+[class*=" icon-"]::before {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: never;
@@ -27,7 +29,7 @@
 }
 
 .icon-app-logo:before {
-  content: '\e900';
+  content: "\e903";
   font-size: 70px;
 }
 
@@ -36,11 +38,73 @@
 }
 
 .icon-school-logo:before {
-  content: '\e901';
+  content: "\e90b";
   font-size: 50px;
 }
 
 .icon-school-logo:hover {
   cursor: pointer;
   color: #000;
+}
+
+.icon-add-board:before {
+  content: "\e900";
+  font-size: 75px;
+}
+
+.icon-board-edit,
+.icon-board-column-remove {
+  border: none;
+  outline: none;
+  padding: 0;
+  background-color: inherit;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.icon-board-column-remove:before {
+  content: "\e905";
+  font-size: 25px;
+}
+
+.icon-board-edit:before {
+  content: "\e906";
+  font-size: 25px;
+}
+
+.icon-board-edit:hover,
+.icon-board-column-remove:hover {
+  color: $primary-color;
+}
+
+.icon-add-column:before {
+  content: "\e901";
+}
+
+.icon-add-task:before {
+  content: "\e902";
+}
+
+.icon-back-arrow:before {
+  content: "\e904";
+}
+
+.icon-exit-modal:before {
+  content: "\e907";
+}
+
+.icon-profile-edit:before {
+  content: "\e908";
+}
+
+.icon-profile-exit:before {
+  content: "\e909";
+}
+
+.icon-profile-user:before {
+  content: "\e90a";
+}
+
+.icon-task-action:before {
+  content: "\e90c";
 }

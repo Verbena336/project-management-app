@@ -1,7 +1,7 @@
 import React from 'react';
 
-const ErrorPage = () => {
+const Error = () => {
   return <p>Its ERROR BOUNDARY Page</p>;
 };
 
-export default ErrorPage;
+export default Error;
