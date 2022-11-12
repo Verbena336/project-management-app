@@ -1,5 +1,7 @@
 .main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
-  flex: 1 0 auto;
-  margin-bottom: 70px;
+  flex: 1 0 100%;
 }

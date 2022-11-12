@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
+import { NavLink, useNavigate } from 'react-router-dom';
 
-import MuiButton from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Spiner from '@mui/material/CircularProgress';
+
+import SignBtn from 'components/SignBtn';
 
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './index.module.scss';
@@ -12,12 +14,18 @@ import { muiInputStyle } from 'data/styles';
 
 import { useSigninMutation, useSignupMutation } from 'store/services/authApi';
 
+import { SignUp } from '../../../../constants';
+
 import { ErrorSignUp, Inputs, ResponseSignUp } from './types';
-import { ResponseSignIn } from '../../../SignInPage/components/SignInForm/types';
+import { PATH } from 'components/AppRoutes/types';
+
+import { ResponseSignIn } from '../../../SignIn/components/SignInForm/types';
 
 function SignUpForm() {
   const [signIn] = useSigninMutation();
-  const [signUp, { isLoading }] = useSignupMutation();
+  const [signUp] = useSignupMutation();
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -28,19 +36,23 @@ function SignUpForm() {
   const createUser = async (value: Inputs) => {
     const { login, password } = value;
     try {
+      setIsLoading(true);
       const response: ResponseSignUp = await signUp(value).unwrap();
       if (response.id) {
         const response: ResponseSignIn = await signIn({ login, password }).unwrap();
+        setIsLoading(false);
         if (response.token) {
           localStorage.setItem('KanBanToken', response.token);
           localStorage.setItem('KanBanLogin', value.login);
           toast.success(`Hello, ${value.login}`);
+          navigate(`${PATH.BOARDS}`);
         } else {
           throw new Error();
         }
       }
     } catch (err) {
       const error = err as ErrorSignUp;
+      setIsLoading(false);
       switch (error.status) {
         case 409:
           toast.error('User already exist');
@@ -57,9 +69,7 @@ function SignUpForm() {
   const onSubmit = (data: Inputs) => createUser(data);
 
   return isLoading ? (
-    <div className={styles.spinWrapper}>
-      <Spiner color="inherit" />
-    </div>
+    <Spiner color="inherit" />
   ) : (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <TextField
@@ -96,13 +106,16 @@ function SignUpForm() {
           required: true,
         })}
       />
-      <MuiButton type="submit" variant="contained">
-        Sign Up
-      </MuiButton>
-      <div className={styles.line}>
-        <hr />
-        OR
-        <hr />
+      <div className={styles.linkWrapper}>
+        <SignBtn>{SignUp}</SignBtn>
+        <div className={styles.line}>
+          <hr />
+          OR
+          <hr />
+        </div>
+        <NavLink className={styles.link} to={PATH.SIGN_IN}>
+          Sign In
+        </NavLink>
       </div>
     </form>
   );

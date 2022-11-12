@@ -2,27 +2,13 @@
 
 .form {
   box-sizing: border-box;
-  padding: 12px 35px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 16px;
-  width: 80vw;
-  max-width: 290px;
-  height: 205.3px;
 }
 
-.spinWrapper {
-  box-sizing: border-box;
-  display: flex;
-  padding: 12px 35px;
-  align-items: center;
-  justify-content: center;
-  width: 80vw;
-  max-width: 290px;
-  height: 205.3px;
-}
 
 .backIcon {
   align-self: flex-start;
@@ -58,4 +44,22 @@ hr {
   &:hover {
     text-decoration: underline;
   }
+}
+
+.link {
+  color: $primary-color;
+  font-size: 18px;
+  text-decoration: none;
+  transition: all .3s;
+  &:hover {
+    color: $bright-blue-color;
+  }
+}
+
+.linkWrapper {
+  display: flex;
+  width: 100%;
+  gap: 5px;
+  flex-direction: column;
+  align-items: center;
 }
