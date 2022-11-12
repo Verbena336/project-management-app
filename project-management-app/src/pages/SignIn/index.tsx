@@ -4,22 +4,24 @@ import { Navigate } from 'react-router-dom';
 import MainPaper from 'components/MainPaper';
 import SignInForm from './components/SignInForm';
 
+import AppLayout from 'components/AppLayout';
+
 import { PATH } from 'components/AppRoutes/types';
 
-import styles from './SignInPage.module.scss';
+import styles from './index.module.scss';
 
-const SignInPage = () => {
+const SignIn = () => {
   if (localStorage.getItem('KanBanToken')) return <Navigate to={PATH.BOARDS} />;
 
   return (
-    <div className={styles.wrapper}>
-      <MainPaper>
-        <div className={styles.content}>
+    <AppLayout>
+      <div className={styles.wrapper}>
+        <MainPaper>
           <SignInForm />
-        </div>
-      </MainPaper>
-    </div>
+        </MainPaper>
+      </div>
+    </AppLayout>
   );
 };
 
-export default SignInPage;
+export default SignIn;
