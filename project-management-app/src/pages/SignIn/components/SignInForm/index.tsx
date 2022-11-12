@@ -64,7 +64,7 @@ function SignInForm() {
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <TextField
         sx={muiInputStyle}
-        size="small"
+        size="medium"
         id="login"
         label={errors.login ? '⚠Login is required' : 'Login'}
         variant="outlined"
@@ -75,7 +75,7 @@ function SignInForm() {
       />
       <TextField
         sx={muiInputStyle}
-        size="small"
+        size="medium"
         type="password"
         id="password"
         label={errors.password ? '⚠Password is required' : 'Password'}
