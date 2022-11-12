@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
 import { backendUrl } from 'data/backendUrl';
 
 export const authApi = createApi({
