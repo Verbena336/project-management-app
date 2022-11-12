@@ -2,12 +2,12 @@ import React from 'react';
 
 import styles from './index.module.scss';
 
-const { newBoard, newBoardIcon } = styles;
+const { newBoard } = styles;
 
 const NewBoard = () => {
   return (
     <button className={newBoard}>
-      <div className={newBoardIcon}></div>
+      <div className="icon-add-board"></div>
     </button>
   );
 };

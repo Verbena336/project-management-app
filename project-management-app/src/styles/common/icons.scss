@@ -1,3 +1,5 @@
+@use '../base/vars' as *;
+
 @font-face {
   font-family: 'icomoon';
   src: url('../../../public/assets/iconFonts/icomoon.eot?bs0osu');
@@ -47,6 +49,32 @@
 
 .icon-add-board:before {
   content: "\e900";
+  font-size: 75px;
+}
+
+.icon-board-edit,
+.icon-board-column-remove {
+  border: none;
+  outline: none;
+  padding: 0;
+  background-color: inherit;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.icon-board-column-remove:before {
+  content: "\e905";
+  font-size: 25px;
+}
+
+.icon-board-edit:before {
+  content: "\e906";
+  font-size: 25px;
+}
+
+.icon-board-edit:hover,
+.icon-board-column-remove:hover {
+  color: $primary-color;
 }
 
 .icon-add-column:before {
@@ -59,14 +87,6 @@
 
 .icon-back-arrow:before {
   content: "\e904";
-}
-
-.icon-board-column-remove:before {
-  content: "\e905";
-}
-
-.icon-board-edit:before {
-  content: "\e906";
 }
 
 .icon-exit-modal:before {

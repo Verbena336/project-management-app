@@ -33,7 +33,7 @@
 .boardButtonWrapper {
   position: absolute;
   left: calc(100% - 60px);
-  top: 5px;
+  top: 3px;
   display: flex;
   justify-content: space-between;
   gap: 10px;
@@ -50,11 +50,6 @@
   height: calc(100% - 35px);
   display: flex;
   justify-content: center;
-}
-
-.boardEdit,
-.boardRemove {
-  cursor: pointer;
 }
 
 .boardDescription {

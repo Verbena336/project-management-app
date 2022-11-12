@@ -10,8 +10,6 @@ const {
   boardHeader,
   boardTitle,
   boardButtonWrapper,
-  boardEdit,
-  boardRemove,
   boardDescriptionWrapper,
   boardDescription,
 } = styles;
@@ -24,8 +22,8 @@ const ExistBoard = () => {
           <header className={boardHeader}>
             <p className={boardTitle}>Board component</p>
             <div className={boardButtonWrapper}>
-              <button className={boardEdit}>E</button>
-              <button className={boardRemove}>R</button>
+              <button className="icon-board-edit"></button>
+              <button className="icon-board-column-remove"></button>
             </div>
           </header>
           <div className={boardDescriptionWrapper}>
