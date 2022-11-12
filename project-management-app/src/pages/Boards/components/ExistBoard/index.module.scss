@@ -2,11 +2,6 @@
 
 .boardSection,
 .boardContentWrapper {
-  box-sizing: border-box;
-}
-
-.boardSection,
-.boardContentWrapper {
   max-width: 400px;
   min-width: 300px;
   width: 100%;
@@ -51,7 +46,6 @@
 
 .boardDescriptionWrapper {
   overflow-y: auto;
-  box-sizing: border-box;
   padding: 30px 0;
   height: calc(100% - 35px);
   display: flex;
