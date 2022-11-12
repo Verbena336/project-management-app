@@ -1,5 +1,7 @@
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import MuiButton from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -12,9 +14,12 @@ import { muiInputStyle } from 'data/styles';
 import { useSigninMutation } from 'store/services/authApi';
 
 import { Inputs, ResponseSignIn, ErrorSignIn } from './types';
+import { PATH } from 'components/AppRoutes/types';
 
 function SignInForm() {
-  const [signIn, { isLoading }] = useSigninMutation();
+  const [signIn] = useSigninMutation();
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -24,16 +29,20 @@ function SignInForm() {
 
   const loginUser = async (value: Inputs) => {
     try {
+      setIsLoading(true);
       const response: ResponseSignIn = await signIn(value).unwrap();
+      setIsLoading(false);
       if (response.token) {
         localStorage.setItem('KanBanToken', response.token);
         localStorage.setItem('KanBanLogin', value.login);
         toast.success(`Hello, ${value.login}`);
+        navigate('/boards');
       } else {
         throw new Error();
       }
     } catch (err) {
       const error = err as ErrorSignIn;
+      setIsLoading(false);
       switch (error.status) {
         case 403:
           toast.error('User was not founded!');
@@ -47,9 +56,7 @@ function SignInForm() {
   const onSubmit = (data: Inputs) => loginUser(data);
 
   return isLoading ? (
-    <div className={styles.spinWrapper}>
-      <Spiner color="inherit" />
-    </div>
+    <Spiner color="inherit" />
   ) : (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <TextField
@@ -78,10 +85,15 @@ function SignInForm() {
       <MuiButton type="submit" variant="contained">
         Sign In
       </MuiButton>
-      <div className={styles.line}>
-        <hr />
-        OR
-        <hr />
+      <div className={styles.linkWrapper}>
+        <div className={styles.line}>
+          <hr />
+          OR
+          <hr />
+        </div>
+        <NavLink className={styles.link} to={PATH.SIGN_UP}>
+          Sign Up
+        </NavLink>
       </div>
     </form>
   );

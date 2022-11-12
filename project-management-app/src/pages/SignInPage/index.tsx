@@ -14,7 +14,9 @@ const SignInPage = () => {
   return (
     <div className={styles.wrapper}>
       <MainPaper>
-        <SignInForm />
+        <div className={styles.content}>
+          <SignInForm />
+        </div>
       </MainPaper>
     </div>
   );
