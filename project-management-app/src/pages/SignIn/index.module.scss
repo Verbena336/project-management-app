@@ -2,16 +2,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 100%;
 }
 
 .content {
-  box-sizing: border-box;
   padding: 12px 35px;
   display: flex;
-  align-items: center;
-  justify-content: center;
   width: 80vw;
   max-width: 290px;
-  height: 288px;
+  height: 232px;
 }

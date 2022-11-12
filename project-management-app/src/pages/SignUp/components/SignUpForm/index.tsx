@@ -3,9 +3,10 @@ import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import MuiButton from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Spiner from '@mui/material/CircularProgress';
+
+import SignBtn from 'components/SignBtn';
 
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './index.module.scss';
@@ -13,9 +14,12 @@ import { muiInputStyle } from 'data/styles';
 
 import { useSigninMutation, useSignupMutation } from 'store/services/authApi';
 
+import { SignUp } from '../../../../constants';
+
 import { ErrorSignUp, Inputs, ResponseSignUp } from './types';
-import { ResponseSignIn } from '../../../SignInPage/components/SignInForm/types';
 import { PATH } from 'components/AppRoutes/types';
+
+import { ResponseSignIn } from '../../../SignIn/components/SignInForm/types';
 
 function SignUpForm() {
   const [signIn] = useSigninMutation();
@@ -102,10 +106,8 @@ function SignUpForm() {
           required: true,
         })}
       />
-      <MuiButton type="submit" variant="contained">
-        Sign Up
-      </MuiButton>
       <div className={styles.linkWrapper}>
+        <SignBtn>{SignUp}</SignBtn>
         <div className={styles.line}>
           <hr />
           OR

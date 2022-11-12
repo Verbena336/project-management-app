@@ -3,15 +3,18 @@ import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import MuiButton from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Spiner from '@mui/material/CircularProgress';
+
+import SignBtn from 'components/SignBtn';
 
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './SignInForm.module.scss';
 import { muiInputStyle } from 'data/styles';
 
 import { useSigninMutation } from 'store/services/authApi';
+
+import { SignIn } from '../../../../constants';
 
 import { Inputs, ResponseSignIn, ErrorSignIn } from './types';
 import { PATH } from 'components/AppRoutes/types';
@@ -82,10 +85,9 @@ function SignInForm() {
           required: true,
         })}
       />
-      <MuiButton type="submit" variant="contained">
-        Sign In
-      </MuiButton>
+
       <div className={styles.linkWrapper}>
+        <SignBtn>{SignIn}</SignBtn>
         <div className={styles.line}>
           <hr />
           OR
