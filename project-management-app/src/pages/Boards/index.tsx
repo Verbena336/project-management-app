@@ -12,7 +12,7 @@ import styles from './index.module.scss';
 const { boardsWrapper } = styles;
 
 const Boards = () => {
-  // if (!localStorage.getItem('KanBanToken')) return <Navigate to={PATH.WELCOME} />;
+  if (!localStorage.getItem('KanBanToken')) return <Navigate to={PATH.WELCOME} />;
 
   return (
     <AppLayout>
