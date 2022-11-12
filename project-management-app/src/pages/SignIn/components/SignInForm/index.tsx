@@ -85,11 +85,9 @@ function SignInForm() {
           required: true,
         })}
       />
-<<<<<<< HEAD:project-management-app/src/pages/SignInPage/components/SignInForm/index.tsx
-      <MuiButton type="submit" variant="contained">
-        Sign In
-      </MuiButton>
+
       <div className={styles.linkWrapper}>
+        <SignBtn>{SignIn}</SignBtn>
         <div className={styles.line}>
           <hr />
           OR
@@ -98,13 +96,6 @@ function SignInForm() {
         <NavLink className={styles.link} to={PATH.SIGN_UP}>
           Sign Up
         </NavLink>
-=======
-      <SignBtn>{SignIn}</SignBtn>
-      <div className={styles.line}>
-        <hr />
-        OR
-        <hr />
->>>>>>> 224a97b (refactor: refactor basic page styles):project-management-app/src/pages/SignIn/components/SignInForm/index.tsx
       </div>
     </form>
   );

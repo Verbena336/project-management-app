@@ -10,14 +10,18 @@ import { PATH } from 'components/AppRoutes/types';
 
 import styles from './index.module.scss';
 
+const { wrapper, content } = styles;
+
 const SignIn = () => {
   if (localStorage.getItem('KanBanToken')) return <Navigate to={PATH.BOARDS} />;
 
   return (
     <AppLayout>
-      <div className={styles.wrapper}>
+      <div className={wrapper}>
         <MainPaper>
-          <SignInForm />
+          <div className={content}>
+            <SignInForm />
+          </div>
         </MainPaper>
       </div>
     </AppLayout>

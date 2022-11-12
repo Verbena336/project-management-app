@@ -17,12 +17,9 @@ import { useSigninMutation, useSignupMutation } from 'store/services/authApi';
 import { SignUp } from '../../../../constants';
 
 import { ErrorSignUp, Inputs, ResponseSignUp } from './types';
-<<<<<<< HEAD:project-management-app/src/pages/SignUpPage/components/SignUpForm/index.tsx
-import { ResponseSignIn } from '../../../SignInPage/components/SignInForm/types';
 import { PATH } from 'components/AppRoutes/types';
-=======
+
 import { ResponseSignIn } from '../../../SignIn/components/SignInForm/types';
->>>>>>> 224a97b (refactor: refactor basic page styles):project-management-app/src/pages/SignUp/components/SignUpForm/index.tsx
 
 function SignUpForm() {
   const [signIn] = useSigninMutation();
@@ -109,11 +106,8 @@ function SignUpForm() {
           required: true,
         })}
       />
-<<<<<<< HEAD:project-management-app/src/pages/SignUpPage/components/SignUpForm/index.tsx
-      <MuiButton type="submit" variant="contained">
-        Sign Up
-      </MuiButton>
       <div className={styles.linkWrapper}>
+        <SignBtn>{SignUp}</SignBtn>
         <div className={styles.line}>
           <hr />
           OR
@@ -122,13 +116,6 @@ function SignUpForm() {
         <NavLink className={styles.link} to={PATH.SIGN_IN}>
           Sign In
         </NavLink>
-=======
-      <SignBtn>{SignUp}</SignBtn>
-      <div className={styles.line}>
-        <hr />
-        OR
-        <hr />
->>>>>>> 224a97b (refactor: refactor basic page styles):project-management-app/src/pages/SignUp/components/SignUpForm/index.tsx
       </div>
     </form>
   );

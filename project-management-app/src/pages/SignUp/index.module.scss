@@ -2,20 +2,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-<<<<<<< HEAD:project-management-app/src/pages/SignUpPage/SignUpPage.module.scss
-  height: 100vh;
+  height: 100%;
 }
 
 .content {
-  box-sizing: border-box;
   padding: 12px 35px;
   display: flex;
-  align-items: center;
-  justify-content: center;
   width: 80vw;
   max-width: 290px;
   height: 288px;
-=======
-  height: 100%;
->>>>>>> 224a97b (refactor: refactor basic page styles):project-management-app/src/pages/SignUp/index.module.scss
 }
