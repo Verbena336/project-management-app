@@ -1,0 +1,84 @@
+{
+  "headerWelcome": {
+    "en": "En",
+    "ru": "Ru",
+    "signIn": "Зарегистрироваться",
+    "signUp": "Войти"
+  },
+  "headerUser": {
+    "en": "En",
+    "ru": "Ru",
+    "newBoard": "Создать доску",
+    "signUp": "Войти",
+    "userName": "{{UserName}}",
+    "edit": "Редактировать",
+    "logOut": "Выйти"
+  },
+  "hero": {
+    "title": "KanBan",
+    "text": "text"
+  },
+  "about": {
+    "title": "About App",
+    "text": "text"
+  },
+  "team": {
+    "title": "About Team",
+    "teamItems": [
+      {
+        "name": "Наташа",
+        "text": "text"
+      },
+      {
+        "name": "Никита",
+        "text": "text"
+      },
+      {
+        "name": "Виталик",
+        "text": "text"
+      }
+    ]
+  },
+  "school": {
+    "title": "About School",
+    "text": "text"
+  },
+  "footer": {
+    "year": "2022",
+    "footerLinks": [
+      {
+        "name": "verbena336",
+        "link": "https://github.com/verbena336"
+      },
+      {
+        "name": "rewired25",
+        "link": "https://github.com/rewired25"
+      },
+      {
+        "name": "bloodsuckers-spb",
+        "link": "https://github.com/bloodsuckers-spb"
+      }
+    ]
+  },
+  "AddTask": "Добавить задачу",
+  "signUpForm": {
+    "name": "Имя",
+    "nameError": "⚠Имя обязательно!",
+    "login": "Логин",
+    "loginError": "⚠Логин обязателен!",
+    "password": "Пароль",
+    "passwordError": "⚠Пароль обязателен!",
+    "signUpBtn": "Зарегистрироваться",
+    "or": "ИЛИ",
+    "variant": "Войти"
+  },
+  "signInForm": {
+    "login": "Логин",
+    "loginError": "⚠Логин обязателен!",
+    "password": "Пароль",
+    "passwordError": "⚠Пароль обязателен!",
+    "signInBtn": "Войти",
+    "or": "ИЛИ",
+    "variant": "Зарегистрироваться"
+  }
+}

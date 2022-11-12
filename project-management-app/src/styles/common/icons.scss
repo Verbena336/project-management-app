@@ -85,8 +85,20 @@
   content: "\e902";
 }
 
-.icon-back-arrow:before {
-  content: "\e904";
+.icon-back-arrow {
+  &::before {
+    content: "\e904";
+    font-size: 45px;
+    transition: all .3s;
+    border-radius: 50%;
+  }
+}
+
+.icon-back-arrow {
+  &:hover.icon-back-arrow:before {
+    background-color: $light-gray-second-color;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+  }
 }
 
 .icon-exit-modal:before {

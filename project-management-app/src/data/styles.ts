@@ -2,6 +2,9 @@ export const muiInputStyle = {
   '& .MuiInputBase-input': {
     color: '#1740A9',
   },
+  '& .MuiInputBase-root': {
+    marginBottom: '28px',
+  },
 };
 
 export const muiPaperStyle = { borderRadius: '10px', backgroundColor: '#fbfbfb' };

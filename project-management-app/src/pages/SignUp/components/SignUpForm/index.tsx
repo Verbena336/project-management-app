@@ -72,6 +72,7 @@ function SignUpForm() {
     <Spiner color="inherit" />
   ) : (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <NavLink to={PATH.WELCOME} className={'icon-back-arrow'} />
       <TextField
         sx={muiInputStyle}
         size="medium"
