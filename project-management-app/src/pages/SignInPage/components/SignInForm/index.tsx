@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
-import { Navigate, NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import MuiButton from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -17,8 +17,9 @@ import { Inputs, ResponseSignIn, ErrorSignIn } from './types';
 import { PATH } from 'components/AppRoutes/types';
 
 function SignInForm() {
-  const [signIn, { isSuccess }] = useSigninMutation();
+  const [signIn] = useSigninMutation();
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -35,6 +36,7 @@ function SignInForm() {
         localStorage.setItem('KanBanToken', response.token);
         localStorage.setItem('KanBanLogin', value.login);
         toast.success(`Hello, ${value.login}`);
+        navigate('/boards');
       } else {
         throw new Error();
       }
@@ -53,52 +55,47 @@ function SignInForm() {
 
   const onSubmit = (data: Inputs) => loginUser(data);
 
-  return (
-    <>
-      {isSuccess && <Navigate to={PATH.BOARDS} />}
-      {isLoading ? (
-        <Spiner color="inherit" />
-      ) : (
-        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-          <TextField
-            sx={muiInputStyle}
-            size="small"
-            id="login"
-            label={errors.login ? '⚠Login is required' : 'Login'}
-            variant="outlined"
-            error={!!errors.login}
-            {...register('login', {
-              required: true,
-            })}
-          />
-          <TextField
-            sx={muiInputStyle}
-            size="small"
-            type="password"
-            id="password"
-            label={errors.password ? '⚠Password is required' : 'Password'}
-            variant="outlined"
-            error={!!errors.password}
-            {...register('password', {
-              required: true,
-            })}
-          />
-          <MuiButton type="submit" variant="contained">
-            Sign In
-          </MuiButton>
-          <div className={styles.linkWrapper}>
-            <div className={styles.line}>
-              <hr />
-              OR
-              <hr />
-            </div>
-            <NavLink className={styles.link} to={PATH.SIGN_UP}>
-              Sign Up
-            </NavLink>
-          </div>
-        </form>
-      )}
-    </>
+  return isLoading ? (
+    <Spiner color="inherit" />
+  ) : (
+    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <TextField
+        sx={muiInputStyle}
+        size="small"
+        id="login"
+        label={errors.login ? '⚠Login is required' : 'Login'}
+        variant="outlined"
+        error={!!errors.login}
+        {...register('login', {
+          required: true,
+        })}
+      />
+      <TextField
+        sx={muiInputStyle}
+        size="small"
+        type="password"
+        id="password"
+        label={errors.password ? '⚠Password is required' : 'Password'}
+        variant="outlined"
+        error={!!errors.password}
+        {...register('password', {
+          required: true,
+        })}
+      />
+      <MuiButton type="submit" variant="contained">
+        Sign In
+      </MuiButton>
+      <div className={styles.linkWrapper}>
+        <div className={styles.line}>
+          <hr />
+          OR
+          <hr />
+        </div>
+        <NavLink className={styles.link} to={PATH.SIGN_UP}>
+          Sign Up
+        </NavLink>
+      </div>
+    </form>
   );
 }
 
