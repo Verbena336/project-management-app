@@ -1,5 +1,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
 import { backendUrl } from 'data/backendUrl';
+
+import {
+  getColumnsResponse,
+  columnRequest,
+  getColumnByIdResponse,
+  addColumnRequest,
+  updateColumnRequest,
+  addUpdateColumnResponse,
+} from './types/columns';
 
 export const columnsApi = createApi({
   reducerPath: 'columnsApi',
@@ -14,28 +24,28 @@ export const columnsApi = createApi({
     },
   }),
   endpoints: (build) => ({
-    getColumns: build.query({
-      query: (boardId) => `/boards/${boardId}/columns`,
+    getColumns: build.query<getColumnsResponse, string>({
+      query: (boardId: string) => `/boards/${boardId}/columns`,
     }),
-    getColumnById: build.query({
+    getColumnById: build.query<getColumnByIdResponse, columnRequest>({
       query: ({ boardId, columnId }) => `/boards/${boardId}/columns/${columnId}`,
     }),
-    addColumn: build.mutation({
-      query: ({ bordId, ...body }) => ({
-        url: `/boards/${bordId}/columns`,
+    addColumn: build.mutation<addUpdateColumnResponse, addColumnRequest>({
+      query: ({ boardId, ...body }) => ({
+        url: `/boards/${boardId}/columns`,
         method: 'POST',
         body,
       }),
     }),
-    deleteColumn: build.mutation({
-      query: ({ bordId, columnId }) => ({
-        url: `/boards/${bordId}/columns/${columnId}`,
+    deleteColumn: build.mutation<void, columnRequest>({
+      query: ({ boardId, columnId }) => ({
+        url: `/boards/${boardId}/columns/${columnId}`,
         method: 'DELETE',
       }),
     }),
-    updateColumn: build.mutation({
-      query: ({ bordId, columnId, ...body }) => ({
-        url: `/boards/${bordId}/columns/${columnId}`,
+    updateColumn: build.mutation<addUpdateColumnResponse, updateColumnRequest>({
+      query: ({ boardId, columnId, ...body }) => ({
+        url: `/boards/${boardId}/columns/${columnId}`,
         method: 'PUT',
         body,
       }),
