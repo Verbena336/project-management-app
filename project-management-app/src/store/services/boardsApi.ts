@@ -16,7 +16,10 @@ export const boardsApi = createApi({
   }),
   endpoints: (build) => ({
     getAllBoards: build.query({
-      query: () => '/boards',
+      query: () => ({
+        url: '/boards',
+        method: 'GET',
+      }),
     }),
     addBoard: build.mutation({
       query: (body) => ({
