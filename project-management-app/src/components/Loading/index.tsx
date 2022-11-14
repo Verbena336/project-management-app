@@ -2,10 +2,12 @@ import React from 'react';
 
 import styles from './index.module.scss';
 
-const { loader } = styles;
+const { loader, wrapper } = styles;
 
-const Loading = () => {
-  return <span className={loader}></span>;
-};
+const Loading = () => (
+  <div className={wrapper}>
+    <span className={loader}></span>
+  </div>
+);
 
 export default Loading;
