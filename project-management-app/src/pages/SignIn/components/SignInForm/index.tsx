@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import TextField from '@mui/material/TextField';
 import Spiner from '@mui/material/CircularProgress';
@@ -14,7 +15,7 @@ import { muiInputStyle } from 'data/styles';
 
 import { useSigninMutation } from 'store/services/authApi';
 
-import { SignIn } from '../../../../constants';
+import '../../../../utils/i18next';
 
 import { Inputs, ResponseSignIn, ErrorSignIn } from './types';
 import { PATH } from 'components/AppRoutes/types';
@@ -23,6 +24,7 @@ function SignInForm() {
   const [signIn] = useSigninMutation();
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const {
     register,
@@ -67,7 +69,7 @@ function SignInForm() {
         sx={muiInputStyle}
         size="medium"
         id="login"
-        label={errors.login ? '⚠Login is required' : 'Login'}
+        label={errors.login ? t('signInForm.loginError') : t('signInForm.login')}
         variant="outlined"
         error={!!errors.login}
         {...register('login', {
@@ -79,7 +81,7 @@ function SignInForm() {
         size="medium"
         type="password"
         id="password"
-        label={errors.password ? '⚠Password is required' : 'Password'}
+        label={errors.password ? t('signInForm.passwordError') : t('signInForm.password')}
         variant="outlined"
         error={!!errors.password}
         {...register('password', {
@@ -88,14 +90,14 @@ function SignInForm() {
       />
 
       <div className={styles.linkWrapper}>
-        <SignBtn>{SignIn}</SignBtn>
+        <SignBtn>{t('signInForm.signInBtn')}</SignBtn>
         <div className={styles.line}>
           <hr />
-          OR
+          {t('signInForm.or')}
           <hr />
         </div>
         <NavLink className={styles.link} to={PATH.SIGN_UP}>
-          Sign Up
+          {t('signInForm.variant')}
         </NavLink>
       </div>
     </form>

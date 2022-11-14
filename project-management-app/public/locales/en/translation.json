@@ -1,0 +1,90 @@
+{
+  "headerWelcome": {
+    "language": "Language",
+    "en": "English",
+    "ru": "Russian",
+    "signIn": "Sign In",
+    "signUp": "Sign Up"
+  },
+  "headerUser": {
+    "en": "En",
+    "ru": "Ru",
+    "newBoard": "Create board",
+    "userName": "{{UserName}}",
+    "edit": "Edit",
+    "logOut": "Log Out"
+  },
+  "hero": {
+    "title": "KanBan",
+    "text": "text"
+  },
+  "about": {
+    "title": "About App",
+    "text": "text"
+  },
+  "team": {
+    "title": "About Team",
+    "teamItems": [
+      {
+        "name": "Natasha",
+        "image": "./assets/images/participants.png",
+        "text": "Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text",
+        "className": "blue"
+      },
+      {
+        "name": "Nikita",
+        "image": "./assets/images/participants.png",
+        "text": "Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text",
+        "className": "green"
+      },
+      {
+        "name": "Vitalik",
+        "image": "./assets/images/participants.png",
+        "text": "Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text",
+        "className": "yellow"
+      }
+    ]
+  },
+  "school": {
+    "title": "About School",
+    "text": "text"
+  },
+  "footer": {
+    "year": "2022",
+    "footerLinks": [
+      {
+        "name": "verbena336",
+        "url": "https://github.com/verbena336"
+      },
+      {
+        "name": "rewired25",
+        "url": "https://github.com/rewired25"
+      },
+      {
+        "name": "bloodsuckers-spb",
+        "url": "https://github.com/bloodsuckers-spb"
+      }
+    ]
+  },
+  "AddTask": "Add task",
+  "signUpForm": {
+    "name": "Name",
+    "nameError": "⚠Name is required!",
+    "login": "Login",
+    "loginError": "⚠Login is required!",
+    "password": "Password",
+    "passwordError": "⚠Password is required!",
+    "signUpBtn": "Sign Up",
+    "or": "OR",
+    "variant": "Sign In"
+  },
+  "signInForm": {
+    "login": "Login",
+    "loginError": "⚠Login is required!",
+    "password": "Password",
+    "passwordError": "⚠Password is required!",
+    "signInBtn": "Sign In",
+    "or": "OR",
+    "variant": "Sign Up"
+  }
+}

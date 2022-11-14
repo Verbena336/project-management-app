@@ -14,7 +14,8 @@ export const muiButtonStyle = {
   color: '#F2F2F2',
   boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.25)',
   borderRadius: '10px',
-  width: '115px',
+  minWidth: '120px',
+  width: 'fit-content',
 };
 
 export const muiSignInBtn = {

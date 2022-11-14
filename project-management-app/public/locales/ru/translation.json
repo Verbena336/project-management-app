@@ -1,15 +1,15 @@
 {
   "headerWelcome": {
-    "en": "En",
-    "ru": "Ru",
-    "signIn": "Зарегистрироваться",
-    "signUp": "Войти"
+    "language": "Язык",
+    "en": "Английский",
+    "ru": "Русский",
+    "signIn": "Войти",
+    "signUp": "Зарегистрироваться"
   },
   "headerUser": {
     "en": "En",
     "ru": "Ru",
     "newBoard": "Создать доску",
-    "signUp": "Войти",
     "userName": "{{UserName}}",
     "edit": "Редактировать",
     "logOut": "Выйти"
@@ -19,28 +19,34 @@
     "text": "text"
   },
   "about": {
-    "title": "About App",
+    "title": "О Приложении",
     "text": "text"
   },
   "team": {
-    "title": "About Team",
+    "title": "О Команде",
     "teamItems": [
       {
         "name": "Наташа",
-        "text": "text"
+        "image": "./assets/images/participants.png",
+        "text": "Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text",
+        "className": "blue"
       },
       {
         "name": "Никита",
-        "text": "text"
+        "image": "./assets/images/participants.png",
+        "text": "Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text",
+        "className": "green"
       },
       {
         "name": "Виталик",
-        "text": "text"
+        "image": "./assets/images/participants.png",
+        "text": "Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text",
+        "className": "yellow"
       }
     ]
   },
   "school": {
-    "title": "About School",
+    "title": "О Школе",
     "text": "text"
   },
   "footer": {
@@ -48,15 +54,15 @@
     "footerLinks": [
       {
         "name": "verbena336",
-        "link": "https://github.com/verbena336"
+        "url": "https://github.com/verbena336"
       },
       {
         "name": "rewired25",
-        "link": "https://github.com/rewired25"
+        "url": "https://github.com/rewired25"
       },
       {
         "name": "bloodsuckers-spb",
-        "link": "https://github.com/bloodsuckers-spb"
+        "url": "https://github.com/bloodsuckers-spb"
       }
     ]
   },
