@@ -12,7 +12,8 @@
     "newBoard": "Создать доску",
     "userName": "{{UserName}}",
     "edit": "Редактировать",
-    "logOut": "Выйти"
+    "logOut": "Выйти",
+    "goToMain": "На Главную"
   },
   "hero": {
     "title": "KanBan",

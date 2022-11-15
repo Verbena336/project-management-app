@@ -12,7 +12,8 @@
     "newBoard": "Create board",
     "userName": "{{UserName}}",
     "edit": "Edit",
-    "logOut": "Log Out"
+    "logOut": "Log Out",
+    "goToMain": "Go to Main Page"
   },
   "hero": {
     "title": "KanBan",

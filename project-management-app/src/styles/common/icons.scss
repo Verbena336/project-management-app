@@ -52,6 +52,13 @@
   font-size: 75px;
 }
 
+.icon-add-board-header:before {
+  content: "\e900";
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+}
+
 .icon-board-edit,
 .icon-board-column-remove {
   border: none;
@@ -107,14 +114,23 @@
 
 .icon-profile-edit:before {
   content: "\e908";
+  font-size: 25px;
+  display: flex;
+  align-items: center;
 }
 
 .icon-profile-exit:before {
   content: "\e909";
+  font-size: 25px;
+  display: flex;
+  align-items: center;
 }
 
 .icon-profile-user:before {
   content: "\e90a";
+  font-size: 25px;
+  display: flex;
+  align-items: center;
 }
 
 .icon-task-action:before {
