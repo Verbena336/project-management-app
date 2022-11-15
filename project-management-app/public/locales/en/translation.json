@@ -25,26 +25,14 @@
   },
   "team": {
     "title": "About Team",
-    "teamItems": [
-      {
-        "name": "Natasha",
-        "image": "./assets/images/participants.png",
-        "text": "Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text",
-        "className": "blue"
-      },
-      {
-        "name": "Nikita",
-        "image": "./assets/images/participants.png",
-        "text": "Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text",
-        "className": "green"
-      },
-      {
-        "name": "Vitalik",
-        "image": "./assets/images/participants.png",
-        "text": "Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text",
-        "className": "yellow"
-      }
-    ]
+    "teamItems": {
+      "Natasha": "Natasha",
+      "NatashaText": "SomeText",
+      "Nikita": "Nikita",
+      "NikitaText": "SomeText",
+      "Vitalik": "Vitalik",
+      "VitalikText": "SomeText"
+    }
   },
   "school": {
     "title": "About School",

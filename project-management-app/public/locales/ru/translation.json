@@ -25,26 +25,14 @@
   },
   "team": {
     "title": "О Команде",
-    "teamItems": [
-      {
-        "name": "Наташа",
-        "image": "./assets/images/participants.png",
-        "text": "Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text",
-        "className": "blue"
-      },
-      {
-        "name": "Никита",
-        "image": "./assets/images/participants.png",
-        "text": "Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text",
-        "className": "green"
-      },
-      {
-        "name": "Виталик",
-        "image": "./assets/images/participants.png",
-        "text": "Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text",
-        "className": "yellow"
-      }
-    ]
+    "teamItems": {
+      "Natasha": "Наташа",
+      "NatashaText": "Текст",
+      "Nikita": "Никита",
+      "NikitaText": "SomeText",
+      "Vitalik": "Виталик",
+      "VitalikText": "SomeText"
+    }
   },
   "school": {
     "title": "О Школе",

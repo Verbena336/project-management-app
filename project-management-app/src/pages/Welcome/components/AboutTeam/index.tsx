@@ -10,18 +10,17 @@ import styles from './index.module.scss';
 
 const { content, participants, img } = styles;
 
-import { TeamItem } from './types';
+import { cards } from '../../../../constants/index';
 
 const AboutTeam = () => {
   const { t } = useTranslation();
-  const teamCards: TeamItem[] = t('team.teamItems', { returnObjects: true });
   return (
     <section className="section">
       <h2 className="title">{t('team.title')}</h2>
       <div className={content}>
         <img className={img} src="./assets/images/about-team.png" />
         <div className={participants}>
-          {teamCards.map((card, i) => (
+          {cards.map((card, i) => (
             <MainPaper key={i}>
               <DeveloperCard data={card} />
             </MainPaper>

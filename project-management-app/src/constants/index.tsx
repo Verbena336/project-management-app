@@ -15,24 +15,23 @@ export const developers = [
 
 export const cards = [
   {
-    name: 'Наташа',
+    name: 'Natasha',
     image: './assets/images/participants.png',
-    text: 'Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text',
+    text: 'NatashaText',
     className: 'blue',
   },
   {
-    name: 'Никита',
+    name: 'Nikita',
     image: './assets/images/participants.png',
-    text: 'Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text',
+    text: 'NikitaText',
     className: 'green',
   },
   {
-    name: 'Виталик',
+    name: 'Vitalik',
     image: './assets/images/participants.png',
-    text: 'Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text',
+    text: 'VitalikText',
     className: 'yellow',
   },
 ];
 
-export const SignIn = 'Sign In';
-export const SignUp = 'Sign Up';
+export const heroImg = './assets/images/hero.png';
