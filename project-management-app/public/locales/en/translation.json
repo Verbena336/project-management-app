@@ -38,23 +38,6 @@
     "title": "About School",
     "text": "text"
   },
-  "footer": {
-    "year": "2022",
-    "footerLinks": [
-      {
-        "name": "verbena336",
-        "url": "https://github.com/verbena336"
-      },
-      {
-        "name": "rewired25",
-        "url": "https://github.com/rewired25"
-      },
-      {
-        "name": "bloodsuckers-spb",
-        "url": "https://github.com/bloodsuckers-spb"
-      }
-    ]
-  },
   "AddTask": "Add task",
   "signUpForm": {
     "name": "Name",
