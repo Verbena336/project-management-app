@@ -106,7 +106,7 @@ const Header = () => {
                     variant="text"
                     startIcon={<div className="icon-profile-user"></div>}
                   >
-                    {localStorage.getItem('KanBanLogin')}
+                    {t('headerUser.userName', { UserName: localStorage.getItem('KanBanLogin') })}
                   </MuiButton>
                   <Menu anchorEl={anchorEl} open={open} onClose={() => setAnchorEl(null)}>
                     <MenuItem onClick={() => navigate(PATH.EDIT_PROFILE)}>
