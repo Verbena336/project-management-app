@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 
 import AppLayout from 'components/AppLayout';
 import ExistBoard from './components/ExistBoard';
-import NewBoard from './components/NewBoard';
+import NewBoardOrColumn from '../../components/NewBoardOrColumn';
 
 import { PATH } from 'components/AppRoutes/types';
 
@@ -18,7 +18,7 @@ const Boards = () => {
     <AppLayout>
       <div className={boardsWrapper}>
         <ExistBoard />
-        <NewBoard />
+        <NewBoardOrColumn iconClass="icon-add-board" />
       </div>
     </AppLayout>
   );
