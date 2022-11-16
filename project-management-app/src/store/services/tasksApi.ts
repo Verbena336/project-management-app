@@ -2,6 +2,17 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { backendUrl } from 'data/backendUrl';
 
+import {
+  tasksParams,
+  addTask,
+  addTaskResponse,
+  getTasksResponse,
+  taskByIdRequest,
+  getTaskByIdResponse,
+  updateTaskRequest,
+  updateTaskResponse,
+} from './types/tasks';
+
 export const tasksApi = createApi({
   reducerPath: 'tasksApi',
   baseQuery: fetchBaseQuery({
@@ -15,34 +26,34 @@ export const tasksApi = createApi({
     },
   }),
   endpoints: (build) => ({
-    addTask: build.mutation({
-      query: ({ bordId, columnId, ...body }) => ({
-        url: `/boards/${bordId}/columns/${columnId}/tasks`,
+    addTask: build.mutation<addTaskResponse, tasksParams & addTask>({
+      query: ({ boardId, columnId, ...body }) => ({
+        url: `/boards/${boardId}/columns/${columnId}/tasks`,
         method: 'POST',
         body,
       }),
     }),
-    getTasks: build.query({
-      query: ({ bordId = '', columnId = '' }) => ({
-        url: `/boards/${bordId}/columns/${columnId}/tasks`,
+    getTasks: build.query<getTasksResponse, tasksParams>({
+      query: ({ boardId = '', columnId = '' }) => ({
+        url: `/boards/${boardId}/columns/${columnId}/tasks`,
         method: 'GET',
       }),
     }),
-    getTaskById: build.query({
-      query: ({ bordId, columnId, taskId }) => ({
-        url: `/boards/${bordId}/columns/${columnId}/tasks/${taskId}`,
+    getTaskById: build.query<getTaskByIdResponse, taskByIdRequest>({
+      query: ({ boardId, columnId, taskId }) => ({
+        url: `/boards/${boardId}/columns/${columnId}/tasks/${taskId}`,
         method: 'GET',
       }),
     }),
-    deleteTask: build.mutation({
-      query: ({ bordId, columnId, taskId }) => ({
-        url: `/boards/${bordId}/columns/${columnId}/tasks/${taskId}`,
+    deleteTask: build.mutation<void, taskByIdRequest>({
+      query: ({ boardId, columnId, taskId }) => ({
+        url: `/boards/${boardId}/columns/${columnId}/tasks/${taskId}`,
         method: 'DELETE',
       }),
     }),
-    updateTask: build.mutation({
-      query: ({ bordId, columnId, taskId, ...body }) => ({
-        url: `/boards/${bordId}/columns/${columnId}/tasks/${taskId}`,
+    updateTask: build.mutation<updateTaskResponse, taskByIdRequest & updateTaskRequest>({
+      query: ({ boardId, columnId, taskId, ...body }) => ({
+        url: `/boards/${boardId}/columns/${columnId}/tasks/${taskId}`,
         method: 'PUT',
         body,
       }),
