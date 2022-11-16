@@ -1,11 +1,19 @@
+@import 'styles/base/vars';
+
 .btn {
   cursor: pointer;
+  color: $gray-color;
   max-width: 400px;
   min-width: 300px;
   width: 100%;
   height: 170px;
   text-align: center;
-  border: 1px dashed #989898;
-  border-radius: 10px;
   background-color: transparent;
+  border: 1px dashed $new-border-dashed;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  color: $primary-color;
 }

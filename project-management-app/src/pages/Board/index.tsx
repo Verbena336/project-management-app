@@ -3,20 +3,24 @@ import React from 'react';
 import AppLayout from 'components/AppLayout';
 
 import Column from './components/Column';
-import AddBtn from './components/AddColumnBtn';
+import AddColumnBtn from './components/AddColumnBtn';
 
 import styles from './index.module.scss';
 
-const { inner } = styles;
+const { inner, content } = styles;
 
 const Board = () => {
   return (
     <AppLayout>
       <div className="container">
         <div className={inner}>
-          <Column />
-          <Column />
-          <AddBtn />
+          <a href="" className="icon-back-arrow">
+            Название доски
+          </a>
+          <div className={content}>
+            <Column />
+            <AddColumnBtn />
+          </div>
         </div>
       </div>
     </AppLayout>

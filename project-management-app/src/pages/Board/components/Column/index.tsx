@@ -4,7 +4,7 @@ import MainPaper from 'components/MainPaper';
 
 import styles from './index.module.scss';
 
-const { column, wrapper, header, title, icons, content, task, line, text, close, add } = styles;
+const { column, wrapper, header, title, icons, content, task, line, text } = styles;
 
 const Column = () => {
   return (
@@ -21,10 +21,10 @@ const Column = () => {
             <div className={task}>
               <div className={line}></div>
               <p className={text}>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-              <button className={close}></button>
+              <button className="icon-task-action"></button>
             </div>
           </div>
-          <button className={add}>Добавить задачу</button>
+          <button className="icon-add-task">Добавить задачу</button>
         </div>
       </MainPaper>
     </section>

@@ -80,15 +80,16 @@
 .icon-add-column:before {
   content: '\e901';
   font-size: 75px;
-  color: #616161;
 }
 
 .icon-add-task:before {
   content: '\e902';
+  font-size: 25px;
 }
 
 .icon-back-arrow:before {
   content: '\e904';
+  font-size: 32px;
 }
 
 .icon-exit-modal:before {
@@ -109,4 +110,5 @@
 
 .icon-task-action:before {
   content: '\e90c';
+  font-size: 25px;
 }
