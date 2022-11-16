@@ -91,6 +91,12 @@
 
 .icon-exit-modal:before {
   content: "\e907";
+  font-size: 20px;
+  transition: 0.3s;
+}
+
+.icon-exit-modal:hover {
+  color: $primary-color;
 }
 
 .icon-profile-edit:before {

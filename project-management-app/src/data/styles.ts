@@ -25,3 +25,31 @@ export const muiSwitcherStyle = {
     backgroundColor: '#1740A9',
   },
 };
+
+export const muiModalButtonStyle = {
+  boxShadow: 3,
+  width: 90,
+  height: 25,
+  textTransform: 'capitalize',
+};
+
+export const saveButtonBg = {
+  bgcolor: '#c3e1c2',
+};
+
+export const cancelButtonBg = {
+  bgcolor: '#eaeaea',
+};
+
+export const deleteButtonBg = {
+  bgcolor: '#f0b4b4',
+};
+
+export const muiModalInputTitle = {
+  marginBottom: '20px',
+};
+
+export const muiModalInputDescription = {
+  marginBottom: '20px',
+  bgcolor: '#FFFFFF',
+};

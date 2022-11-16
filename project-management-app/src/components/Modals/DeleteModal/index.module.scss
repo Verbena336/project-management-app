@@ -1,0 +1,30 @@
+@use 'styles/base/vars' as *;
+
+.modalWrapper {
+  position: relative;
+  top: calc(50% - 55px);
+  left: calc(50% - 150px);
+  width: 300px;
+}
+
+.modalContent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 20px 50px 20px 50px;
+}
+
+.modalTitle {
+  margin: 0;
+  font-size: 20px;
+  color: $primary-color;
+}
+
+.modalButtonsWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
