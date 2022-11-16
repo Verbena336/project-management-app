@@ -1,3 +1,5 @@
+@import '../../../../styles/base/vars';
+
 .wrapper {
   padding-bottom: 70px;
 }
@@ -8,7 +10,7 @@
 
 .content {
   position: relative;
-  padding: 30px 50px;
+  padding: 15px 70px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,7 +18,8 @@
 
 .text {
   padding: 10px;
-  text-align: center;
+  text-align: right;
+  color: $main-text-color;
 }
 
 .line {

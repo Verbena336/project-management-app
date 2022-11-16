@@ -1,0 +1,69 @@
+@import '../../styles/base/vars';
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.loader {
+  animation: rotate 1s infinite;
+  height: 200px;
+  width: 200px;
+}
+
+.loader:before,
+.loader:after {
+  content: "";
+  display: block;
+  height: 80px;
+  width: 80px;
+}
+.loader:before {
+  animation: box1 1s infinite;
+  background-color: $primary-color;
+  box-shadow: 120px 0 0 $secondary-color;
+  margin-bottom: 40px;
+}
+.loader:after {
+  animation: box2 1s infinite;
+  background-color: $secondary-color;
+  box-shadow: 120px 0 0 $primary-color;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg) scale(0.8) }
+  50% { transform: rotate(360deg) scale(1.2) }
+  100% { transform: rotate(720deg) scale(0.8) }
+}
+
+@keyframes box1 {
+  0% {
+    box-shadow: 120px 0 0 $secondary-color;
+  }
+  50% {
+    box-shadow: 0 0 0 $secondary-color;
+    margin-bottom: 0;
+    transform: translate(60px, 60px);
+  }
+  100% {
+    box-shadow: 120px 0 0 $secondary-color;
+    margin-bottom: 40px;
+  }
+}
+
+@keyframes box2 {
+  0% {
+    box-shadow: 120px 0 0 $primary-color;
+  }
+  50% {
+    box-shadow: 0 0 0 $primary-color;
+    margin-top: -80px;
+    transform: translate(60px, 60px);
+  }
+  100% {
+    box-shadow: 120px 0 0 $primary-color;
+    margin-top: 0;
+  }
+}

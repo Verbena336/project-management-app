@@ -6,9 +6,11 @@
 }
 
 .content {
-  padding: 12px 35px;
+  padding: 0px 35px;
   display: flex;
   width: 80vw;
-  max-width: 290px;
-  height: 288px;
+  max-width: 450px;
+  height: 430px;
+  justify-content: center;
+  align-items: center;
 }

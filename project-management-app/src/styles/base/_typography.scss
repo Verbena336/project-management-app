@@ -1,16 +1,14 @@
 @font-face {
-  font-family: 'Alegreya';
+  font-family: 'PTSerif';
   font-style: normal;
   font-weight: 400;
-  src: local('Alegreya'), url('../../../public/assets/fonts/Alegreya-Regular.woff2') format('woff2'),
-    url('../../../public/assets/fonts/Alegreya-Regular.woff') format('woff');
+  src: local('PTSerif'), url('../../../public/assets/fonts/PTSerif-Regular.ttf') format('ttf'),
 }
 @font-face {
-  font-family: 'Alegreya-Bold';
+  font-family: 'PTSerif-Bold';
   font-style: normal;
   font-weight: 700;
-  src: local(''), url('../../../public/assets/fonts/Alegreya-Bold.woff2') format('woff2'),
-    url('../../../public/assets/fonts/Alegreya-Bold.woff') format('woff');
+  src: local(''), url('../../../public/assets/fonts/PTSerif-Bold.ttf') format('ttf'),
 }
 @font-face {
   font-family: 'Lora';
