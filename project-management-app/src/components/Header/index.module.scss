@@ -2,6 +2,16 @@
 
 .header {
   width: 100%;
+  transition: all .3s;
+}
+
+.headerStiky {
+  transition: all .3s;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background-color: $white;
+  z-index: 500;
 }
 
 .inner {

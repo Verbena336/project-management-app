@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
@@ -22,7 +22,7 @@ import { muiSignInBtn } from '../../data/styles';
 
 import styles from './index.module.scss';
 
-const { header, inner, control, link, logoWrapper } = styles;
+const { header, inner, control, link, logoWrapper, headerStiky } = styles;
 
 import { PATH } from 'components/AppRoutes/types';
 
@@ -33,6 +33,11 @@ const Header = () => {
   const location = useLocation();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const [isStiky, setIsStiky] = useState(window.pageYOffset > 0);
+  const isPublic =
+    location.pathname === PATH.ROUTES_404 ||
+    location.pathname === PATH.SIGN_UP ||
+    location.pathname === PATH.SIGN_IN;
 
   const handleChange = (event: SelectChangeEvent) => {
     setLang(event.target.value);
@@ -45,8 +50,22 @@ const Header = () => {
     navigate(PATH.WELCOME);
   };
 
+  const handleScroll = () => {
+    setIsStiky(window.pageYOffset > 0);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    console.log(location);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <header className={header}>
+    <header
+      className={isStiky && !isPublic && location.pathname !== PATH.WELCOME ? headerStiky : header}
+    >
       <div className="container">
         <div className={inner}>
           <div className={logoWrapper}>
@@ -67,12 +86,7 @@ const Header = () => {
               </Select>
             </FormControl>
           </div>
-          {!(
-            location.pathname === PATH.ROUTES_404 ||
-            location.pathname === PATH.EDIT_PROFILE ||
-            location.pathname === PATH.SIGN_UP ||
-            location.pathname === PATH.SIGN_IN
-          ) && (
+          {!isPublic && (
             <div className={control}>
               {location.pathname === PATH.WELCOME ? (
                 localStorage.getItem('KanBanToken') ? (
