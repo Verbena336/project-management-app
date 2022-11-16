@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import TextField from '@mui/material/TextField';
 import Spiner from '@mui/material/CircularProgress';
@@ -14,7 +15,7 @@ import { muiInputStyle } from 'data/styles';
 
 import { useSigninMutation, useSignupMutation } from 'store/services/authApi';
 
-import { SignUp } from '../../../../constants';
+import '../../../../utils/i18next';
 
 import { ErrorSignUp, Inputs, ResponseSignUp } from './types';
 import { PATH } from 'components/AppRoutes/types';
@@ -26,6 +27,7 @@ function SignUpForm() {
   const [signUp] = useSignupMutation();
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const {
     register,
@@ -72,11 +74,12 @@ function SignUpForm() {
     <Spiner color="inherit" />
   ) : (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <NavLink to={PATH.WELCOME} className={'icon-back-arrow'} />
       <TextField
         sx={muiInputStyle}
-        size="small"
+        size="medium"
         id="name"
-        label={errors.name ? '⚠Name is required' : 'Name'}
+        label={errors.name ? t('signUpForm.nameError') : t('signUpForm.name')}
         variant="outlined"
         error={errors.name ? true : false}
         {...register('name', {
@@ -85,9 +88,9 @@ function SignUpForm() {
       />
       <TextField
         sx={muiInputStyle}
-        size="small"
+        size="medium"
         id="login"
-        label={errors.login ? '⚠Login is required' : 'Login'}
+        label={errors.login ? t('signUpForm.loginError') : t('signUpForm.login')}
         variant="outlined"
         error={errors.login ? true : false}
         {...register('login', {
@@ -96,10 +99,10 @@ function SignUpForm() {
       />
       <TextField
         sx={muiInputStyle}
-        size="small"
+        size="medium"
         type="password"
         id="password"
-        label={errors.password ? '⚠Password is required' : 'Password'}
+        label={errors.password ? t('signUpForm.passwordError') : t('signUpForm.password')}
         variant="outlined"
         error={errors.password ? true : false}
         {...register('password', {
@@ -107,14 +110,14 @@ function SignUpForm() {
         })}
       />
       <div className={styles.linkWrapper}>
-        <SignBtn>{SignUp}</SignBtn>
+        <SignBtn>{t('signUpForm.signUpBtn')}</SignBtn>
         <div className={styles.line}>
           <hr />
-          OR
+          {t('signUpForm.or')}
           <hr />
         </div>
         <NavLink className={styles.link} to={PATH.SIGN_IN}>
-          Sign In
+          {t('signUpForm.variant')}
         </NavLink>
       </div>
     </form>

@@ -4,10 +4,10 @@ import MuiButton from '@mui/material/Button';
 
 import { muiButtonStyle } from '../../data/styles';
 
-import { LayoutContent } from 'types';
+import { SignBtnProps } from './types';
 
-const SignBtn = ({ children }: LayoutContent) => (
-  <MuiButton type="submit" variant="contained" sx={muiButtonStyle}>
+const SignBtn = ({ onClick, children }: SignBtnProps) => (
+  <MuiButton type="submit" onClick={onClick} variant="contained" sx={muiButtonStyle}>
     {children}
   </MuiButton>
 );

@@ -52,6 +52,13 @@
   font-size: 75px;
 }
 
+.icon-add-board-header:before {
+  content: "\e900";
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+}
+
 .icon-board-edit,
 .icon-board-column-remove {
   border: none;
@@ -85,8 +92,20 @@
   content: "\e902";
 }
 
-.icon-back-arrow:before {
-  content: "\e904";
+.icon-back-arrow {
+  &::before {
+    content: "\e904";
+    font-size: 45px;
+    transition: all .3s;
+    border-radius: 50%;
+  }
+}
+
+.icon-back-arrow {
+  &:hover.icon-back-arrow:before {
+    background-color: $light-gray-second-color;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+  }
 }
 
 .icon-exit-modal:before {
@@ -95,14 +114,23 @@
 
 .icon-profile-edit:before {
   content: "\e908";
+  font-size: 25px;
+  display: flex;
+  align-items: center;
 }
 
 .icon-profile-exit:before {
   content: "\e909";
+  font-size: 25px;
+  display: flex;
+  align-items: center;
 }
 
 .icon-profile-user:before {
   content: "\e90a";
+  font-size: 25px;
+  display: flex;
+  align-items: center;
 }
 
 .icon-task-action:before {

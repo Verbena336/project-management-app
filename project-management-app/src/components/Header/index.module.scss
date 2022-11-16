@@ -2,6 +2,16 @@
 
 .header {
   width: 100%;
+  transition: all .3s;
+}
+
+.headerStiky {
+  transition: all .3s;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background-color: $white;
+  z-index: 500;
 }
 
 .inner {
@@ -14,6 +24,7 @@
 .control {
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 
 .link {
@@ -28,4 +39,10 @@
 .link:hover {
   background-color: $light-gray-second-color;
   box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.2);
+}
+
+.logoWrapper {
+  display: flex;
+  gap: 20px;
+  align-items: center;
 }
