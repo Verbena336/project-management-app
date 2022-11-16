@@ -1,3 +1,5 @@
+@import '../../../../styles/base/vars';
+
 .hero {
   padding: 0 100px;
   display: flex;
@@ -11,22 +13,23 @@
 
 .content {
   flex: 0 0 50%;
-  padding: 0 30px;
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   max-width: 600px;
 }
 
 .title {
   font-family: 'PTSerif';
-  font-size: 140px;
+  font-size: 160px;
 }
 
 .text {
-  padding: 50px 15px;
+  padding: 50px 20px;
+  font-size: 30px;
+  color: $primary-color;
 }
 
 .paper {

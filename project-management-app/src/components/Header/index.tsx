@@ -56,7 +56,6 @@ const Header = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-    console.log(location);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };

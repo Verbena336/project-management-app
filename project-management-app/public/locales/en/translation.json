@@ -17,11 +17,11 @@
   },
   "hero": {
     "title": "KanBan",
-    "text": "text"
+    "text": "Simple and clear project management tool"
   },
   "about": {
     "title": "About App",
-    "text": "text"
+    "text": "KanBan is a flexible application that allows you to visually track the progress of your project. You are not limited in the choice of board structure! With the help of columns and tasks on the board, each team member can understand how much work should be taken on and accomplish this amount, adhering to the principles of continuous improvement."
   },
   "team": {
     "title": "About Team",
@@ -36,7 +36,7 @@
   },
   "school": {
     "title": "About School",
-    "text": "text"
+    "text": "RSSchool is free-of-charge education program conducted by The Rolling Scopes developer community since 2013. Students of the school can not only take courses of interest to them for free, but also return as mentors to pass on their knowledge to the next generation of students."
   },
   "AddTask": "Add task",
   "signUpForm": {
