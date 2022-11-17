@@ -1,12 +1,17 @@
-@use 'styles/base/vars' as *;
+@import 'styles/abstracts/mixins';
 
 .modalWrapper {
   position: relative;
   top: calc(50% - 55px);
   left: calc(50% - 200px);
   max-width: 400px;
-  min-width: 300px;
+  min-width: 280px;
   width: 100%;
+  transition: 0.3s;
+  @include media-mobile {
+    left: calc(50% - 150px);
+    max-width: 280px;
+  }
 }
 
 .modalContent {
@@ -17,6 +22,10 @@
   align-items: center;
   gap: 20px;
   padding: 25px 55px;
+  transition: 0.3s;
+  @include media-mobile {
+    padding: 35px 20px;
+  }
 }
 
 .modalTitle {
