@@ -32,9 +32,10 @@ export const muiSwitcherStyle = {
 
 export const muiModalButtonStyle = {
   boxShadow: 3,
-  width: 90,
-  height: 25,
+  width: 110,
+  height: 30,
   textTransform: 'capitalize',
+  fontSize: 17,
 };
 
 export const saveButtonBg = {

@@ -57,13 +57,13 @@ function SignUpForm() {
       setIsLoading(false);
       switch (error.status) {
         case 409:
-          toast.error('User already exist');
+          toast.error(t('toastContent.userExist'));
           break;
         case 403:
-          toast.error('User was not founded!');
+          toast.error(t('toastContent.userError'));
           break;
         default:
-          toast.error('Unknown error');
+          toast.error(t('toastContent.unknownError'));
       }
     }
   };

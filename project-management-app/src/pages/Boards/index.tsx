@@ -28,12 +28,12 @@ const Boards = () => {
     try {
       const response = await addBoard(data as addBoardRequest).unwrap();
       if (response.id) {
-        toast.success(`The board is added!`);
+        toast.success(t('toastContent.addBoard'));
       } else {
         throw new Error();
       }
     } catch {
-      toast.error('Something is wrong with the server!');
+      toast.error(t('toastContent.serverError'));
     }
   };
 

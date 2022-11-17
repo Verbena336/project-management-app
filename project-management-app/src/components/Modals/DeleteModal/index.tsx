@@ -45,7 +45,7 @@ const DeleteModal = ({ handler, closeHandler }: DeleteModalProps) => {
                 <ThemeProvider theme={deleteButtonsTheme}>
                   <Button
                     sx={{ ...muiModalButtonStyle, ...cancelButtonBg }}
-                    size="small"
+                    size="medium"
                     variant="text"
                     type="button"
                     onClick={closeHandler}
@@ -55,7 +55,7 @@ const DeleteModal = ({ handler, closeHandler }: DeleteModalProps) => {
                   <Button
                     color="secondary"
                     sx={{ ...muiModalButtonStyle, ...deleteButtonBg }}
-                    size="small"
+                    size="medium"
                     variant="outlined"
                     type="button"
                     onClick={handleDelete}

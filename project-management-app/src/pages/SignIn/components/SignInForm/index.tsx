@@ -40,7 +40,7 @@ function SignInForm() {
       if (response.token) {
         localStorage.setItem('KanBanToken', response.token);
         localStorage.setItem('KanBanLogin', value.login);
-        toast.success(`Hello, ${value.login}`);
+        toast.success(`${t('toastContent.userGreetings')}, ${value.login}`);
         navigate('/boards');
       } else {
         throw new Error();
@@ -50,10 +50,10 @@ function SignInForm() {
       setIsLoading(false);
       switch (error.status) {
         case 403:
-          toast.error('User was not founded!');
+          toast.error(t('toastContent.userError'));
           break;
         default:
-          toast.error('Unknown error');
+          toast.error(t('toastContent.unknownError'));
       }
     }
   };

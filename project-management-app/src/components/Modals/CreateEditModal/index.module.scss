@@ -3,8 +3,10 @@
 .modalWrapper {
   position: relative;
   top: calc(50% - 150px);
-  left: calc(50% - 150px);
-  width: 300px;
+  left: calc(50% - 200px);
+  max-width: 400px;
+  min-width: 300px;
+  width: 100%;
 }
 
 .modalContent {
@@ -18,6 +20,6 @@
 
 .modalTitle {
   margin: 0;
-  font-size: 24px;
+  font-size: 27px;
   color: $primary-color;
 }

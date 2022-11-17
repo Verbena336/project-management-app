@@ -41,21 +41,21 @@ const ExistBoard = ({ id, name, description }: ExistBoardProps) => {
     try {
       const response = await updateBoard(dataRequest).unwrap();
       if (response.id) {
-        toast.success(`The board is updated!`);
+        toast.success(t('toastContent.editBoard'));
       } else {
         throw new Error();
       }
     } catch {
-      toast.error('Something is wrong with the server!');
+      toast.error(t('toastContent.serverError'));
     }
   };
 
   const handleBoardDelete = async () => {
     try {
       await deleteBoard(id).unwrap();
-      toast.success(`The board is delete!`);
+      toast.success(t('toastContent.deleteBoard'));
     } catch {
-      toast.error('Something is wrong with the server!');
+      toast.error(t('toastContent.serverError'));
     }
   };
 

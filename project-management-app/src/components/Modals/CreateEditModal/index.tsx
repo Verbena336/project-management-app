@@ -55,7 +55,7 @@ const CreateEditModal = ({ title, description, handler, closeHandler }: CreateEd
               <TextField
                 sx={muiModalInputTitle}
                 fullWidth
-                size="small"
+                size="medium"
                 label={errors.title ? errors.title.message : t('createEditModal.name')}
                 variant="standard"
                 error={!!errors.title}
@@ -91,7 +91,7 @@ const CreateEditModal = ({ title, description, handler, closeHandler }: CreateEd
               <ThemeProvider theme={saveButtonTheme}>
                 <Button
                   sx={{ ...muiModalButtonStyle, ...saveButtonBg }}
-                  size="small"
+                  size="medium"
                   variant="outlined"
                   type="submit"
                 >

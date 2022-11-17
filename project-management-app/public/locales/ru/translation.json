@@ -77,5 +77,15 @@
   },
   "editBoard": {
     "title": "Изменить доску"
+  },
+  "toastContent": {
+    "userGreetings": "Привет",
+    "userExist": "Пользователь уже существует",
+    "userError": "Пользователь не найден!",
+    "unknownError": "Неизвестная ошибка",
+    "addBoard": "Доска добавлена!",
+    "deleteBoard": "Доска удалена!",
+    "editBoard": "Доска обновлена!",
+    "serverError": "Что-то не так с сервером!"
   }
 }
