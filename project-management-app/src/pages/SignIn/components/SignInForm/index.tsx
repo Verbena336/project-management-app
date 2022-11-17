@@ -50,7 +50,7 @@ function SignInForm() {
       setIsLoading(false);
       switch (error.status) {
         case 403:
-          toast.error('User was not founded!');
+          toast.error('User was not found!');
           break;
         default:
           toast.error('Unknown error');

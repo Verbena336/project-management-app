@@ -58,5 +58,15 @@
     "signInBtn": "Sign In",
     "or": "OR",
     "variant": "Sign Up"
+  },
+  "editForm": {
+    "name": "New Name",
+    "nameError": "⚠Name is required!",
+    "login": "New Login",
+    "loginError": "⚠Login is required!",
+    "password": "New Password",
+    "passwordError": "⚠Password is required!",
+    "confirmBtn": "Save",
+    "deleteBtn": "Delete account"
   }
 }

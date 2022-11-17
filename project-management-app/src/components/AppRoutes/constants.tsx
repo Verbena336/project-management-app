@@ -5,8 +5,7 @@ import Boards from 'pages/Boards';
 import SignIn from 'pages/SignIn';
 import SignUp from 'pages/SignUp';
 import Page404 from 'pages/404';
-
-import EditProfilePage from './plugs/EditProfilePage';
+import EditProfile from 'pages/EditProfile';
 
 import { PATH } from './types';
 
@@ -17,6 +16,6 @@ export const PAGES_FOR_ROUTES = [
   { path: PATH.BOARDS_ID, page: <Boards /> },
   { path: PATH.SIGN_IN, page: <SignIn /> },
   { path: PATH.SIGN_UP, page: <SignUp /> },
-  { path: PATH.EDIT_PROFILE, page: <EditProfilePage /> },
+  { path: PATH.EDIT_PROFILE, page: <EditProfile /> },
   { path: PATH.ROUTES_404, page: <Page404 /> },
 ];

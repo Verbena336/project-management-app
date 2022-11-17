@@ -1,0 +1,50 @@
+@import '../../../../styles/base/vars';
+
+.form div {
+  width: 100%;
+}
+
+.line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+  font-size: 22px;
+  color: $primary-color;
+}
+
+.backIcon {
+  margin-bottom: 10px;
+}
+
+hr {
+  width: 40%;
+  background-color: $primary-color;
+  height: 1px;
+  border: none;
+}
+
+.slideLink {
+  font-size: 14px;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.link {
+  color: $primary-color;
+  font-size: 22px;
+  text-decoration: none;
+  transition: all .3s;
+  &:hover {
+    color: $bright-blue-color;
+  }
+}
+
+.linkWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
