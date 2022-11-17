@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 import MainPaper from 'components/MainPaper';
 import CreateEditModal from 'components/Modals/CreateEditModal';
@@ -24,6 +25,7 @@ const {
 const ExistBoard = ({ id, name, description }: ExistBoardProps) => {
   const [isModal, setIsModal] = useState(false);
   const [isDeleteModal, setIsDeleteModal] = useState(false);
+  const { t } = useTranslation();
   const [deleteBoard] = useDeleteBoardMutation();
   const [updateBoard] = useUpdateBoardMutation();
 
@@ -61,7 +63,7 @@ const ExistBoard = ({ id, name, description }: ExistBoardProps) => {
     <>
       {isModal && (
         <CreateEditModal
-          title="Edit Board"
+          title={t('editBoard.title')}
           description={true}
           handler={handleBoardEdit}
           closeHandler={() => setIsModal(!isModal)}

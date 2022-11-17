@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 import Spiner from '@mui/material/CircularProgress';
 import AppLayout from 'components/AppLayout';
@@ -17,6 +18,7 @@ import styles from './index.module.scss';
 const { boardsWrapper } = styles;
 
 const Boards = () => {
+  const { t } = useTranslation();
   const { data } = useGetAllBoardsQuery();
   const [addBoard] = useAddBoardMutation();
 
@@ -45,7 +47,11 @@ const Boards = () => {
             {data.map(({ id, title, description }) => (
               <ExistBoard key={id} id={id} name={title} description={description} />
             ))}
-            <NewBoardOrColumn iconClass="icon-add-board" handleNewItem={handleNewBoard} />
+            <NewBoardOrColumn
+              modalTitle={t('createBoard.title')}
+              iconClass="icon-add-board"
+              handleNewItem={handleNewBoard}
+            />
           </>
         )}
       </div>

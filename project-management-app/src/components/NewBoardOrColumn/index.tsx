@@ -7,14 +7,14 @@ import { NewBoardOrColumnProps } from './types';
 import styles from './index.module.scss';
 const { newBoard } = styles;
 
-const NewBoardOrColumn = ({ iconClass, handleNewItem }: NewBoardOrColumnProps) => {
+const NewBoardOrColumn = ({ modalTitle, iconClass, handleNewItem }: NewBoardOrColumnProps) => {
   const [isModal, setIsModal] = useState(false);
 
   return (
     <>
       {isModal && (
         <CreateEditModal
-          title="Create Board"
+          title={modalTitle}
           description={true}
           handler={handleNewItem}
           closeHandler={() => setIsModal(!isModal)}

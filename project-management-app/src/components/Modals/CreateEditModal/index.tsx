@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { ThemeProvider } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 import Spiner from '@mui/material/CircularProgress';
 import { Button, TextField } from '@mui/material';
@@ -23,6 +24,7 @@ const { modalWrapper, modalContent, modalTitle } = styles;
 
 const CreateEditModal = ({ title, description, handler, closeHandler }: CreateEditModalProps) => {
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -54,14 +56,17 @@ const CreateEditModal = ({ title, description, handler, closeHandler }: CreateEd
                 sx={muiModalInputTitle}
                 fullWidth
                 size="small"
-                label={errors.title ? errors.title.message : 'Title'}
+                label={errors.title ? errors.title.message : t('createEditModal.name')}
                 variant="standard"
                 error={!!errors.title}
                 {...register('title', {
-                  required: '⚠ title is required!',
+                  required: {
+                    value: true,
+                    message: t('createEditModal.nameRequired'),
+                  },
                   maxLength: {
                     value: 15,
-                    message: '⚠ max length is 15 characters!',
+                    message: t('createEditModal.nameLength'),
                   },
                 })}
               />
@@ -71,10 +76,16 @@ const CreateEditModal = ({ title, description, handler, closeHandler }: CreateEd
                   fullWidth
                   multiline
                   rows={4}
-                  label={errors.description ? errors.description.message : 'Description'}
+                  label={
+                    errors.description
+                      ? errors.description.message
+                      : t('createEditModal.description')
+                  }
                   variant="outlined"
                   error={!!errors.description}
-                  {...register('description', { required: '⚠ description is required!' })}
+                  {...register('description', {
+                    required: { value: true, message: t('createEditModal.descriptionRequired') },
+                  })}
                 />
               )}
               <ThemeProvider theme={saveButtonTheme}>
@@ -84,7 +95,7 @@ const CreateEditModal = ({ title, description, handler, closeHandler }: CreateEd
                   variant="outlined"
                   type="submit"
                 >
-                  Save
+                  {t('createEditModal.save')}
                 </Button>
               </ThemeProvider>
             </form>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ThemeProvider } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 import Spiner from '@mui/material/CircularProgress';
 import { Button } from '@mui/material';
@@ -17,6 +18,7 @@ const { modalWrapper, modalContent, modalTitle, modalButtonsWrapper } = styles;
 
 const DeleteModal = ({ handler, closeHandler }: DeleteModalProps) => {
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useTranslation();
 
   const handleDelete = async () => {
     setIsLoading(true);
@@ -38,7 +40,7 @@ const DeleteModal = ({ handler, closeHandler }: DeleteModalProps) => {
                 className={`${modalCloseButton} icon-exit-modal`}
                 onClick={closeHandler}
               ></button>
-              <p className={modalTitle}>Do you want to delete?</p>
+              <p className={modalTitle}>{t('deleteModal.title')}</p>
               <div className={modalButtonsWrapper}>
                 <ThemeProvider theme={deleteButtonsTheme}>
                   <Button
@@ -48,7 +50,7 @@ const DeleteModal = ({ handler, closeHandler }: DeleteModalProps) => {
                     type="button"
                     onClick={closeHandler}
                   >
-                    Cancel
+                    {t('deleteModal.cancel')}
                   </Button>
                   <Button
                     color="secondary"
@@ -58,7 +60,7 @@ const DeleteModal = ({ handler, closeHandler }: DeleteModalProps) => {
                     type="button"
                     onClick={handleDelete}
                   >
-                    Delete
+                    {t('deleteModal.delete')}
                   </Button>
                 </ThemeProvider>
               </div>

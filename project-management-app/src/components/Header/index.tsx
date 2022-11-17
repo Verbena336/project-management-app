@@ -85,7 +85,7 @@ const Header = () => {
     <>
       {isModal && (
         <CreateEditModal
-          title="Create Board"
+          title={t('createBoard.title')}
           description={true}
           handler={handleNewBoard}
           closeHandler={() => setIsModal(!isModal)}

@@ -58,5 +58,24 @@
     "signInBtn": "Войти",
     "or": "ИЛИ",
     "variant": "Зарегистрироваться"
+  },
+  "deleteModal": {
+    "title": "Вы хотите удалить?",
+    "cancel": "Отмена",
+    "delete": "Удалить"
+  },
+  "createEditModal": {
+    "name": "Заголовок",
+    "nameRequired": "⚠ требуется заголовок!",
+    "nameLength": "⚠ максимум 15 символов!",
+    "description": "Описание",
+    "descriptionRequired": "⚠ требуется описание!",
+    "save": "Сохранить"
+  },
+  "createBoard": {
+    "title": "Создать доску"
+  },
+  "editBoard": {
+    "title": "Изменить доску"
   }
 }
