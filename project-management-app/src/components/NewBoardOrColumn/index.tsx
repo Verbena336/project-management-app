@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import CreateEditModal from 'components/Modals/CreateEditModal';
 
 import { NewBoardOrColumnProps } from './types';
 
 import styles from './index.module.scss';
 const { newBoard } = styles;
 
-const NewBoardOrColumn = ({ iconClass }: NewBoardOrColumnProps) => {
+const NewBoardOrColumn = ({ iconClass, handleNewItem }: NewBoardOrColumnProps) => {
+  const [isModal, setIsModal] = useState(false);
+
   return (
-    <button className={newBoard}>
-      <div className={iconClass}></div>
-    </button>
+    <>
+      {isModal && (
+        <CreateEditModal
+          title="Create Board"
+          description={true}
+          handler={handleNewItem}
+          closeHandler={() => setIsModal(!isModal)}
+        />
+      )}
+      <button className={newBoard} type="button" onClick={() => setIsModal(!isModal)}>
+        <div className={iconClass}></div>
+      </button>
+    </>
   );
 };
 

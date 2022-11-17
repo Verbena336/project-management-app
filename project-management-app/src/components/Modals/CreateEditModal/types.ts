@@ -1,7 +1,8 @@
 export type CreateEditModalProps = {
   title: string;
   description: boolean;
-  handler: (values: Record<string, string>) => void;
+  handler: (data: Record<string, string>) => Promise<void>;
+  closeHandler: () => void;
 };
 
 export type formValues = {
