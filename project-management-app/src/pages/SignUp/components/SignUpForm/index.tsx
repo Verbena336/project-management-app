@@ -5,7 +5,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import TextField from '@mui/material/TextField';
-import Spiner from '@mui/material/CircularProgress';
+import Spinner from '@mui/material/CircularProgress';
 
 import SignBtn from 'components/SignBtn';
 
@@ -71,7 +71,7 @@ function SignUpForm() {
   const onSubmit = (data: Inputs) => createUser(data);
 
   return isLoading ? (
-    <Spiner color="inherit" />
+    <Spinner color="inherit" />
   ) : (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <NavLink to={PATH.WELCOME} className={'icon-back-arrow'} />

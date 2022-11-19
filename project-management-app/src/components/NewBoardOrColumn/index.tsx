@@ -9,19 +9,19 @@ const { newBoard } = styles;
 
 const NewBoardOrColumn = ({ modalTitle, iconClass, handleNewItem }: NewBoardOrColumnProps) => {
   const [isModal, setIsModal] = useState(false);
+  const handleModal = () => setIsModal(!isModal);
 
   return (
     <>
       {isModal && (
         <CreateEditModal
           title={modalTitle}
-          description={true}
-          isEdit={false}
+          description={iconClass.includes('board') && true}
           handler={handleNewItem}
-          closeHandler={() => setIsModal(!isModal)}
+          closeHandler={handleModal}
         />
       )}
-      <button className={newBoard} type="button" onClick={() => setIsModal(!isModal)}>
+      <button className={newBoard} type="button" onClick={handleModal}>
         <div className={iconClass}></div>
       </button>
     </>

@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
-import Spiner from '@mui/material/CircularProgress';
+import Spinner from '@mui/material/CircularProgress';
 import AppLayout from 'components/AppLayout';
 import ExistBoard from './components/ExistBoard';
 import NewBoardOrColumn from '../../components/NewBoardOrColumn';
@@ -41,7 +41,7 @@ const Boards = () => {
     <AppLayout>
       <div className={boardsWrapper}>
         {!data ? (
-          <Spiner color="inherit" />
+          <Spinner color="inherit" />
         ) : (
           <>
             {data.map(({ id, title, description }) => (

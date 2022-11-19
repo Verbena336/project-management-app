@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import Spiner from '@mui/material/CircularProgress';
+import Spinner from '@mui/material/CircularProgress';
 import { TextField } from '@mui/material';
 import MainPaper from 'components/MainPaper';
 
@@ -20,7 +20,7 @@ const { modalWrapper, modalContent, modalTitle, modalCreate, modalEdit } = style
 const CreateEditModal = ({
   title,
   description,
-  isEdit,
+  editValues,
   handler,
   closeHandler,
 }: CreateEditModalProps) => {
@@ -33,9 +33,9 @@ const CreateEditModal = ({
     setValue,
   } = useForm<formValues>();
 
-  if (isEdit) {
-    setValue('title', isEdit.name);
-    if (isEdit.description) setValue('description', isEdit.description);
+  if (editValues) {
+    setValue('title', editValues.name);
+    if (editValues.description) setValue('description', editValues.description);
   }
 
   const onSubmit = async (data: FieldValues) => {
@@ -55,7 +55,7 @@ const CreateEditModal = ({
             onSubmit={handleSubmit(onSubmit)}
           >
             {isLoading ? (
-              <Spiner color="inherit" />
+              <Spinner color="inherit" />
             ) : (
               <>
                 <button

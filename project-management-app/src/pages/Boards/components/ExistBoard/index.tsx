@@ -29,10 +29,11 @@ const ExistBoard = ({ id, name, description }: ExistBoardProps) => {
   const [deleteBoard] = useDeleteBoardMutation();
   const [updateBoard] = useUpdateBoardMutation();
 
-  const handleBoardPage = (e: React.MouseEvent<HTMLElement>) => {
-    const board = e.target as HTMLElement;
-    if (board.className.includes('ExistBoard')) {
-      console.log(`go to ${id}`);
+  const handleBoardPage = ({ target }: React.MouseEvent<HTMLDivElement>) => {
+    if (target instanceof HTMLDivElement) {
+      if (target.className.includes('ExistBoard')) {
+        console.log(`go to ${id}`);
+      }
     }
   };
 
@@ -64,8 +65,7 @@ const ExistBoard = ({ id, name, description }: ExistBoardProps) => {
       {isModal && (
         <CreateEditModal
           title={t('editBoard.title')}
-          description={true}
-          isEdit={{ name, description }}
+          editValues={{ name, description }}
           handler={handleBoardEdit}
           closeHandler={() => setIsModal(!isModal)}
         />
