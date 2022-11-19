@@ -32,6 +32,7 @@ const CreateEditModal = ({
     formState: { errors },
     setValue,
   } = useForm<formValues>();
+  const formClass = `${modalContent} ${description ? modalCreate : modalEdit}`;
 
   if (editValues) {
     setValue('title', editValues.name);
@@ -50,10 +51,7 @@ const CreateEditModal = ({
       <div className={modalOverlay} onClick={closeHandler}></div>
       <div className={modalWrapper}>
         <MainPaper>
-          <form
-            className={`${modalContent} ${description ? modalCreate : modalEdit}`}
-            onSubmit={handleSubmit(onSubmit)}
-          >
+          <form className={formClass} onSubmit={handleSubmit(onSubmit)}>
             {isLoading ? (
               <Spinner color="inherit" />
             ) : (
