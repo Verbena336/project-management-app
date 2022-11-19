@@ -28,6 +28,8 @@ const ExistBoard = ({ id, name, description }: ExistBoardProps) => {
   const { t } = useTranslation();
   const [deleteBoard] = useDeleteBoardMutation();
   const [updateBoard] = useUpdateBoardMutation();
+  const handleModal = () => setIsModal(!isModal);
+  const handleDeleteModal = () => setIsDeleteModal(!isDeleteModal);
 
   const handleBoardPage = ({ target }: React.MouseEvent<HTMLDivElement>) => {
     if (target instanceof HTMLDivElement) {
@@ -67,14 +69,11 @@ const ExistBoard = ({ id, name, description }: ExistBoardProps) => {
           title={t('editBoard.title')}
           editValues={{ name, description }}
           handler={handleBoardEdit}
-          closeHandler={() => setIsModal(!isModal)}
+          closeHandler={handleModal}
         />
       )}
       {isDeleteModal && (
-        <DeleteModal
-          handler={handleBoardDelete}
-          closeHandler={() => setIsDeleteModal(!isDeleteModal)}
-        />
+        <DeleteModal handler={handleBoardDelete} closeHandler={handleDeleteModal} />
       )}
       <section className={boardSection} onClick={handleBoardPage}>
         <MainPaper>
@@ -82,11 +81,8 @@ const ExistBoard = ({ id, name, description }: ExistBoardProps) => {
             <header className={boardHeader}>
               <p className={boardTitle}>{name}</p>
               <div className={boardButtonWrapper}>
-                <button className="icon-board-edit" onClick={() => setIsModal(!isModal)}></button>
-                <button
-                  className="icon-board-column-remove"
-                  onClick={() => setIsDeleteModal(!isDeleteModal)}
-                ></button>
+                <button className="icon-board-edit" onClick={handleModal}></button>
+                <button className="icon-board-column-remove" onClick={handleDeleteModal}></button>
               </div>
             </header>
             <div className={boardDescriptionWrapper}>
