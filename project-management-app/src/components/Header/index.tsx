@@ -16,6 +16,9 @@ import {
 } from '@mui/material';
 import MuiButton from '@mui/material/Button';
 
+import { loginValue } from 'store/reducers/authSlice';
+import { useAppSelector } from 'store/hooks';
+
 import '../../utils/i18next';
 
 import { muiSignInBtn } from '../../data/styles';
@@ -34,7 +37,7 @@ const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const [isStiky, setIsStiky] = useState(window.pageYOffset > 0);
-  const [KanBanLogin, setKanBanLogin] = useState(localStorage.getItem('KanBanLogin'));
+  const loginStore = useAppSelector(loginValue);
   const isPublic =
     location.pathname === PATH.ROUTES_404 ||
     location.pathname === PATH.SIGN_UP ||
@@ -53,14 +56,10 @@ const Header = () => {
 
   const handleScroll = () => setIsStiky(window.pageYOffset > 0);
 
-  const setLogin = () => setKanBanLogin(localStorage.getItem('KanBanLogin'));
-
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('storage', setLogin); //!Спросить можно ли так обновлять логин
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('storage', setLogin);
     };
   }, []);
 
@@ -122,7 +121,7 @@ const Header = () => {
                     variant="text"
                     startIcon={<div className="icon-profile-user"></div>}
                   >
-                    {t('headerUser.userName', { UserName: KanBanLogin })}
+                    {t('headerUser.userName', { UserName: loginStore })}
                   </MuiButton>
                   <Menu anchorEl={anchorEl} open={open} onClose={() => setAnchorEl(null)}>
                     <MenuItem onClick={() => navigate(PATH.EDIT_PROFILE)}>

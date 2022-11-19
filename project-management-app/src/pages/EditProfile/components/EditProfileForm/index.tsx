@@ -17,6 +17,8 @@ import {
   useDeleteUserMutation,
   useUpdateUserMutation,
 } from 'store/services/userApi';
+import { useAppDispatch } from 'store/hooks';
+import { setLogin } from 'store/reducers/authSlice';
 
 import '../../../../utils/i18next';
 
@@ -30,6 +32,7 @@ function EditProfileForm() {
   const { data } = useGetUsersQuery();
   const [deleteUserApi] = useDeleteUserMutation();
   const [updateUserApi] = useUpdateUserMutation();
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -49,6 +52,7 @@ function EditProfileForm() {
       await deleteUserApi(userId!).unwrap();
       localStorage.removeItem('KanBanToken');
       localStorage.removeItem('KanBanLogin');
+      dispatch(setLogin(''));
       setIsLoading(false);
       navigate(PATH.WELCOME);
     } catch (err) {
@@ -70,7 +74,7 @@ function EditProfileForm() {
       setIsLoading(true);
       await updateUserApi({ id: userId!, body: value }).unwrap();
       localStorage.setItem('KanBanLogin', value.login);
-      window.dispatchEvent(new Event('storage')); //!Спросить можно ли так обновлять логин
+      dispatch(setLogin(value.login));
       setIsLoading(false);
       toast.success('User data was updated!');
     } catch (err) {

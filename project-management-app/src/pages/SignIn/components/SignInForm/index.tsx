@@ -14,6 +14,8 @@ import styles from './SignInForm.module.scss';
 import { muiInputStyle } from 'data/styles';
 
 import { useSigninMutation } from 'store/services/authApi';
+import { setLogin } from 'store/reducers/authSlice';
+import { useAppDispatch } from 'store/hooks';
 
 import '../../../../utils/i18next';
 
@@ -25,6 +27,7 @@ function SignInForm() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -40,6 +43,7 @@ function SignInForm() {
       if (response.token) {
         localStorage.setItem('KanBanToken', response.token);
         localStorage.setItem('KanBanLogin', value.login);
+        dispatch(setLogin(value.login));
         toast.success(`Hello, ${value.login}`);
         navigate('/boards');
       } else {
