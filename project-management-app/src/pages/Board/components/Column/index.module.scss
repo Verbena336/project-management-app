@@ -1,0 +1,65 @@
+@import 'styles/abstracts/mixins';
+@import 'styles/base/vars';
+
+.column {
+  max-width: 400px;
+  min-width: 300px;
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+
+.wrapper {
+  position: relative;
+  padding: 10px;
+  color: $primary-color; 
+}
+
+.wrapper button {
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  transition: 0.3s;
+}
+
+.header {
+  position: relative;
+  padding-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  color: inherit;
+}
+
+.title {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 24px;
+  color: $primary-color; 
+}
+
+.header input {
+  border: 0;
+}
+
+.header button {
+  color: $gray-color;
+}
+
+.content {
+  padding: 0 30px;
+}
+
+.wrapper > button {
+  color: $primary-color;
+  font-size: 16px;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.wrapper > button:hover {
+  color: $black-color;
+}
