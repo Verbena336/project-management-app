@@ -16,6 +16,7 @@ const NewBoardOrColumn = ({ modalTitle, iconClass, handleNewItem }: NewBoardOrCo
         <CreateEditModal
           title={modalTitle}
           description={true}
+          isEdit={false}
           handler={handleNewItem}
           closeHandler={() => setIsModal(!isModal)}
         />

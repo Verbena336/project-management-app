@@ -87,6 +87,7 @@ const Header = () => {
         <CreateEditModal
           title={t('createBoard.title')}
           description={true}
+          isEdit={false}
           handler={handleNewBoard}
           closeHandler={() => setIsModal(!isModal)}
         />

@@ -65,6 +65,7 @@ const ExistBoard = ({ id, name, description }: ExistBoardProps) => {
         <CreateEditModal
           title={t('editBoard.title')}
           description={true}
+          isEdit={{ name, description }}
           handler={handleBoardEdit}
           closeHandler={() => setIsModal(!isModal)}
         />

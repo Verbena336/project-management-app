@@ -11,10 +11,10 @@ export const saveButtonTheme = createTheme({
 export const deleteButtonsTheme = createTheme({
   palette: {
     primary: {
-      main: '#5D5D5D',
+      main: '#D81616',
     },
     secondary: {
-      main: '#D81616',
+      main: '#5D5D5D',
     },
   },
 });
