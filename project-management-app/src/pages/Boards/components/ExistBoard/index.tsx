@@ -9,7 +9,7 @@ import DeleteModal from 'components/Modals/DeleteModal';
 import { useDeleteBoardMutation, useUpdateBoardMutation } from 'store/services/boardsApi';
 
 import { ExistBoardProps } from './types';
-import { updateBoardRequest } from 'store/services/types/boards';
+import { addBoardRequest } from 'store/services/types/boards';
 
 import styles from './index.module.scss';
 const {
@@ -39,8 +39,8 @@ const ExistBoard = ({ id, name, description }: ExistBoardProps) => {
     }
   };
 
-  const handleBoardEdit = async (data: Record<string, string>) => {
-    const dataRequest = { id, body: data } as updateBoardRequest;
+  const handleBoardEdit = async (data: addBoardRequest) => {
+    const dataRequest = { id, body: data };
     try {
       const response = await updateBoard(dataRequest).unwrap();
       if (response.id) {
@@ -68,6 +68,7 @@ const ExistBoard = ({ id, name, description }: ExistBoardProps) => {
         <CreateEditModal
           title={t('editBoard.title')}
           editValues={{ name, description }}
+          description={true}
           handler={handleBoardEdit}
           closeHandler={handleModal}
         />

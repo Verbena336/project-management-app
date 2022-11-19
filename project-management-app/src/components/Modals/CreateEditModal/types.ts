@@ -1,6 +1,11 @@
+export type dataValues = {
+  title: string;
+  description: string;
+};
+
 export type CreateEditModalProps = {
   title: string;
-  handler: (data: Record<string, string>) => Promise<void>;
+  handler: (data: dataValues) => Promise<void>;
   closeHandler: () => void;
   description?: boolean;
   editValues?: editValues;

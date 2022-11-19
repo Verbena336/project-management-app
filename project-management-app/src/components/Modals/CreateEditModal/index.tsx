@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import Spinner from '@mui/material/CircularProgress';
@@ -10,7 +10,7 @@ import SaveButton from '../SaveButton';
 
 import { muiModalInputTitle, muiModalInputDescription } from 'data/styles';
 
-import { CreateEditModalProps, formValues } from './types';
+import { CreateEditModalProps, formValues, dataValues } from './types';
 
 import commonStyles from '../index.module.scss';
 import styles from './index.module.scss';
@@ -39,7 +39,7 @@ const CreateEditModal = ({
     if (editValues.description) setValue('description', editValues.description);
   }
 
-  const onSubmit = async (data: FieldValues) => {
+  const onSubmit = async (data: dataValues) => {
     setIsLoading(true);
     await handler(data);
     setIsLoading(false);

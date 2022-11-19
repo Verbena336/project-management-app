@@ -46,9 +46,9 @@ const Header = () => {
     location.pathname === PATH.SIGN_UP ||
     location.pathname === PATH.SIGN_IN;
 
-  const handleNewBoard = async (data: Record<string, string>) => {
+  const handleNewBoard = async (data: addBoardRequest) => {
     try {
-      const response = await addBoard(data as addBoardRequest).unwrap();
+      const response = await addBoard(data).unwrap();
       if (response.id) {
         toast.success(t('toastContent.addBoard'));
       } else {

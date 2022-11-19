@@ -24,9 +24,9 @@ const Boards = () => {
 
   if (!localStorage.getItem('KanBanToken')) return <Navigate to={PATH.WELCOME} />;
 
-  const handleNewBoard = async (data: Record<string, string>) => {
+  const handleNewBoard = async (data: addBoardRequest) => {
     try {
-      const response = await addBoard(data as addBoardRequest).unwrap();
+      const response = await addBoard(data).unwrap();
       if (response.id) {
         toast.success(t('toastContent.addBoard'));
       } else {
