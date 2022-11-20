@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import jwt_decode from 'jwt-decode';
 
 import TextField from '@mui/material/TextField';
 import Spinner from '@mui/material/CircularProgress';
@@ -14,6 +15,8 @@ import styles from './index.module.scss';
 import { muiInputStyle } from 'data/styles';
 
 import { useSigninMutation, useSignupMutation } from 'store/services/authApi';
+import { useAppDispatch } from 'store/hooks';
+import { setLogin } from 'store/reducers/authSlice';
 
 import '../../../../utils/i18next';
 
@@ -28,6 +31,7 @@ function SignUpForm() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -46,6 +50,9 @@ function SignUpForm() {
         if (response.token) {
           localStorage.setItem('KanBanToken', response.token);
           localStorage.setItem('KanBanLogin', value.login);
+          const id = jwt_decode(response.token) as { userId: string };
+          localStorage.setItem('KanBanId', id.userId);
+          dispatch(setLogin(value.login));
           toast.success(`Hello, ${value.login}`);
           navigate(`${PATH.BOARDS}`);
         } else {

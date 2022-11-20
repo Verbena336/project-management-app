@@ -18,6 +18,8 @@ import {
 } from '@mui/material';
 import MuiButton from '@mui/material/Button';
 
+import { loginValue } from 'store/reducers/authSlice';
+import { useAppSelector } from 'store/hooks';
 import { useAddBoardMutation } from 'store/services/boardsApi';
 
 import '../../utils/i18next';
@@ -33,7 +35,7 @@ const { header, inner, control, link, logoWrapper, headerStiky } = styles;
 
 const Header = () => {
   const { t, i18n } = useTranslation();
-  const [lang, setLang] = useState(localStorage.getItem('i18nextLng') ?? 'ru');
+  const [lang, setLang] = useState(i18n.language);
   const [isModal, setIsModal] = useState(false);
   const [addBoard] = useAddBoardMutation();
   const navigate = useNavigate();
@@ -41,6 +43,7 @@ const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const [isStiky, setIsStiky] = useState(window.pageYOffset > 0);
+  const loginStore = useAppSelector(loginValue);
   const isPublic =
     location.pathname === PATH.ROUTES_404 ||
     location.pathname === PATH.SIGN_UP ||
@@ -67,12 +70,11 @@ const Header = () => {
   const logOut = () => {
     localStorage.removeItem('KanBanToken');
     localStorage.removeItem('KanBanLogin');
+    localStorage.removeItem('KanBanId');
     navigate(PATH.WELCOME);
   };
 
-  const handleScroll = () => {
-    setIsStiky(window.pageYOffset > 0);
-  };
+  const handleScroll = () => setIsStiky(window.pageYOffset > 0);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -140,9 +142,9 @@ const Header = () => {
                 ) : (
                   <>
                     <MuiButton
+                      onClick={() => setIsModal(true)}
                       variant="text"
                       startIcon={<div className="icon-add-board-header"></div>}
-                      onClick={() => setIsModal(!isModal)}
                     >
                       {t('headerUser.newBoard')}
                     </MuiButton>
@@ -151,7 +153,7 @@ const Header = () => {
                       variant="text"
                       startIcon={<div className="icon-profile-user"></div>}
                     >
-                      {t('headerUser.userName', { UserName: localStorage.getItem('KanBanLogin') })}
+                      {t('headerUser.userName', { UserName: loginStore })}
                     </MuiButton>
                     <Menu anchorEl={anchorEl} open={open} onClose={() => setAnchorEl(null)}>
                       <MenuItem onClick={() => navigate(PATH.EDIT_PROFILE)}>

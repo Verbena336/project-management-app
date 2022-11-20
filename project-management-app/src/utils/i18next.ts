@@ -8,6 +8,7 @@ i18n
   .use(detector)
   .use(initReactI18next)
   .init({
+    lng: localStorage.getItem('i18nextLng') ?? 'ru',
     fallbackLng: 'ru',
     debug: false,
     interpolation: {
