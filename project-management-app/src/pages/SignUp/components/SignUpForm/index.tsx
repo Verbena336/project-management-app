@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import jwt_decode from 'jwt-decode';
 
 import TextField from '@mui/material/TextField';
 import Spinner from '@mui/material/CircularProgress';
@@ -49,6 +50,8 @@ function SignUpForm() {
         if (response.token) {
           localStorage.setItem('KanBanToken', response.token);
           localStorage.setItem('KanBanLogin', value.login);
+          const test = jwt_decode(response.token) as { userId: string };
+          localStorage.setItem('KanBanId', test.userId);
           dispatch(setLogin(value.login));
           toast.success(`Hello, ${value.login}`);
           navigate(`${PATH.BOARDS}`);

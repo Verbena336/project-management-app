@@ -70,6 +70,7 @@ const Header = () => {
   const logOut = () => {
     localStorage.removeItem('KanBanToken');
     localStorage.removeItem('KanBanLogin');
+    localStorage.removeItem('KanBanId');
     navigate(PATH.WELCOME);
   };
 
@@ -141,6 +142,7 @@ const Header = () => {
                 ) : (
                   <>
                     <MuiButton
+                      onClick={() => setIsModal(true)}
                       variant="text"
                       startIcon={<div className="icon-add-board-header"></div>}
                     >
