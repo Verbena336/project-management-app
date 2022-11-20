@@ -11,7 +11,6 @@ import Columns from 'pages/Columns';
 import { PATH } from './types';
 
 export const PAGES_FOR_ROUTES = [
-  { path: PATH.WELCOME, page: <Welcome /> },
   {
     path: PATH.ROOT,
     page: (
