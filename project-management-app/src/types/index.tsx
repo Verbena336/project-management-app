@@ -15,3 +15,8 @@ export enum PATH {
   ROUTES_404 = '*',
   ERROR = '/error',
 }
+
+export type CreateRequest = {
+  title: string;
+  description: string;
+};

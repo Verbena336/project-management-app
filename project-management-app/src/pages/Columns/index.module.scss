@@ -19,12 +19,11 @@
 .content {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 45px;
   transition: 5s;
-  flex-wrap: nowrap;
   @include media-tablet-large {
     gap: 20px;
-    flex-wrap: wrap;
   }
 }
 

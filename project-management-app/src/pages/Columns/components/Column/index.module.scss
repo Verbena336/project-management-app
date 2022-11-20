@@ -12,7 +12,7 @@
 .wrapper {
   position: relative;
   padding: 10px;
-  color: $primary-color; 
+  color: $primary-color;
 }
 
 .wrapper button {
@@ -30,11 +30,11 @@
   color: inherit;
 }
 
-.title {
+.input {
   margin: 0 auto;
   text-align: center;
   font-size: 24px;
-  color: $primary-color; 
+  color: $primary-color;
 }
 
 .header input {
@@ -62,4 +62,14 @@
 
 .wrapper > button:hover {
   color: $black-color;
+}
+
+.submit {
+  position: absolute;
+  left: 50px;
+}
+
+.cancel {
+  position: absolute;
+  left: 0;
 }

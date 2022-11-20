@@ -23,7 +23,9 @@ export type addColumnRequest = {
   title: string;
 };
 
-export type updateColumnRequest = columnRequest & {
+export type updateColumnRequest = {
+  boardId: string;
+  columnId: string;
   title: string;
   order: number;
 };
@@ -31,5 +33,5 @@ export type updateColumnRequest = columnRequest & {
 export type addUpdateColumnResponse = {
   id: string;
   title: string;
-  order: string;
+  order: number;
 };
