@@ -1,4 +1,4 @@
-import RootRedirect from './components/RootRedirect';
+import Redirect from './components/Redirect';
 
 import Welcome from 'pages/Welcome';
 import Boards from 'pages/Boards';
@@ -11,11 +11,53 @@ import { PATH } from './types';
 
 export const PAGES_FOR_ROUTES = [
   { path: PATH.WELCOME, page: <Welcome /> },
-  { path: PATH.ROOT, page: <RootRedirect /> },
-  { path: PATH.BOARDS, page: <Boards /> },
-  { path: PATH.BOARDS_ID, page: <Boards /> },
-  { path: PATH.SIGN_IN, page: <SignIn /> },
-  { path: PATH.SIGN_UP, page: <SignUp /> },
-  { path: PATH.EDIT_PROFILE, page: <EditProfile /> },
+  {
+    path: PATH.ROOT,
+    page: (
+      <Redirect>
+        <Welcome />
+      </Redirect>
+    ),
+  },
+  {
+    path: PATH.BOARDS,
+    page: (
+      <Redirect>
+        <Boards />
+      </Redirect>
+    ),
+  },
+  {
+    path: PATH.BOARDS_ID,
+    page: (
+      <Redirect>
+        <Boards />
+      </Redirect>
+    ),
+  },
+  {
+    path: PATH.SIGN_IN,
+    page: (
+      <Redirect>
+        <SignIn />
+      </Redirect>
+    ),
+  },
+  {
+    path: PATH.SIGN_UP,
+    page: (
+      <Redirect>
+        <SignUp />
+      </Redirect>
+    ),
+  },
+  {
+    path: PATH.EDIT_PROFILE,
+    page: (
+      <Redirect>
+        <EditProfile />
+      </Redirect>
+    ),
+  },
   { path: PATH.ROUTES_404, page: <Page404 /> },
 ];
