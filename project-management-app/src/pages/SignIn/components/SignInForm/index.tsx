@@ -44,8 +44,8 @@ function SignInForm() {
       if (response.token) {
         localStorage.setItem('KanBanToken', response.token);
         localStorage.setItem('KanBanLogin', value.login);
-        const test = jwt_decode(response.token) as { userId: string };
-        localStorage.setItem('KanBanId', test.userId);
+        const id = jwt_decode(response.token) as { userId: string };
+        localStorage.setItem('KanBanId', id.userId);
         dispatch(setLogin(value.login));
         toast.success(`${t('toastContent.userGreetings')}, ${value.login}`);
         navigate('/boards');
