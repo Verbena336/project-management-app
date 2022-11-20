@@ -68,5 +68,34 @@
     "passwordError": "⚠Пароль обязателен!",
     "confirmBtn": "Сохранить",
     "deleteBtn": "Удалить аккаунт"
+  },
+  "deleteModal": {
+    "title": "Вы хотите удалить?",
+    "cancel": "Отмена",
+    "delete": "Удалить"
+  },
+  "createEditModal": {
+    "name": "Заголовок",
+    "nameRequired": "⚠ требуется заголовок!",
+    "nameLength": "⚠ максимум 15 символов!",
+    "description": "Описание",
+    "descriptionRequired": "⚠ требуется описание!",
+    "save": "Сохранить"
+  },
+  "createBoard": {
+    "title": "Создать доску"
+  },
+  "editBoard": {
+    "title": "Изменить доску"
+  },
+  "toastContent": {
+    "userGreetings": "Привет",
+    "userExist": "Пользователь уже существует",
+    "userError": "Пользователь не найден!",
+    "unknownError": "Неизвестная ошибка",
+    "addBoard": "Доска добавлена!",
+    "deleteBoard": "Доска удалена!",
+    "editBoard": "Доска обновлена!",
+    "serverError": "Что-то не так с сервером!"
   }
 }

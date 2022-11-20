@@ -68,5 +68,34 @@
     "passwordError": "⚠Password is required!",
     "confirmBtn": "Save",
     "deleteBtn": "Delete account"
+  },
+  "deleteModal": {
+    "title": "Do you want to delete?",
+    "cancel": "Cancel",
+    "delete": "Delete"
+  },
+  "createEditModal": {
+    "name": "Title",
+    "nameRequired": "⚠ title is required!",
+    "nameLength": "⚠ max length is 15 characters!",
+    "description": "Description",
+    "descriptionRequired": "⚠ description is required!",
+    "save": "Save"
+  },
+  "createBoard": {
+    "title": "Create Board"
+  },
+  "editBoard": {
+    "title": "Edit Board"
+  },
+  "toastContent": {
+    "userGreetings": "Hello",
+    "userExist": "User already exist",
+    "userError": "User was not founded!",
+    "unknownError": "Unknown error",
+    "addBoard": "The board is added!",
+    "deleteBoard": "The board is delete!",
+    "editBoard": "The board is updated!",
+    "serverError": "Something is wrong with the server!"
   }
 }

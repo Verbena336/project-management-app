@@ -5,7 +5,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import TextField from '@mui/material/TextField';
-import Spiner from '@mui/material/CircularProgress';
+import Spinner from '@mui/material/CircularProgress';
 
 import SignBtn from 'components/SignBtn';
 
@@ -44,7 +44,7 @@ function SignInForm() {
         localStorage.setItem('KanBanToken', response.token);
         localStorage.setItem('KanBanLogin', value.login);
         dispatch(setLogin(value.login));
-        toast.success(`Hello, ${value.login}`);
+        toast.success(`${t('toastContent.userGreetings')}, ${value.login}`);
         navigate('/boards');
       } else {
         throw new Error();
@@ -54,10 +54,10 @@ function SignInForm() {
       setIsLoading(false);
       switch (error.status) {
         case 403:
-          toast.error('User was not found!');
+          toast.error(t('toastContent.userError'));
           break;
         default:
-          toast.error('Unknown error');
+          toast.error(t('toastContent.unknownError'));
       }
     }
   };
@@ -65,7 +65,7 @@ function SignInForm() {
   const onSubmit = (data: Inputs) => loginUser(data);
 
   return isLoading ? (
-    <Spiner color="inherit" />
+    <Spinner color="inherit" />
   ) : (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <NavLink to={PATH.WELCOME} className={'icon-back-arrow'} />

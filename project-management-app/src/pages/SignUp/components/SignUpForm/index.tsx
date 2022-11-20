@@ -5,7 +5,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import TextField from '@mui/material/TextField';
-import Spiner from '@mui/material/CircularProgress';
+import Spinner from '@mui/material/CircularProgress';
 
 import SignBtn from 'components/SignBtn';
 
@@ -61,13 +61,13 @@ function SignUpForm() {
       setIsLoading(false);
       switch (error.status) {
         case 409:
-          toast.error('User already exists');
+          toast.error(t('toastContent.userExist'));
           break;
         case 403:
-          toast.error('User was not found!');
+          toast.error(t('toastContent.userError'));
           break;
         default:
-          toast.error('Unknown error');
+          toast.error(t('toastContent.unknownError'));
       }
     }
   };
@@ -75,7 +75,7 @@ function SignUpForm() {
   const onSubmit = (data: Inputs) => createUser(data);
 
   return isLoading ? (
-    <Spiner color="inherit" />
+    <Spinner color="inherit" />
   ) : (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <NavLink to={PATH.WELCOME} className={'icon-back-arrow'} />
