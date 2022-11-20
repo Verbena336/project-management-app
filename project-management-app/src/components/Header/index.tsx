@@ -31,7 +31,7 @@ import { PATH } from 'components/AppRoutes/types';
 
 const Header = () => {
   const { t, i18n } = useTranslation();
-  const [lang, setLang] = useState(localStorage.getItem('i18nextLng') ?? 'ru');
+  const [lang, setLang] = useState(i18n.language);
   const navigate = useNavigate();
   const location = useLocation();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
