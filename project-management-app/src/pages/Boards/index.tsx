@@ -1,5 +1,4 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
@@ -10,7 +9,6 @@ import NewBoardOrColumn from '../../components/NewBoardOrColumn';
 
 import { useGetAllBoardsQuery, useAddBoardMutation } from 'store/services/boardsApi';
 
-import { PATH } from 'components/AppRoutes/types';
 import { addBoardRequest } from 'store/services/types/boards';
 
 import styles from './index.module.scss';
@@ -21,8 +19,6 @@ const Boards = () => {
   const { t } = useTranslation();
   const { data } = useGetAllBoardsQuery();
   const [addBoard] = useAddBoardMutation();
-
-  if (!localStorage.getItem('KanBanToken')) return <Navigate to={PATH.WELCOME} />;
 
   const handleNewBoard = async (data: addBoardRequest) => {
     try {
