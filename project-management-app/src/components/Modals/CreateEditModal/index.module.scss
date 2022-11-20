@@ -1,0 +1,38 @@
+@import 'styles/abstracts/mixins';
+
+.modalWrapper {
+  position: relative;
+  top: calc(50% - 150px);
+  left: calc(50% - 200px);
+  max-width: 400px;
+  min-width: 280px;
+  width: 100%;
+  transition: 0.3s;
+  @include media-mobile {
+    left: calc(50% - 150px);
+    max-width: 280px;
+  }
+}
+
+.modalCreate {
+  min-height: 305px;
+}
+
+.modalEdit {
+  min-height: 160px;
+}
+
+.modalContent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 30px 20px 30px;
+}
+
+.modalTitle {
+  margin: 0;
+  font-size: 27px;
+  color: $primary-color;
+}

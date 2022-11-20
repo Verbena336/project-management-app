@@ -86,6 +86,7 @@
 
 .icon-add-column:before {
   content: "\e901";
+  font-size: 75px;
 }
 
 .icon-add-task:before {
@@ -110,6 +111,12 @@
 
 .icon-exit-modal:before {
   content: "\e907";
+  font-size: 25px;
+  transition: 0.3s;
+}
+
+.icon-exit-modal:hover {
+  color: $primary-color;
 }
 
 .icon-profile-edit:before {
