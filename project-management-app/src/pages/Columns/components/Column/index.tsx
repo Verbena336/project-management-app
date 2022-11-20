@@ -1,4 +1,4 @@
-import React, { useState, useRef, ChangeEvent } from 'react';
+import React, { useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
@@ -40,19 +40,23 @@ const Column = ({ boardId, data: { title, id: columnId, order } }: Props) => {
   const handleDeleteColumn = async () => {
     try {
       await deleteColumn({ boardId, columnId }).unwrap();
-      toast.success(t('toastContent.deleteBoard'));
+      toast.success(t('toastContent.deleteColumn'));
     } catch {
       toast.error(t('toastContent.serverError'));
     }
   };
 
-  const EditColumn = async () => {
+  const handleEditColumn = async () => {
     if (!ref.current) return;
     const { value } = ref.current;
     const dataRequest = { boardId, columnId, order, title: value };
     try {
       const { id } = await updateColumn(dataRequest).unwrap();
-      id && toast.success(t('toastContent.editBoard'));
+      if (id) {
+        toast.success(t('toastContent.editColumn'));
+      } else {
+        throw new Error();
+      }
     } catch {
       toast.error(t('toastContent.serverError'));
     }
@@ -66,7 +70,7 @@ const Column = ({ boardId, data: { title, id: columnId, order } }: Props) => {
           <div className={wrapper}>
             <header className={header}>
               <input className={input} ref={ref} defaultValue={title} type="text" />
-              <button className={submit} onClick={EditColumn}>
+              <button className={submit} onClick={handleEditColumn}>
                 Submit
               </button>
               <button className={cancel} onClick={cancelChanges}>
@@ -76,7 +80,7 @@ const Column = ({ boardId, data: { title, id: columnId, order } }: Props) => {
             </header>
             <div className={content}>{tasks.map((task) => task)}</div>
             <button className="icon-add-task" onClick={addTask}>
-              Добавить задачу
+              {t('columns.columnBtn')}
             </button>
           </div>
         </MainPaper>

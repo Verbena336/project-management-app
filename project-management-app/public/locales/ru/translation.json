@@ -96,6 +96,15 @@
     "addBoard": "Доска добавлена!",
     "deleteBoard": "Доска удалена!",
     "editBoard": "Доска обновлена!",
+    "deleteColumn": "Колонка удалена!",
+    "editColumn": "Колонка обновлена!",
     "serverError": "Что-то не так с сервером!"
+  },
+  "columns": {
+    "backLink": "Назад",
+    "columnBtn": "Добавить задачу"
+  },
+  "createColumn": {
+    "title": "Создать Колонку"
   }
 }

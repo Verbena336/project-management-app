@@ -21,6 +21,7 @@ const { BOARDS } = PATH;
 const { inner, content } = styles;
 
 const Columns = () => {
+  // ToDo получаем Board Id
   const boardId = '1834c731-0672-4ecf-8345-e43808d4c8ac';
   const { t } = useTranslation();
   const [addColumn] = useAddColumnMutation();
@@ -29,7 +30,11 @@ const Columns = () => {
   const createColumn = async ({ title }: CreateRequest) => {
     try {
       const { id } = await addColumn({ boardId, title }).unwrap();
-      id && toast.success(t('toastContent.addBoard'));
+      if (id) {
+        toast.success(t('toastContent.addColumn'));
+      } else {
+        throw new Error();
+      }
     } catch {
       toast.error(t('toastContent.serverError'));
     }
@@ -40,7 +45,7 @@ const Columns = () => {
       <div className="container">
         <div className={inner}>
           <NavLink to={BOARDS} className="icon-back-arrow">
-            Название доски
+            {t('columns.backLink')}
           </NavLink>
           {isLoading ? (
             <Spinner />
@@ -50,7 +55,7 @@ const Columns = () => {
                 <Column key={i} boardId={boardId} data={data} />
               ))}
               <NewBoardOrColumn
-                modalTitle={t('createBoard.title')}
+                modalTitle={t('createColumn.title')}
                 iconClass="icon-add-column"
                 handleNewItem={createColumn}
               />
