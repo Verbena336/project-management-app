@@ -14,11 +14,7 @@ import { muiInputStyle } from 'data/styles';
 
 import DeleteModal from 'components/Modals/DeleteModal';
 
-import {
-  useGetUsersQuery,
-  useDeleteUserMutation,
-  useUpdateUserMutation,
-} from 'store/services/userApi';
+import { useDeleteUserMutation, useUpdateUserMutation } from 'store/services/userApi';
 import { useAppDispatch } from 'store/hooks';
 import { setLogin } from 'store/reducers/authSlice';
 
@@ -31,7 +27,6 @@ function EditProfileForm() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { data } = useGetUsersQuery();
   const [deleteUserApi] = useDeleteUserMutation();
   const [updateUserApi] = useUpdateUserMutation();
   const dispatch = useAppDispatch();
