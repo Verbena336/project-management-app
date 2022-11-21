@@ -8,7 +8,7 @@
 
 .inner > a:before {
   position: relative;
-  top: 5px;
+  top: 10px;
   padding-right: 5px;
 }
 
@@ -21,7 +21,7 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 45px;
-  transition: 5s;
+  transition: .5s;
   @include media-tablet-large {
     gap: 20px;
   }

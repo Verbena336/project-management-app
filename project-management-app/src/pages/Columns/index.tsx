@@ -10,8 +10,7 @@ import AppLayout from 'components/AppLayout';
 import Column from './components/Column';
 import NewBoardOrColumn from 'components/NewBoardOrColumn';
 
-import { useAddColumnMutation } from 'store/services/columnsApi';
-import { useGetColumnsQuery } from 'store/services/columnsApi';
+import { useGetColumnsQuery, useAddColumnMutation } from 'store/services/columnsApi';
 
 import styles from './index.module.scss';
 
@@ -22,14 +21,14 @@ const { inner, content } = styles;
 
 const Columns = () => {
   // ToDo получаем Board Id
-  const boardId = '1834c731-0672-4ecf-8345-e43808d4c8ac';
+  const boardId = '9213cc21-7a47-4dad-b507-029287f3e480';
   const { t } = useTranslation();
   const [addColumn] = useAddColumnMutation();
   const { data, isLoading } = useGetColumnsQuery(boardId);
 
   const createColumn = async ({ title }: CreateRequest) => {
     try {
-      const { id } = await addColumn({ boardId, title }).unwrap();
+      const { id } = await addColumn({ boardId, body: { title } }).unwrap();
       if (id) {
         toast.success(t('toastContent.addColumn'));
       } else {
@@ -51,9 +50,9 @@ const Columns = () => {
             <Spinner />
           ) : (
             <div className={content}>
-              {data?.map((data, i) => (
-                <Column key={i} boardId={boardId} data={data} />
-              ))}
+              {data?.map((data, i) => {
+                return <Column key={i} boardId={boardId} data={data} />;
+              })}
               <NewBoardOrColumn
                 modalTitle={t('createColumn.title')}
                 iconClass="icon-add-column"

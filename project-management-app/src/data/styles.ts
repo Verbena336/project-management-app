@@ -7,7 +7,7 @@ export const muiInputStyle = {
   },
 };
 
-export const muiPaperStyle = { borderRadius: '10px', backgroundColor: '#fbfbfb' };
+export const muiPaperStyle = { borderRadius: '10px', backgroundColor: '#fbfbfb', height: '100%' };
 
 export const muiButtonStyle = {
   backgroundColor: '#1740A9',

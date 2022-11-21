@@ -5,7 +5,7 @@
   max-width: 400px;
   min-width: 300px;
   width: 100%;
-  height: auto;
+  height: 207px;
   text-align: center;
 }
 
@@ -13,6 +13,10 @@
   position: relative;
   padding: 10px;
   color: $primary-color;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .wrapper button {
@@ -46,12 +50,16 @@
 }
 
 .content {
-  padding: 0 30px;
+  padding: 10px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow-y: scroll;
 }
 
 .wrapper > button {
   color: $primary-color;
-  font-size: 16px;
+  font-size: 18px;
   margin: 0 auto;
   margin-top: 20px;
   display: flex;

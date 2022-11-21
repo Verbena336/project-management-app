@@ -16,6 +16,7 @@ import { Props } from './types';
 const { column, wrapper, header, input, content, submit, cancel } = styles;
 
 const Column = ({ boardId, data: { title, id: columnId, order } }: Props) => {
+  console.log(`title: ${title}; id: ${columnId}`);
   const ref: React.RefObject<HTMLInputElement> = useRef(null);
   const [isModal, setIsModal] = useState(false);
   const [deleteColumn] = useDeleteColumnMutation();
@@ -38,6 +39,7 @@ const Column = ({ boardId, data: { title, id: columnId, order } }: Props) => {
   };
 
   const handleDeleteColumn = async () => {
+    console.log(`delete ${columnId}`);
     try {
       await deleteColumn({ boardId, columnId }).unwrap();
       toast.success(t('toastContent.deleteColumn'));
@@ -78,7 +80,11 @@ const Column = ({ boardId, data: { title, id: columnId, order } }: Props) => {
               </button>
               <button className="icon-board-column-remove" onClick={handleModal}></button>
             </header>
-            <div className={content}>{tasks.map((task) => task)}</div>
+            <div className={content}>
+              {tasks.map((task, i) => (
+                <span key={i}>{task}</span>
+              ))}
+            </div>
             <button className="icon-add-task" onClick={addTask}>
               {t('columns.columnBtn')}
             </button>
