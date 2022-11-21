@@ -16,7 +16,6 @@ import { Props } from './types';
 const { column, wrapper, header, input, content, submit, cancel } = styles;
 
 const Column = ({ boardId, data: { title, id: columnId, order } }: Props) => {
-  console.log(`title: ${title}; id: ${columnId}`);
   const ref: React.RefObject<HTMLInputElement> = useRef(null);
   const [isModal, setIsModal] = useState(false);
   const [deleteColumn] = useDeleteColumnMutation();
@@ -39,7 +38,6 @@ const Column = ({ boardId, data: { title, id: columnId, order } }: Props) => {
   };
 
   const handleDeleteColumn = async () => {
-    console.log(`delete ${columnId}`);
     try {
       await deleteColumn({ boardId, columnId }).unwrap();
       toast.success(t('toastContent.deleteColumn'));
