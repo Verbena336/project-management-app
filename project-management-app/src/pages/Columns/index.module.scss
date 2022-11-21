@@ -18,10 +18,11 @@
 
 .content {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  height: 67.5vh;
   gap: 45px;
-  transition: .5s;
+  overflow-x: auto;
+  overflow-y: hidden;
+  transition: 0.5s;
   @include media-tablet-large {
     gap: 20px;
   }

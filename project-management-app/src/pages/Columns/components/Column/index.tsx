@@ -64,10 +64,11 @@ const Column = ({ boardId, data: { title, id: columnId, order } }: Props) => {
     }
   };
 
+  //! Ордер - временное решение, там надо смотреть уже когда днд делать будем, оно связано
   return (
     <>
       {isModal && <DeleteModal handler={handleDeleteColumn} closeHandler={handleModal} />}
-      <section className={column}>
+      <section className={column} style={{ order }}>
         <MainPaper>
           <div className={wrapper}>
             <header className={header}>

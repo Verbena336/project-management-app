@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
@@ -20,15 +20,14 @@ const { BOARDS } = PATH;
 const { inner, content } = styles;
 
 const Columns = () => {
-  // ToDo получаем Board Id
-  const boardId = '9213cc21-7a47-4dad-b507-029287f3e480';
+  const { boardId } = useParams();
   const { t } = useTranslation();
   const [addColumn] = useAddColumnMutation();
-  const { data, isLoading } = useGetColumnsQuery(boardId);
+  const { data, isLoading } = useGetColumnsQuery(boardId!);
 
   const createColumn = async ({ title }: CreateRequest) => {
     try {
-      const { id } = await addColumn({ boardId, body: { title } }).unwrap();
+      const { id } = await addColumn({ boardId: boardId!, body: { title } }).unwrap();
       if (id) {
         toast.success(t('toastContent.addColumn'));
       } else {
@@ -50,8 +49,8 @@ const Columns = () => {
             <Spinner />
           ) : (
             <div className={content}>
-              {data?.map((data, i) => {
-                return <Column key={i} boardId={boardId} data={data} />;
+              {data?.map((data) => {
+                return <Column key={data.id} boardId={boardId!} data={data} />;
               })}
               <NewBoardOrColumn
                 modalTitle={t('createColumn.title')}
