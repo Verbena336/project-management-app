@@ -25,6 +25,7 @@ export const tasksApi = createApi({
       return headers;
     },
   }),
+  tagTypes: ['Tasks'],
   endpoints: (build) => ({
     addTask: build.mutation<addTaskResponse, tasksParams & addTask>({
       query: ({ boardId, columnId, ...body }) => ({
@@ -32,24 +33,28 @@ export const tasksApi = createApi({
         method: 'POST',
         body,
       }),
+      invalidatesTags: ['Tasks'],
     }),
     getTasks: build.query<getTasksResponse, tasksParams>({
       query: ({ boardId = '', columnId = '' }) => ({
         url: `/boards/${boardId}/columns/${columnId}/tasks`,
         method: 'GET',
       }),
+      providesTags: ['Tasks'],
     }),
     getTaskById: build.query<getTaskByIdResponse, taskByIdRequest>({
       query: ({ boardId, columnId, taskId }) => ({
         url: `/boards/${boardId}/columns/${columnId}/tasks/${taskId}`,
         method: 'GET',
       }),
+      providesTags: ['Tasks'],
     }),
     deleteTask: build.mutation<void, taskByIdRequest>({
       query: ({ boardId, columnId, taskId }) => ({
         url: `/boards/${boardId}/columns/${columnId}/tasks/${taskId}`,
         method: 'DELETE',
       }),
+      invalidatesTags: ['Tasks'],
     }),
     updateTask: build.mutation<updateTaskResponse, taskByIdRequest & updateTaskRequest>({
       query: ({ boardId, columnId, taskId, ...body }) => ({
@@ -57,6 +62,7 @@ export const tasksApi = createApi({
         method: 'PUT',
         body,
       }),
+      invalidatesTags: ['Tasks'],
     }),
   }),
 });
