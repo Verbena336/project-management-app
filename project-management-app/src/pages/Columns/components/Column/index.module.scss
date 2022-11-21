@@ -1,0 +1,84 @@
+@import 'styles/abstracts/mixins';
+@import 'styles/base/vars';
+
+.column {
+  width: 400px;
+  height: min-content;
+  text-align: center;
+}
+
+.wrapper {
+  position: relative;
+  padding: 10px;
+  color: $primary-color;
+  height: 100%;
+  min-height: 170px;
+  display: flex;
+  width: 400px;
+  flex-direction: column;
+  justify-content: space-between;
+  max-height: 62vh;
+}
+
+.wrapper button {
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  transition: 0.3s;
+}
+
+.header {
+  position: relative;
+  padding-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  color: inherit;
+}
+
+.input {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 24px;
+  color: $primary-color;
+}
+
+.header input {
+  border: 0;
+}
+
+.header button {
+  color: $gray-color;
+}
+
+.content {
+  padding: 10px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow-y: auto;
+}
+
+.wrapper > button {
+  color: $primary-color;
+  font-size: 18px;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.wrapper > button:hover {
+  color: $black-color;
+}
+
+.submit {
+  position: absolute;
+  left: 50px;
+}
+
+.cancel {
+  position: absolute;
+  left: 0;
+}

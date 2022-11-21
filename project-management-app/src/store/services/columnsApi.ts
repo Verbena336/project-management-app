@@ -23,25 +23,33 @@ export const columnsApi = createApi({
       return headers;
     },
   }),
+  tagTypes: ['Columns'],
   endpoints: (build) => ({
     getColumns: build.query<getColumnsResponse, string>({
-      query: (boardId: string) => `/boards/${boardId}/columns`,
-    }),
-    getColumnById: build.query<getColumnByIdResponse, columnRequest>({
-      query: ({ boardId, columnId }) => `/boards/${boardId}/columns/${columnId}`,
+      query: (boardId: string) => ({
+        url: `/boards/${boardId}/columns`,
+        method: 'GET',
+      }),
+      providesTags: ['Columns'],
     }),
     addColumn: build.mutation<addUpdateColumnResponse, addColumnRequest>({
-      query: ({ boardId, ...body }) => ({
+      query: ({ boardId, body }) => ({
         url: `/boards/${boardId}/columns`,
         method: 'POST',
         body,
       }),
+      invalidatesTags: ['Columns'],
+    }),
+    getColumnById: build.query<getColumnByIdResponse, columnRequest>({
+      query: ({ boardId, columnId }) => `/boards/${boardId}/columns/${columnId}`,
+      providesTags: ['Columns'],
     }),
     deleteColumn: build.mutation<void, columnRequest>({
       query: ({ boardId, columnId }) => ({
         url: `/boards/${boardId}/columns/${columnId}`,
         method: 'DELETE',
       }),
+      invalidatesTags: ['Columns'],
     }),
     updateColumn: build.mutation<addUpdateColumnResponse, updateColumnRequest>({
       query: ({ boardId, columnId, ...body }) => ({
@@ -49,6 +57,7 @@ export const columnsApi = createApi({
         method: 'PUT',
         body,
       }),
+      invalidatesTags: ['Columns'],
     }),
   }),
 });

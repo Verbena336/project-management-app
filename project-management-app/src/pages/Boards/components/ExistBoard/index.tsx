@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import MainPaper from 'components/MainPaper';
 import CreateEditModal from 'components/Modals/CreateEditModal';
@@ -12,6 +13,7 @@ import { ExistBoardProps } from './types';
 import { addBoardRequest } from 'store/services/types/boards';
 
 import styles from './index.module.scss';
+import { PATH } from 'types';
 const {
   boardSection,
   boardContentWrapper,
@@ -30,12 +32,11 @@ const ExistBoard = ({ id, name, description }: ExistBoardProps) => {
   const [updateBoard] = useUpdateBoardMutation();
   const handleModal = () => setIsModal(!isModal);
   const handleDeleteModal = () => setIsDeleteModal(!isDeleteModal);
+  const navigate = useNavigate();
 
   const handleBoardPage = ({ target }: React.MouseEvent<HTMLDivElement>) => {
-    if (target instanceof HTMLDivElement) {
-      if (target.className.includes('ExistBoard')) {
-        console.log(`go to ${id}`);
-      }
+    if (!(target instanceof HTMLButtonElement)) {
+      navigate(`${PATH.BOARDS}/${id}`);
     }
   };
 

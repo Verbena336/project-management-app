@@ -5,9 +5,7 @@
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  max-width: 400px;
-  min-width: 280px;
-  width: 100%;
+  min-width: 400px;
   height: 170px;
   border: 1px dashed $new-border-dashed;
   background-color: transparent;
@@ -15,7 +13,7 @@
   cursor: pointer;
   transition: 0.3s;
   @include media-mobile {
-    max-width: 280px;
+    min-width: 280px;
   }
 }
 

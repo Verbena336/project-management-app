@@ -1,0 +1,35 @@
+@import 'styles/abstracts/mixins';
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.inner > a:before {
+  position: relative;
+  top: 10px;
+  padding-right: 5px;
+}
+
+.inner > a:hover {
+  color: black;
+}
+
+.content {
+  display: flex;
+  height: 67.5vh;
+  gap: 45px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  transition: 0.5s;
+  @include media-tablet-large {
+    gap: 20px;
+  }
+}
+
+.icon-back-arrow {
+  display: block;
+  position: relative;
+  top: -15px;
+}

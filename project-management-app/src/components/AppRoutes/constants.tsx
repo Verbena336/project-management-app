@@ -6,11 +6,11 @@ import SignIn from 'pages/SignIn';
 import SignUp from 'pages/SignUp';
 import Page404 from 'pages/404';
 import EditProfile from 'pages/EditProfile';
+import Columns from 'pages/Columns';
 
 import { PATH } from './types';
 
 export const PAGES_FOR_ROUTES = [
-  { path: PATH.WELCOME, page: <Welcome /> },
   {
     path: PATH.ROOT,
     page: (
@@ -31,7 +31,7 @@ export const PAGES_FOR_ROUTES = [
     path: PATH.BOARDS_ID,
     page: (
       <Redirect>
-        <Boards />
+        <Columns />
       </Redirect>
     ),
   },

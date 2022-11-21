@@ -94,8 +94,18 @@
     "userError": "User was not founded!",
     "unknownError": "Unknown error",
     "addBoard": "The board is added!",
+    "addColumn": "The column is added!",
     "deleteBoard": "The board is delete!",
     "editBoard": "The board is updated!",
+    "deleteColumn": "The column is delete!",
+    "editColumn": "The column is updated!",
     "serverError": "Something is wrong with the server!"
+  },
+  "columns": {
+    "backLink": "Back",
+    "columnBtn": "Add task"
+  },
+  "createColumn": {
+    "title": "Create Column"
   }
 }
