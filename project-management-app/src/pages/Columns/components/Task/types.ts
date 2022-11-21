@@ -1,4 +1,4 @@
-export type Props = {
+export type PropsTask = {
   id: string;
   title: string;
   order: number;

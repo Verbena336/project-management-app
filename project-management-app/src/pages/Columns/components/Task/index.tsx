@@ -7,11 +7,21 @@ import { useDeleteTaskMutation } from 'store/services/tasksApi';
 
 import styles from './index.module.scss';
 
-import { Props } from './types';
+import { PropsTask } from './types';
+import { getTaskByIdResponse, getTasksResponse } from 'store/services/types/tasks';
 
 const { text, task } = styles;
 
-const Task = ({ id, title, order, description, userId, boardId, columnId, files }: Props) => {
+const Task = ({
+  id,
+  title,
+  order,
+  description,
+  userId,
+  boardId,
+  columnId,
+  files,
+}: getTaskByIdResponse) => {
   const [deleteTaskApi] = useDeleteTaskMutation();
   const [isModal, setIsModal] = useState(false);
 
@@ -26,7 +36,7 @@ const Task = ({ id, title, order, description, userId, boardId, columnId, files 
   return (
     <>
       {isModal && <DeleteModal handler={deleteTask} closeHandler={() => setIsModal(!isModal)} />}
-      <div className={task} style={{ order }}>
+      <div className={task}>
         <div>
           <p className={text}>
             {order} {title}

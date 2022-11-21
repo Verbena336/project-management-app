@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
@@ -15,6 +15,8 @@ import styles from './index.module.scss';
 
 import { Props } from './types';
 import { dataValues } from 'components/Modals/CreateEditModal/types';
+import { sortOrder } from 'helpers/sortOrder';
+import { getTaskByIdResponse, getTasksResponse } from 'store/services/types/tasks';
 
 const { column, wrapper, header, input, content, submit, cancel } = styles;
 
@@ -24,7 +26,7 @@ const Column = ({ boardId, data: { title, id: columnId, order } }: Props) => {
   const [deleteColumn] = useDeleteColumnMutation();
   const [updateColumn] = useUpdateColumnMutation();
   const { t } = useTranslation();
-  const { data = [] } = useGetTasksQuery({ boardId, columnId });
+  const { data } = useGetTasksQuery({ boardId, columnId });
   const [addTaskApi] = useAddTaskMutation();
   const [isModalTask, setIsModalTask] = useState(false);
 
@@ -104,9 +106,9 @@ const Column = ({ boardId, data: { title, id: columnId, order } }: Props) => {
               <button className="icon-board-column-remove" onClick={handleModal}></button>
             </header>
             <div className={content}>
-              {data.map((task) => (
-                <Task key={task.id} {...task} />
-              ))}
+              {/* {sortOrder(data!).map((task) => (
+                // <Task key={task.id} {...task} />
+              ))} */}
             </div>
             <button className="icon-add-task" onClick={() => setIsModalTask(!isModalTask)}>
               {t('columns.columnBtn')}

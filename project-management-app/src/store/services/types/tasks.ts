@@ -30,7 +30,7 @@ export type updateTaskResponse = updateTaskRequest & {
 };
 
 export type getTaskByIdResponse = updateTaskResponse & {
-  files: [taskFile];
+  files: taskFile[];
 };
 
-export type getTasksResponse = [getTaskByIdResponse];
+export type getTasksResponse = getTaskByIdResponse[];

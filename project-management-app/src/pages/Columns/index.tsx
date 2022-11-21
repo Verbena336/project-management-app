@@ -15,6 +15,7 @@ import { useGetColumnsQuery, useAddColumnMutation } from 'store/services/columns
 import styles from './index.module.scss';
 
 import { CreateRequest, PATH } from 'types';
+import { sortOrder } from 'helpers/sortOrder';
 
 const { BOARDS } = PATH;
 const { inner, content } = styles;
@@ -49,7 +50,7 @@ const Columns = () => {
             <Spinner />
           ) : (
             <div className={content}>
-              {data?.map((data) => {
+              {sortOrder(data!).map((data) => {
                 return <Column key={data.id} boardId={boardId!} data={data} />;
               })}
               <NewBoardOrColumn
