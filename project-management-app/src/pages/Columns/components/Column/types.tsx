@@ -1,10 +1,8 @@
+// import { getColumnByIdResponse } from 'store/services/types/columns';
+
+import { TColumn } from 'store/services/types/boards';
+
 export type Props = {
   boardId: string;
-  data: DataType;
-};
-
-export type DataType = {
-  title: string;
-  id: string;
-  order: number;
+  data: TColumn;
 };

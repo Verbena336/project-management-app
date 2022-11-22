@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 import Spinner from '@mui/material/CircularProgress';
 
@@ -10,12 +11,13 @@ import AppLayout from 'components/AppLayout';
 import Column from './components/Column';
 import NewBoardOrColumn from 'components/NewBoardOrColumn';
 
-import { useGetColumnsQuery, useAddColumnMutation } from 'store/services/columnsApi';
+import { useAddColumnMutation, useUpdateTaskMutation } from 'store/services/boardsApi';
 
 import styles from './index.module.scss';
 
 import { CreateRequest, PATH } from 'types';
-import { sortOrder } from 'helpers/sortOrder';
+import { useGetBoardQuery } from 'store/services/boardsApi';
+import { TColumn } from 'store/services/types/boards';
 
 const { BOARDS } = PATH;
 const { inner, content } = styles;
@@ -24,7 +26,13 @@ const Columns = () => {
   const { boardId } = useParams();
   const { t } = useTranslation();
   const [addColumn] = useAddColumnMutation();
-  const { data, isLoading } = useGetColumnsQuery(boardId!);
+  const [columns, setColumns] = useState<TColumn[]>([]);
+  const { data, isLoading } = useGetBoardQuery(boardId!);
+  const [updateTask] = useUpdateTaskMutation();
+
+  useEffect(() => {
+    data && setColumns(data.columns);
+  }, [data]);
 
   const createColumn = async ({ title }: CreateRequest) => {
     try {
@@ -39,6 +47,56 @@ const Columns = () => {
     }
   };
 
+  const dragEndEvent = async (result: DropResult) => {
+    const { draggableId, destination, source } = result;
+
+    if (!destination) return;
+
+    if (destination.droppableId === source.droppableId && destination.index === source.index)
+      return;
+
+    const task = columns
+      .find((column) => column.id === source.droppableId)
+      ?.tasks.find((task) => task.id === draggableId);
+
+    //!Не получается убрать дергание при ожидании ответа с бэка, очень сложно:(
+    // const columnStart = columns.find((item) => item.id === source.droppableId);
+    // const columnFinish = columns.find((item) => item.id === destination.droppableId);
+    // const tasksArr = Array.from(columnStart!.tasks).sort((a, b) => a.order - b.order);
+    // const [removed] = tasksArr.splice(source.index, 1);
+    // tasksArr.splice(destination.index, 0, removed);
+    // console.log(tasksArr);
+    // const newColumn = {
+    //   id: columnStart!.id,
+    //   title: columnStart!.title,
+    //   order: columnStart!.order,
+    //   tasks: tasksArr.sort((a, b) => a.order - b.order),
+    // };
+    // const resColumns = Array.from(columns);
+    // const oldColumn = resColumns.find((item) => item.id === newColumn.id);
+    // const oldColumnInd = resColumns.indexOf(oldColumn!);
+    // const newColumns = resColumns
+    //   .splice(oldColumnInd, 1, newColumn)
+    //   .sort((a, b) => a.order - b.order);
+
+    // setColumns([...newColumns]);
+
+    const body = {
+      title: task!.title,
+      order: destination.index + 1,
+      description: task!.description,
+      columnId: destination.droppableId,
+      boardId: boardId!,
+      userId: task!.userId,
+    };
+    await updateTask({
+      boardId: boardId!,
+      columnId: source.droppableId,
+      taskId: draggableId,
+      body,
+    });
+  };
+
   return (
     <AppLayout>
       <div className="container">
@@ -49,15 +107,22 @@ const Columns = () => {
           {isLoading ? (
             <Spinner />
           ) : (
-            <div className={content}>
-              {sortOrder(data!).map((data) => {
-                return <Column key={data.id} boardId={boardId!} data={data} />;
-              })}
-              <NewBoardOrColumn
-                modalTitle={t('createColumn.title')}
-                iconClass="icon-add-column"
-                handleNewItem={createColumn}
-              />
+            <div style={{ overflow: 'hidden' }}>
+              <DragDropContext onDragEnd={dragEndEvent}>
+                <div className={content}>
+                  {columns &&
+                    [...columns]
+                      .sort((a, b) => a.order - b.order)
+                      .map((data) => {
+                        return <Column key={data.id} boardId={boardId!} data={data} />;
+                      })}
+                  <NewBoardOrColumn
+                    modalTitle={t('createColumn.title')}
+                    iconClass="icon-add-column"
+                    handleNewItem={createColumn}
+                  />
+                </div>
+              </DragDropContext>
             </div>
           )}
         </div>

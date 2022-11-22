@@ -18,7 +18,10 @@
 
 .content {
   display: flex;
-  height: 67.5vh;
+  height: max-content;
+  flex-grow: 1;
+  width: 100%;
+  flex-direction: row;
   gap: 45px;
   overflow-x: auto;
   overflow-y: hidden;

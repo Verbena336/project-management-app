@@ -1,27 +1,18 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
+import { Draggable } from 'react-beautiful-dnd';
 
 import DeleteModal from 'components/Modals/DeleteModal';
 
-import { useDeleteTaskMutation } from 'store/services/tasksApi';
+import { useDeleteTaskMutation } from 'store/services/boardsApi';
 
 import styles from './index.module.scss';
 
 import { PropsTask } from './types';
-import { getTaskByIdResponse, getTasksResponse } from 'store/services/types/tasks';
 
 const { text, task } = styles;
 
-const Task = ({
-  id,
-  title,
-  order,
-  description,
-  userId,
-  boardId,
-  columnId,
-  files,
-}: getTaskByIdResponse) => {
+const Task = ({ task: { id, title, order, description }, index, boardId, columnId }: PropsTask) => {
   const [deleteTaskApi] = useDeleteTaskMutation();
   const [isModal, setIsModal] = useState(false);
 
@@ -36,15 +27,24 @@ const Task = ({
   return (
     <>
       {isModal && <DeleteModal handler={deleteTask} closeHandler={() => setIsModal(!isModal)} />}
-      <div className={task}>
-        <div>
-          <p className={text}>
-            {order} {title}
-          </p>
-          <p className={text}>{description}</p>
-        </div>
-        <button className="icon-task-action" onClick={() => setIsModal(!isModal)}></button>
-      </div>
+      <Draggable draggableId={id} index={index}>
+        {(provided) => (
+          <div
+            className={task}
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+          >
+            <div>
+              <p className={text}>
+                {order} {title}
+              </p>
+              <p className={text}>{description}</p>
+            </div>
+            <button className="icon-task-action" onClick={() => setIsModal(!isModal)}></button>
+          </div>
+        )}
+      </Draggable>
     </>
   );
 };
