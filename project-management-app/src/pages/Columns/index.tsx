@@ -7,16 +7,15 @@ import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import Spinner from '@mui/material/CircularProgress';
 
 import AppLayout from 'components/AppLayout';
-
 import Column from './components/Column';
 import NewBoardOrColumn from 'components/NewBoardOrColumn';
 
 import { useAddColumnMutation, useUpdateTaskMutation } from 'store/services/boardsApi';
+import { useGetBoardQuery } from 'store/services/boardsApi';
 
 import styles from './index.module.scss';
 
 import { CreateRequest, PATH } from 'types';
-import { useGetBoardQuery } from 'store/services/boardsApi';
 import { TColumn } from 'store/services/types/boards';
 
 const { BOARDS } = PATH;
