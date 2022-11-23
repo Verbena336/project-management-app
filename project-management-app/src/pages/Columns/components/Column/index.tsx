@@ -1,36 +1,54 @@
 import React, { useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { Droppable } from 'react-beautiful-dnd';
 
 import Task from '../Task';
 
 import MainPaper from 'components/MainPaper';
 import DeleteModal from 'components/Modals/DeleteModal';
+import CreateEditModal from 'components/Modals/CreateEditModal';
 
-import { useDeleteColumnMutation, useUpdateColumnMutation } from 'store/services/columnsApi';
+import { useDeleteColumnMutation, useUpdateColumnMutation } from 'store/services/boardsApi';
+import { useAddTaskMutation } from 'store/services/boardsApi';
 
 import styles from './index.module.scss';
 
 import { Props } from './types';
+import { dataValues } from 'components/Modals/CreateEditModal/types';
 
 const { column, wrapper, header, input, content, submit, cancel } = styles;
 
-const Column = ({ boardId, data: { title, id: columnId, order } }: Props) => {
+const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props) => {
   const ref: React.RefObject<HTMLInputElement> = useRef(null);
   const [isModal, setIsModal] = useState(false);
   const [deleteColumn] = useDeleteColumnMutation();
   const [updateColumn] = useUpdateColumnMutation();
   const { t } = useTranslation();
+  const [addTaskApi] = useAddTaskMutation();
+  const [isModalTask, setIsModalTask] = useState(false);
 
-  // Temprorary
-  const [tasks, setTasks] = useState<JSX.Element[]>([]);
-  const addTask = () => {
-    const arr = [...tasks];
-    arr.push(<Task />);
-    setTasks(arr);
+  const addTask = async (values: dataValues) => {
+    try {
+      const { id } = await addTaskApi({
+        boardId,
+        columnId,
+        body: {
+          title: values.title,
+          description: values.description,
+          userId: localStorage.getItem('KanBanId')!,
+        },
+      }).unwrap();
+      if (!id) {
+        throw new Error();
+      }
+    } catch {
+      toast.error(t('toastContent.serverError'));
+    }
   };
 
   const handleModal = () => setIsModal(!isModal);
+  const handleModalTask = () => setIsModalTask(!isModalTask);
 
   const cancelChanges = () => {
     if (!ref.current) return;
@@ -49,7 +67,7 @@ const Column = ({ boardId, data: { title, id: columnId, order } }: Props) => {
   const handleEditColumn = async () => {
     if (!ref.current) return;
     const { value } = ref.current;
-    const dataRequest = { boardId, columnId, order, title: value };
+    const dataRequest = { boardId, columnId, body: { order, title: value } };
     try {
       const { id } = await updateColumn(dataRequest).unwrap();
       if (id) {
@@ -62,11 +80,18 @@ const Column = ({ boardId, data: { title, id: columnId, order } }: Props) => {
     }
   };
 
-  //! Ордер - временное решение, там надо смотреть уже когда днд делать будем, оно связано
   return (
     <>
       {isModal && <DeleteModal handler={handleDeleteColumn} closeHandler={handleModal} />}
-      <section className={column} style={{ order }}>
+      {isModalTask && (
+        <CreateEditModal
+          title={'Create Task'}
+          description={true}
+          handler={addTask}
+          closeHandler={handleModalTask}
+        />
+      )}
+      <section className={column}>
         <MainPaper>
           <div className={wrapper}>
             <header className={header}>
@@ -79,12 +104,26 @@ const Column = ({ boardId, data: { title, id: columnId, order } }: Props) => {
               </button>
               <button className="icon-board-column-remove" onClick={handleModal}></button>
             </header>
-            <div className={content}>
-              {tasks.map((task, i) => (
-                <span key={i}>{task}</span>
-              ))}
-            </div>
-            <button className="icon-add-task" onClick={addTask}>
+            <Droppable droppableId={columnId}>
+              {(provided) => (
+                <div className={content} ref={provided.innerRef} {...provided.droppableProps}>
+                  {tasks &&
+                    [...tasks]
+                      .sort((a, b) => a.order - b.order)
+                      .map((task, i) => (
+                        <Task
+                          key={task.id}
+                          task={task}
+                          index={i}
+                          boardId={boardId}
+                          columnId={columnId}
+                        />
+                      ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+            <button className="icon-add-task" onClick={() => setIsModalTask(!isModalTask)}>
               {t('columns.columnBtn')}
             </button>
           </div>

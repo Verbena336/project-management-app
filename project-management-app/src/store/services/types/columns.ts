@@ -1,39 +1,40 @@
-import { taskFile } from './files';
-import { addTaskResponse } from './tasks';
+export const test = 0;
+// import { taskFile } from './files';
+// import { addTaskResponse } from './tasks';
 
-export type getColumnsResponse = [addUpdateColumnResponse];
+// export type getColumnsResponse = [addUpdateColumnResponse];
 
-export type columnRequest = {
-  boardId: string;
-  columnId: string;
-};
+// export type columnRequest = {
+//   boardId: string;
+//   columnId: string;
+// };
 
-export type getColumnByIdResponse = addUpdateColumnResponse & {
-  tasks: [
-    addTaskResponse & {
-      order: number;
-      done: boolean;
-      files: [taskFile];
-    }
-  ];
-};
+// export type getColumnByIdResponse = addUpdateColumnResponse & {
+//   tasks: [
+//     addTaskResponse & {
+//       order: number;
+//       done: boolean;
+//       files: [taskFile];
+//     }
+//   ];
+// };
 
-export type addColumnRequest = {
-  boardId: string;
-  body: {
-    title: string;
-  };
-};
+// export type addColumnRequest = {
+//   boardId: string;
+//   body: {
+//     title: string;
+//   };
+// };
 
-export type updateColumnRequest = {
-  boardId: string;
-  columnId: string;
-  title: string;
-  order: number;
-};
+// export type updateColumnRequest = {
+//   boardId: string;
+//   columnId: string;
+//   title: string;
+//   order: number;
+// };
 
-export type addUpdateColumnResponse = {
-  id: string;
-  title: string;
-  order: number;
-};
+// export type addUpdateColumnResponse = {
+//   id: string;
+//   title: string;
+//   order: number;
+// };
