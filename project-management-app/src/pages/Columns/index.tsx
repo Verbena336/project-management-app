@@ -80,14 +80,40 @@ const Columns = () => {
         1,
         newColumn as TColumn
       );
-    }
-    // const oldColumn = resColumns.find((item) => item.id === newColumn.id);
-    // const oldColumnInd = resColumns.indexOf(oldColumn!);
-    // const newColumns = resColumns
-    //   .splice(oldColumnInd, 1, newColumn)
-    //   .sort((a, b) => a.order - b.order);
+      setColumns(resColumns);
+    } else {
+      const tasksStartArr = Array.from(columnStart!.tasks).sort((a, b) => a.order - b.order);
+      const tasksFinishArr = Array.from(columnFinish!.tasks).sort((a, b) => a.order - b.order);
+      const [removed] = tasksStartArr.splice(source.index, 1);
+      tasksFinishArr.splice(destination.index, 0, removed);
 
-    // setColumns([...newColumns]);
+      const newStartColumn = {
+        id: columnStart!.id,
+        title: columnStart!.title,
+        order: columnStart!.order,
+        tasks: tasksStartArr.map((item, i) => ({ ...item, order: i + 1 })),
+      };
+
+      const newFinishColumn = {
+        id: columnFinish!.id,
+        title: columnFinish!.title,
+        order: columnFinish!.order,
+        tasks: tasksFinishArr.map((item, i) => ({ ...item, order: i + 1 })),
+      };
+
+      const resColumns = Array.from(columns);
+      resColumns.splice(
+        columns.findIndex((item) => item.id === columnStart?.id),
+        1,
+        newStartColumn as TColumn
+      );
+      resColumns.splice(
+        columns.findIndex((item) => item.id === columnFinish?.id),
+        1,
+        newFinishColumn as TColumn
+      );
+      setColumns(resColumns);
+    }
 
     const body = {
       title: task!.title,
