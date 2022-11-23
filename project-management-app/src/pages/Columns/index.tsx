@@ -59,20 +59,28 @@ const Columns = () => {
       .find((column) => column.id === source.droppableId)
       ?.tasks.find((task) => task.id === draggableId);
 
-    //!Не получается убрать дергание при ожидании ответа с бэка, очень сложно:(
-    // const columnStart = columns.find((item) => item.id === source.droppableId);
-    // const columnFinish = columns.find((item) => item.id === destination.droppableId);
-    // const tasksArr = Array.from(columnStart!.tasks).sort((a, b) => a.order - b.order);
-    // const [removed] = tasksArr.splice(source.index, 1);
-    // tasksArr.splice(destination.index, 0, removed);
-    // console.log(tasksArr);
-    // const newColumn = {
-    //   id: columnStart!.id,
-    //   title: columnStart!.title,
-    //   order: columnStart!.order,
-    //   tasks: tasksArr.sort((a, b) => a.order - b.order),
-    // };
-    // const resColumns = Array.from(columns);
+    const columnStart = columns.find((item) => item.id === source.droppableId);
+    const columnFinish = columns.find((item) => item.id === destination.droppableId);
+
+    if (columnStart?.id === columnFinish?.id) {
+      const tasksArr = Array.from(columnStart!.tasks).sort((a, b) => a.order - b.order);
+      const [removed] = tasksArr.splice(source.index, 1);
+      tasksArr.splice(destination.index, 0, removed);
+
+      const newColumn = {
+        id: columnStart!.id,
+        title: columnStart!.title,
+        order: columnStart!.order,
+        tasks: tasksArr.map((item, i) => ({ ...item, order: i + 1 })),
+      };
+
+      const resColumns = Array.from(columns);
+      resColumns.splice(
+        columns.findIndex((item) => item.id === columnStart?.id),
+        1,
+        newColumn as TColumn
+      );
+    }
     // const oldColumn = resColumns.find((item) => item.id === newColumn.id);
     // const oldColumnInd = resColumns.indexOf(oldColumn!);
     // const newColumns = resColumns
