@@ -4,13 +4,14 @@ import { Draggable } from 'react-beautiful-dnd';
 import { useTranslation } from 'react-i18next';
 
 import DeleteModal from 'components/Modals/DeleteModal';
+import CreateEditModal from 'components/Modals/CreateEditModal';
 
 import { useDeleteTaskMutation, useUpdateTaskMutation } from 'store/services/boardsApi';
+import { useGetUserByIdQuery } from 'store/services/userApi';
 
 import styles from './index.module.scss';
 
 import { PropsTask } from './types';
-import CreateEditModal from 'components/Modals/CreateEditModal';
 
 const { text, task, textTitle, textDescr, controls } = styles;
 
@@ -24,29 +25,16 @@ const Task = ({
   const [isModalDelete, setIsModalDelete] = useState(false);
   const [isModalEdit, setIsModalEdit] = useState(false);
   const [updateTask] = useUpdateTaskMutation();
+  const { data } = useGetUserByIdQuery(userId);
   const { t } = useTranslation();
 
   const deleteTask = async () => {
     try {
       await deleteTaskApi({ boardId, columnId, taskId: id }).unwrap();
-    } catch (err) {
-      toast.error('Unknown error');
+    } catch {
+      toast.error(t('toastContent.serverError'));
     }
   };
-
-  // export type updateTaskRequest = {
-  //   boardId: string;
-  //   columnId: string;
-  //   taskId: string;
-  //   body: {
-  //     title: string;
-  //     order: number;
-  //     description: string;
-  //     userId: string;
-  //     boardId: string;
-  //     columnId: string;
-  //   };
-  // };
 
   const handleTaskEdit = async (data: { title: string; description: string }) => {
     const body = {
@@ -59,12 +47,7 @@ const Task = ({
     };
     const dataRequest = { boardId, columnId, taskId: id, body };
     try {
-      const response = await updateTask(dataRequest).unwrap();
-      if (response.id) {
-        toast.success(t('toastContent.editBoard'));
-      } else {
-        throw new Error();
-      }
+      await updateTask(dataRequest).unwrap();
     } catch {
       toast.error(t('toastContent.serverError'));
     }
@@ -81,6 +64,7 @@ const Task = ({
           description={true}
           handler={handleTaskEdit}
           closeHandler={handleModal}
+          user={data?.login}
         />
       )}
       {isModalDelete && (

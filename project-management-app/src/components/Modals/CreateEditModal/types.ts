@@ -9,6 +9,7 @@ export type CreateEditModalProps = {
   closeHandler: () => void;
   description?: boolean;
   editValues?: editValues;
+  user?: string;
 };
 
 export type editValues = {

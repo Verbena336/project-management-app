@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { backendUrl } from 'data/backendUrl';
 
-import { usersResponse, userRequest } from './types/user';
+import { usersResponse, userRequest, userResponse } from './types/user';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
@@ -40,7 +40,19 @@ export const userApi = createApi({
       }),
       invalidatesTags: ['Users'],
     }),
+    getUserById: build.query<userResponse, string>({
+      query: (id: string) => ({
+        url: `/users/${id}`,
+        method: 'GET',
+      }),
+      providesTags: ['Users'],
+    }),
   }),
 });
 
-export const { useGetUsersQuery, useDeleteUserMutation, useUpdateUserMutation } = userApi;
+export const {
+  useGetUsersQuery,
+  useDeleteUserMutation,
+  useUpdateUserMutation,
+  useGetUserByIdQuery,
+} = userApi;
