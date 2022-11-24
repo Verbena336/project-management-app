@@ -28,6 +28,7 @@
 }
 
 .header {
+  padding-left: 30px;
   position: relative;
   padding-bottom: 5px;
   display: flex;
@@ -36,8 +37,6 @@
 }
 
 .input {
-  margin: 0 auto;
-  text-align: center;
   font-size: 24px;
   color: $primary-color;
 }
@@ -74,12 +73,13 @@
   color: $black-color;
 }
 
-.submit {
+.inputBtns {
   position: absolute;
-  left: 50px;
+  top: 0;
+  right: 50px;
 }
 
-.cancel {
-  position: absolute;
-  left: 0;
+.inputBtns button:first-child {
+  position: relative;
+  left: 10px;
 }

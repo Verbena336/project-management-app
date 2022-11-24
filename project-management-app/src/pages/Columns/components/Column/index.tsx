@@ -17,11 +17,12 @@ import styles from './index.module.scss';
 import { Props } from './types';
 import { dataValues } from 'components/Modals/CreateEditModal/types';
 
-const { column, wrapper, header, input, content, submit, cancel } = styles;
+const { column, wrapper, header, input, content, inputBtns } = styles;
 
 const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props) => {
   const ref: React.RefObject<HTMLInputElement> = useRef(null);
   const [isModal, setIsModal] = useState(false);
+  const [isInputActive, setInputState] = useState(false);
   const [deleteColumn] = useDeleteColumnMutation();
   const [updateColumn] = useUpdateColumnMutation();
   const { t } = useTranslation();
@@ -50,6 +51,14 @@ const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props)
   const handleModal = () => setIsModal(!isModal);
   const handleModalTask = () => setIsModalTask(!isModalTask);
 
+  const handleFocus = () => {
+    setInputState(true);
+  };
+
+  const handleBlur = () => {
+    setInputState(false);
+  };
+
   const cancelChanges = () => {
     if (!ref.current) return;
     ref.current.value = title;
@@ -77,6 +86,13 @@ const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props)
     }
   };
 
+  const InputButtons = (
+    <span className={inputBtns}>
+      <button className={'icon-cancel'} onClick={cancelChanges}></button>
+      <button className={'icon-submit'} onClick={handleEditColumn}></button>
+    </span>
+  );
+
   return (
     <>
       {isModal && <DeleteModal handler={handleDeleteColumn} closeHandler={handleModal} />}
@@ -92,13 +108,16 @@ const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props)
         <MainPaper>
           <div className={wrapper}>
             <header className={header}>
-              <input className={input} ref={ref} defaultValue={title} type="text" />
-              <button className={submit} onClick={handleEditColumn}>
-                Submit
-              </button>
-              <button className={cancel} onClick={cancelChanges}>
-                Cancel
-              </button>
+              <input
+                className={input}
+                ref={ref}
+                defaultValue={title}
+                type="text"
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+              />
+              {/* {isInputActive && buttons} */}
+              {InputButtons}
               <button className="icon-board-column-remove" onClick={handleModal}></button>
             </header>
             <Droppable droppableId={columnId}>
