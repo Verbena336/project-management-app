@@ -6,20 +6,30 @@
   $fs: 1.6rem,
   $fw: 400,
   $lh: 1.2,
+  $ls: 0,
   $color: $primary-color
 ) {
   font-family: $ff;
   font-size: $fs;
   font-weight: $fw;
   line-height: $lh;
+  letter-spacing: $ls;
   color: $color;
 }
 
-@mixin lora($ff: $ff-lora-regular, $fs: 1.6rem, $fw: 400, $lh: 1.2, $color: $primary-color) {
+@mixin lora(
+  $ff: $ff-lora-regular,
+  $fs: 1.6rem,
+  $fw: 400,
+  $lh: 1.2,
+  $ls: 0,
+  $color: $primary-color
+) {
   font-family: $ff;
   font-size: $fs;
   font-weight: $fw;
   line-height: $lh;
+  letter-spacing: $ls;
   color: $color;
 }
 
