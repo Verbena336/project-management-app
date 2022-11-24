@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import DeleteModal from 'components/Modals/DeleteModal';
 import CreateEditModal from 'components/Modals/CreateEditModal';
 
-import { useDeleteTaskMutation, useUpdateTaskMutation } from 'store/services/boardsApi';
+import { useDeleteTaskMutation, useUpdateTaskMutation } from 'store/services/tasksApi';
 import { useGetUserByIdQuery } from 'store/services/userApi';
 
 import styles from './index.module.scss';
