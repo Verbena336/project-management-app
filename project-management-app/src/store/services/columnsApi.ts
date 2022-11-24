@@ -1,72 +1,56 @@
-export const test = 0;
-// import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { commonApi } from './commonApi';
 
-// import { backendUrl } from 'data/backendUrl';
+import {
+  TColumn,
+  getColumnsResponse,
+  addColumnRequest,
+  updateColumnRequest,
+  addColumnResponse,
+} from './types/columns';
 
-// import {
-//   getColumnsResponse,
-//   columnRequest,
-//   getColumnByIdResponse,
-//   addColumnRequest,
-//   updateColumnRequest,
-//   addUpdateColumnResponse,
-// } from './types/columns';
+export const columnsApi = commonApi.injectEndpoints({
+  endpoints: (build) => ({
+    getColumns: build.query<getColumnsResponse, string>({
+      query: (boardId: string) => ({
+        url: `/boards/${boardId}/columns`,
+        method: 'GET',
+      }),
+      providesTags: ['Boards'],
+    }),
+    addColumn: build.mutation<addColumnResponse, addColumnRequest>({
+      query: ({ boardId, body }) => ({
+        url: `/boards/${boardId}/columns`,
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['Boards'],
+    }),
+    getColumnById: build.query<TColumn, { boardId: string; columnId: string }>({
+      query: ({ boardId, columnId }) => `/boards/${boardId}/columns/${columnId}`,
+      providesTags: ['Boards'],
+    }),
+    deleteColumn: build.mutation<void, { boardId: string; columnId: string }>({
+      query: ({ boardId, columnId }) => ({
+        url: `/boards/${boardId}/columns/${columnId}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Boards'],
+    }),
+    updateColumn: build.mutation<addColumnResponse, updateColumnRequest>({
+      query: ({ boardId, columnId, body }) => ({
+        url: `/boards/${boardId}/columns/${columnId}`,
+        method: 'PUT',
+        body,
+      }),
+      invalidatesTags: ['Boards'],
+    }),
+  }),
+});
 
-// export const columnsApi = createApi({
-//   reducerPath: 'columnsApi',
-//   baseQuery: fetchBaseQuery({
-//     baseUrl: backendUrl,
-//     prepareHeaders: (headers) => {
-//       const token = localStorage.getItem('KanBanToken');
-//       if (token) {
-//         headers.set('authorization', `Bearer ${token}`);
-//       }
-//       return headers;
-//     },
-//   }),
-//   tagTypes: ['Columns'],
-//   endpoints: (build) => ({
-//     getColumns: build.query<getColumnsResponse, string>({
-//       query: (boardId: string) => ({
-//         url: `/boards/${boardId}/columns`,
-//         method: 'GET',
-//       }),
-//       providesTags: ['Columns'],
-//     }),
-//     addColumn: build.mutation<addUpdateColumnResponse, addColumnRequest>({
-//       query: ({ boardId, body }) => ({
-//         url: `/boards/${boardId}/columns`,
-//         method: 'POST',
-//         body,
-//       }),
-//       invalidatesTags: ['Columns'],
-//     }),
-//     getColumnById: build.query<getColumnByIdResponse, columnRequest>({
-//       query: ({ boardId, columnId }) => `/boards/${boardId}/columns/${columnId}`,
-//       providesTags: ['Columns'],
-//     }),
-//     deleteColumn: build.mutation<void, columnRequest>({
-//       query: ({ boardId, columnId }) => ({
-//         url: `/boards/${boardId}/columns/${columnId}`,
-//         method: 'DELETE',
-//       }),
-//       invalidatesTags: ['Columns'],
-//     }),
-//     updateColumn: build.mutation<addUpdateColumnResponse, updateColumnRequest>({
-//       query: ({ boardId, columnId, ...body }) => ({
-//         url: `/boards/${boardId}/columns/${columnId}`,
-//         method: 'PUT',
-//         body,
-//       }),
-//       invalidatesTags: ['Columns'],
-//     }),
-//   }),
-// });
-
-// export const {
-//   useGetColumnsQuery,
-//   useGetColumnByIdQuery,
-//   useAddColumnMutation,
-//   useDeleteColumnMutation,
-//   useUpdateColumnMutation,
-// } = columnsApi;
+export const {
+  useGetColumnsQuery,
+  useGetColumnByIdQuery,
+  useAddColumnMutation,
+  useDeleteColumnMutation,
+  useUpdateColumnMutation,
+} = columnsApi;

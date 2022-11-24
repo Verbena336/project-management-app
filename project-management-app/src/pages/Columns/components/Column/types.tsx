@@ -1,4 +1,4 @@
-import { TColumn } from 'store/services/types/boards';
+import { TColumn } from 'store/services/types/columns';
 
 export type Props = {
   boardId: string;
