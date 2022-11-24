@@ -4,7 +4,7 @@ import { Draggable } from 'react-beautiful-dnd';
 
 import DeleteModal from 'components/Modals/DeleteModal';
 
-import { useDeleteTaskMutation } from 'store/services/boardsApi';
+import { useDeleteTaskMutation } from 'store/services/tasksApi';
 
 import styles from './index.module.scss';
 

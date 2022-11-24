@@ -1,22 +1,8 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-import { backendUrl } from 'data/backendUrl';
+import { commonApi } from './commonApi';
 
 import { usersResponse, userRequest } from './types/user';
 
-export const userApi = createApi({
-  reducerPath: 'userApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: backendUrl,
-    prepareHeaders: (headers) => {
-      const token = localStorage.getItem('KanBanToken');
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
-  }),
-  tagTypes: ['Users'],
+export const userApi = commonApi.injectEndpoints({
   endpoints: (build) => ({
     getUsers: build.query<usersResponse, void>({
       query: () => ({

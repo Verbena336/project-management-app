@@ -9,8 +9,8 @@ import MainPaper from 'components/MainPaper';
 import DeleteModal from 'components/Modals/DeleteModal';
 import CreateEditModal from 'components/Modals/CreateEditModal';
 
-import { useDeleteColumnMutation, useUpdateColumnMutation } from 'store/services/boardsApi';
-import { useAddTaskMutation } from 'store/services/boardsApi';
+import { useDeleteColumnMutation, useUpdateColumnMutation } from 'store/services/columnsApi';
+import { useAddTaskMutation } from 'store/services/tasksApi';
 
 import styles from './index.module.scss';
 

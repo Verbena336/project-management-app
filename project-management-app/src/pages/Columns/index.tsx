@@ -10,13 +10,14 @@ import AppLayout from 'components/AppLayout';
 import Column from './components/Column';
 import NewBoardOrColumn from 'components/NewBoardOrColumn';
 
-import { useAddColumnMutation, useUpdateTaskMutation } from 'store/services/boardsApi';
+import { useAddColumnMutation } from 'store/services/columnsApi';
+import { useUpdateTaskMutation } from 'store/services/tasksApi';
 import { useGetBoardQuery } from 'store/services/boardsApi';
 
 import styles from './index.module.scss';
 
 import { CreateRequest, PATH } from 'types';
-import { TColumn } from 'store/services/types/boards';
+import { TColumn } from 'store/services/types/columns';
 
 const { BOARDS } = PATH;
 const { inner, content } = styles;
