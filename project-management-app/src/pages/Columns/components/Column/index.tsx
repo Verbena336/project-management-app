@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import { Droppable } from 'react-beautiful-dnd';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 
 import Task from '../Task';
 
@@ -19,7 +19,7 @@ import { dataValues } from 'components/Modals/CreateEditModal/types';
 
 const { column, wrapper, header, input, content, submit, cancel } = styles;
 
-const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props) => {
+const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }: Props) => {
   const ref: React.RefObject<HTMLInputElement> = useRef(null);
   const [isModal, setIsModal] = useState(false);
   const [deleteColumn] = useDeleteColumnMutation();
@@ -91,44 +91,53 @@ const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props)
           closeHandler={handleModalTask}
         />
       )}
-      <section className={column}>
-        <MainPaper>
-          <div className={wrapper}>
-            <header className={header}>
-              <input className={input} ref={ref} defaultValue={title} type="text" />
-              <button className={submit} onClick={handleEditColumn}>
-                Submit
-              </button>
-              <button className={cancel} onClick={cancelChanges}>
-                Cancel
-              </button>
-              <button className="icon-board-column-remove" onClick={handleModal}></button>
-            </header>
-            <Droppable droppableId={columnId}>
-              {(provided) => (
-                <div className={content} ref={provided.innerRef} {...provided.droppableProps}>
-                  {tasks &&
-                    [...tasks]
-                      .sort((a, b) => a.order - b.order)
-                      .map((task, i) => (
-                        <Task
-                          key={task.id}
-                          task={task}
-                          index={i}
-                          boardId={boardId}
-                          columnId={columnId}
-                        />
-                      ))}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-            <button className="icon-add-task" onClick={() => setIsModalTask(!isModalTask)}>
-              {t('columns.columnBtn')}
-            </button>
-          </div>
-        </MainPaper>
-      </section>
+      <Draggable draggableId={columnId} index={index}>
+        {(provided) => (
+          <section
+            className={column}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            ref={provided.innerRef}
+          >
+            <MainPaper>
+              <div className={wrapper}>
+                <header className={header}>
+                  <input className={input} ref={ref} defaultValue={title} type="text" />
+                  <button className={submit} onClick={handleEditColumn}>
+                    Submit
+                  </button>
+                  <button className={cancel} onClick={cancelChanges}>
+                    Cancel
+                  </button>
+                  <button className="icon-board-column-remove" onClick={handleModal}></button>
+                </header>
+                <Droppable droppableId={columnId} type="tasks">
+                  {(provided) => (
+                    <div className={content} ref={provided.innerRef} {...provided.droppableProps}>
+                      {tasks &&
+                        [...tasks]
+                          .sort((a, b) => a.order - b.order)
+                          .map((task, i) => (
+                            <Task
+                              key={task.id}
+                              task={task}
+                              index={i}
+                              boardId={boardId}
+                              columnId={columnId}
+                            />
+                          ))}
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
+                <button className="icon-add-task" onClick={() => setIsModalTask(!isModalTask)}>
+                  {t('columns.columnBtn')}
+                </button>
+              </div>
+            </MainPaper>
+          </section>
+        )}
+      </Draggable>
     </>
   );
 };
