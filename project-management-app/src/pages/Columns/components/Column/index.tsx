@@ -58,7 +58,6 @@ const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }:
   const handleDeleteColumn = async () => {
     try {
       await deleteColumn({ boardId, columnId }).unwrap();
-      toast.success(t('toastContent.deleteColumn'));
     } catch {
       toast.error(t('toastContent.serverError'));
     }
@@ -70,9 +69,7 @@ const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }:
     const dataRequest = { boardId, columnId, body: { order, title: value } };
     try {
       const { id } = await updateColumn(dataRequest).unwrap();
-      if (id) {
-        toast.success(t('toastContent.editColumn'));
-      } else {
+      if (!id) {
         throw new Error();
       }
     } catch {
@@ -85,7 +82,7 @@ const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }:
       {isModal && <DeleteModal handler={handleDeleteColumn} closeHandler={handleModal} />}
       {isModalTask && (
         <CreateEditModal
-          title={'Create Task'}
+          title={t('createTask.title')}
           description={true}
           handler={addTask}
           closeHandler={handleModalTask}

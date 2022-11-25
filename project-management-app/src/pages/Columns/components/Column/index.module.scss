@@ -55,10 +55,12 @@
 }
 
 .content {
-  padding: 10px 30px;
+  min-height: 88px;
   display: flex;
   flex-direction: column;
-  overflow-x: auto;
+  padding: 0 30px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .wrapper > button {

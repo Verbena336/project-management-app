@@ -2,9 +2,23 @@
 @import 'styles/base/vars';
 
 .text {
-  margin-left: 10px;
-  padding: 0 30px;
-  font-size: 15px;
+  padding: 0 20px;
+  width: 100%;
+  max-width: 244px;
+  max-height: 74px;
+}
+
+.textTitle {
+  @include lora($fs: 20px, $ls: 0.5px);
+  margin: 10px 0;
+}
+
+.textDescr {
+  @include lora($fs: 15px, $ls: 0.3px);
+  margin: 10px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 18px;
 }
 
 .text::before {
@@ -20,6 +34,7 @@
 
 .task {
   position: relative;
+  width: 320px;
   margin-bottom: 5px;
   display: flex;
   justify-content: space-between;
@@ -37,4 +52,9 @@
 
 .task button:hover {
   color: $primary-color;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
 }

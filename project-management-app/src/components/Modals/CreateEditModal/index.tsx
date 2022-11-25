@@ -15,7 +15,7 @@ import { CreateEditModalProps, formValues, dataValues } from './types';
 import commonStyles from '../index.module.scss';
 import styles from './index.module.scss';
 const { modalCloseButton, modalOverlay, modalContainer } = commonStyles;
-const { modalWrapper, modalContent, modalTitle, modalCreate, modalEdit } = styles;
+const { modalWrapper, modalContent, modalTitle, modalCreate, modalEdit, userName } = styles;
 
 const CreateEditModal = ({
   title,
@@ -23,6 +23,7 @@ const CreateEditModal = ({
   editValues,
   handler,
   closeHandler,
+  user,
 }: CreateEditModalProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
@@ -62,6 +63,11 @@ const CreateEditModal = ({
                   onClick={closeHandler}
                 ></button>
                 <p className={modalTitle}>{title}</p>
+                {user && (
+                  <p className={userName}>
+                    {t('createEditModal.userName')} {user}
+                  </p>
+                )}
                 <TextField
                   sx={muiModalInputTitle}
                   fullWidth
