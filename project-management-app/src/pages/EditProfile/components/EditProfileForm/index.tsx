@@ -6,13 +6,14 @@ import { useTranslation } from 'react-i18next';
 
 import TextField from '@mui/material/TextField';
 import Spiner from '@mui/material/CircularProgress';
-import { Button } from '@mui/material';
 
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './index.module.scss';
 import { muiInputStyle } from 'data/styles';
 
 import DeleteModal from 'components/Modals/DeleteModal';
+import SaveButton from 'components/Modals/SaveButton';
+import DeleteButton from 'components/Modals/DeleteButton';
 
 import { useDeleteUserMutation, useUpdateUserMutation } from 'store/services/userApi';
 import { useAppDispatch } from 'store/hooks';
@@ -127,12 +128,8 @@ function EditProfileForm() {
           })}
         />
         <div className={styles.linkWrapper}>
-          <Button variant="contained" type="submit" color="success">
-            {t('editForm.confirmBtn')}
-          </Button>
-          <Button onClick={() => setIsModal(true)} variant="outlined" color="error">
-            {t('editForm.deleteBtn')}
-          </Button>
+          <SaveButton textContent={t('editForm.confirmBtn')} />
+          <DeleteButton textContent={t('editForm.deleteBtn')} handler={() => setIsModal(true)} />
         </div>
       </form>
     </>

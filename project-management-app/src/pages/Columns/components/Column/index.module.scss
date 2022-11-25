@@ -5,10 +5,7 @@
   width: 400px;
   height: min-content;
   text-align: center;
-  margin-right: 45px;
-  @include media-tablet-large {
-    margin-right: 20px;
-  }
+  margin-right: 30px;
 }
 
 .wrapper {
@@ -26,7 +23,7 @@
 
 .wrapper button {
   cursor: pointer;
-  background-color: transparent;
+  // background-color: transparent;
   border: 0;
   transition: 0.3s;
 }
@@ -80,10 +77,12 @@
 
 .submit {
   position: absolute;
+  background-color: inherit;
   left: 50px;
 }
 
 .cancel {
   position: absolute;
+  background-color: inherit;
   left: 0;
 }

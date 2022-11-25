@@ -89,6 +89,10 @@
   font-size: 75px;
 }
 
+.icon-add-task {
+  background-color: inherit;
+}
+
 .icon-add-task:before {
   content: '\e902';
   font-size: 30px;
@@ -142,6 +146,7 @@
 }
 
 .icon-task-action {
+  background-color: inherit;
   padding: 5px;
 }
 

@@ -36,7 +36,7 @@ export const muiSwitcherStyle = {
 
 export const muiModalButtonStyle = {
   boxShadow: 3,
-  width: 110,
+  minWidth: 110,
   height: 30,
   textTransform: 'capitalize',
   fontSize: 17,
