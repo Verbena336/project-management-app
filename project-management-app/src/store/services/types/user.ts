@@ -14,3 +14,9 @@ export type userRequest = {
   id: string;
   body: userBody;
 };
+
+export type userResponse = {
+  id: string;
+  name: string;
+  login: string;
+};

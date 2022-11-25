@@ -37,9 +37,7 @@ const Columns = () => {
   const createColumn = async ({ title }: CreateRequest) => {
     try {
       const { id } = await addColumn({ boardId: boardId!, body: { title } }).unwrap();
-      if (id) {
-        toast.success(t('toastContent.addColumn'));
-      } else {
+      if (!id) {
         throw new Error();
       }
     } catch {

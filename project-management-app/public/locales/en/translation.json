@@ -80,13 +80,20 @@
     "nameLength": "⚠ max length is 15 characters!",
     "description": "Description",
     "descriptionRequired": "⚠ description is required!",
-    "save": "Save"
+    "save": "Save",
+    "userName": "Author: "
   },
   "createBoard": {
     "title": "Create Board"
   },
   "editBoard": {
     "title": "Edit Board"
+  },
+  "editTask": {
+    "title": "Edit Task"
+  },
+  "createTask": {
+    "title": "Create Task"
   },
   "toastContent": {
     "userGreetings": "Hello",

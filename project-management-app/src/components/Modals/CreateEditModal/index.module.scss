@@ -40,3 +40,8 @@
   font-size: 27px;
   color: $primary-color;
 }
+
+.userName {
+  text-transform: uppercase;
+  @include ptserif($fs: 15px);
+}

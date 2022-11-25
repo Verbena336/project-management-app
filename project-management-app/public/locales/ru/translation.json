@@ -80,13 +80,20 @@
     "nameLength": "⚠ максимум 15 символов!",
     "description": "Описание",
     "descriptionRequired": "⚠ требуется описание!",
-    "save": "Сохранить"
+    "save": "Сохранить",
+    "userName": "Автор: "
   },
   "createBoard": {
     "title": "Создать доску"
   },
   "editBoard": {
     "title": "Изменить доску"
+  },
+  "editTask": {
+    "title": "Изменить задачу"
+  },
+  "createTask": {
+    "title": "Создать задачу"
   },
   "toastContent": {
     "userGreetings": "Привет",

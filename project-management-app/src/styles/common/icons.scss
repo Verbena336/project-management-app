@@ -12,8 +12,8 @@
   font-display: block;
 }
 
-[class^="icon-"]::before,
-[class*=" icon-"]::before {
+[class^='icon-']::before,
+[class*=' icon-']::before {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: never;
@@ -29,7 +29,7 @@
 }
 
 .icon-app-logo:before {
-  content: "\e903";
+  content: '\e903';
   font-size: 70px;
 }
 
@@ -38,7 +38,7 @@
 }
 
 .icon-school-logo:before {
-  content: "\e90b";
+  content: '\e90b';
   font-size: 50px;
 }
 
@@ -48,12 +48,12 @@
 }
 
 .icon-add-board:before {
-  content: "\e900";
+  content: '\e900';
   font-size: 75px;
 }
 
 .icon-add-board-header:before {
-  content: "\e900";
+  content: '\e900';
   font-size: 25px;
   display: flex;
   align-items: center;
@@ -70,12 +70,12 @@
 }
 
 .icon-board-column-remove:before {
-  content: "\e905";
+  content: '\e905';
   font-size: 25px;
 }
 
 .icon-board-edit:before {
-  content: "\e906";
+  content: '\e906';
   font-size: 25px;
 }
 
@@ -85,20 +85,20 @@
 }
 
 .icon-add-column:before {
-  content: "\e901";
+  content: '\e901';
   font-size: 75px;
 }
 
 .icon-add-task:before {
-  content: "\e902";
+  content: '\e902';
   font-size: 30px;
 }
 
 .icon-back-arrow {
   &::before {
-    content: "\e904";
+    content: '\e904';
     font-size: 45px;
-    transition: all .3s;
+    transition: all 0.3s;
     border-radius: 50%;
   }
 }
@@ -111,7 +111,7 @@
 }
 
 .icon-exit-modal:before {
-  content: "\e907";
+  content: '\e907';
   font-size: 25px;
   transition: 0.3s;
 }
@@ -121,27 +121,49 @@
 }
 
 .icon-profile-edit:before {
-  content: "\e908";
+  content: '\e908';
   font-size: 25px;
   display: flex;
   align-items: center;
 }
 
 .icon-profile-exit:before {
-  content: "\e909";
+  content: '\e909';
   font-size: 25px;
   display: flex;
   align-items: center;
 }
 
 .icon-profile-user:before {
-  content: "\e90a";
+  content: '\e90a';
   font-size: 25px;
   display: flex;
   align-items: center;
 }
 
+.icon-task-action {
+  padding: 5px;
+}
+
 .icon-task-action:before {
-  content: "\e90c";
+  content: '\e90c';
   font-size: 30px;
+}
+
+.icon-task-edit {
+  border: none;
+  outline: none;
+  padding: 5px;
+  background-color: inherit;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.icon-task-edit:before {
+  content: '\e906';
+  font-size: 25px;
+}
+
+.icon-task-edit:hover {
+  color: $primary-color;
 }

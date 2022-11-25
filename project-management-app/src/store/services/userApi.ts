@@ -1,6 +1,6 @@
 import { commonApi } from './commonApi';
 
-import { usersResponse, userRequest } from './types/user';
+import { usersResponse, userRequest, userResponse } from './types/user';
 
 export const userApi = commonApi.injectEndpoints({
   endpoints: (build) => ({
@@ -26,7 +26,19 @@ export const userApi = commonApi.injectEndpoints({
       }),
       invalidatesTags: ['Users'],
     }),
+    getUserById: build.query<userResponse, string>({
+      query: (id: string) => ({
+        url: `/users/${id}`,
+        method: 'GET',
+      }),
+      providesTags: ['Users'],
+    }),
   }),
 });
 
-export const { useGetUsersQuery, useDeleteUserMutation, useUpdateUserMutation } = userApi;
+export const {
+  useGetUsersQuery,
+  useDeleteUserMutation,
+  useUpdateUserMutation,
+  useGetUserByIdQuery,
+} = userApi;
