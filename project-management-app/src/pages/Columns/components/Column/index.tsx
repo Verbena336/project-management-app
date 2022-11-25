@@ -15,6 +15,7 @@ import { useDeleteColumnMutation, useUpdateColumnMutation } from 'store/services
 import { useAddTaskMutation } from 'store/services/tasksApi';
 
 import styles from './index.module.scss';
+import { muiTitleInput } from 'data/styles';
 
 import { Props } from './types';
 import { dataValues } from 'components/Modals/CreateEditModal/types';
@@ -30,6 +31,7 @@ const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props)
   const { t } = useTranslation();
   const [addTaskApi] = useAddTaskMutation();
   const [isModalTask, setIsModalTask] = useState(false);
+  const [colTitle, setTitle] = useState(title);
 
   const addTask = async (values: dataValues) => {
     try {
@@ -52,7 +54,6 @@ const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props)
 
   const handleModal = () => setIsModal(!isModal);
   const handleModalTask = () => setIsModalTask(!isModalTask);
-
   const handleTextField = () => setInputState(!isInputActive);
 
   const handleDeleteColumn = async () => {
@@ -67,6 +68,8 @@ const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props)
     if (!ref.current) return;
     const { value } = ref.current;
     const dataRequest = { boardId, columnId, body: { order, title: value } };
+    setTitle(value);
+    handleTextField();
     try {
       const { id } = await updateColumn(dataRequest).unwrap();
       if (!id) {
@@ -75,8 +78,8 @@ const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props)
     } catch {
       toast.error(t('toastContent.serverError'));
     }
-    setInputState(false);
   };
+
   return (
     <>
       {isModal && <DeleteModal handler={handleDeleteColumn} closeHandler={handleModal} />}
@@ -94,7 +97,7 @@ const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props)
             <header className={header}>
               {isInputActive ? (
                 <>
-                  <Input sx={{ fontSize: '24px' }} defaultValue={title} inputProps={{ ref }} />
+                  <Input sx={muiTitleInput} defaultValue={colTitle} inputProps={{ ref }} />
                   <span className={inputBtns}>
                     <button className={'icon-cancel'} onClick={handleTextField}></button>
                     <button className={'icon-submit'} onClick={handleEditColumn}></button>
@@ -102,7 +105,7 @@ const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props)
                 </>
               ) : (
                 <h3 className={columnTitle} onClick={handleTextField}>
-                  {title}
+                  {colTitle}
                 </h3>
               )}
               <button className="icon-board-column-remove" onClick={handleModal}></button>
@@ -126,7 +129,7 @@ const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props)
                 </div>
               )}
             </Droppable>
-            <button className="icon-add-task" onClick={() => setIsModalTask(!isModalTask)}>
+            <button className="icon-add-task" onClick={handleModalTask}>
               {t('columns.columnBtn')}
             </button>
           </div>
