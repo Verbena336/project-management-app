@@ -51,17 +51,12 @@ const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props)
   const handleModal = () => setIsModal(!isModal);
   const handleModalTask = () => setIsModalTask(!isModalTask);
 
-  const handleFocus = () => {
-    setInputState(true);
-  };
-
-  const handleBlur = () => {
-    setInputState(false);
-  };
+  const handleFocus = () => setInputState(true);
 
   const cancelChanges = () => {
     if (!ref.current) return;
     ref.current.value = title;
+    setInputState(false);
   };
 
   const handleDeleteColumn = async () => {
@@ -73,6 +68,7 @@ const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props)
   };
 
   const handleEditColumn = async () => {
+    setInputState(false);
     if (!ref.current) return;
     const { value } = ref.current;
     const dataRequest = { boardId, columnId, body: { order, title: value } };
@@ -114,10 +110,8 @@ const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props)
                 defaultValue={title}
                 type="text"
                 onFocus={handleFocus}
-                onBlur={handleBlur}
               />
-              {/* {isInputActive && buttons} */}
-              {InputButtons}
+              {isInputActive && InputButtons}
               <button className="icon-board-column-remove" onClick={handleModal}></button>
             </header>
             <Droppable droppableId={columnId}>
