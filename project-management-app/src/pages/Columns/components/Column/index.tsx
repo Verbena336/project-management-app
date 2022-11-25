@@ -3,6 +3,8 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { Droppable } from 'react-beautiful-dnd';
 
+import { Input } from '@mui/material';
+
 import Task from '../Task';
 
 import MainPaper from 'components/MainPaper';
@@ -17,7 +19,7 @@ import styles from './index.module.scss';
 import { Props } from './types';
 import { dataValues } from 'components/Modals/CreateEditModal/types';
 
-const { column, wrapper, header, input, content, inputBtns } = styles;
+const { column, wrapper, header, content, inputBtns, columnTitle } = styles;
 
 const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props) => {
   const ref: React.RefObject<HTMLInputElement> = useRef(null);
@@ -51,13 +53,7 @@ const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props)
   const handleModal = () => setIsModal(!isModal);
   const handleModalTask = () => setIsModalTask(!isModalTask);
 
-  const handleFocus = () => setInputState(true);
-
-  const cancelChanges = () => {
-    if (!ref.current) return;
-    ref.current.value = title;
-    setInputState(false);
-  };
+  const handleTextField = () => setInputState(!isInputActive);
 
   const handleDeleteColumn = async () => {
     try {
@@ -68,7 +64,6 @@ const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props)
   };
 
   const handleEditColumn = async () => {
-    setInputState(false);
     if (!ref.current) return;
     const { value } = ref.current;
     const dataRequest = { boardId, columnId, body: { order, title: value } };
@@ -80,15 +75,8 @@ const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props)
     } catch {
       toast.error(t('toastContent.serverError'));
     }
+    setInputState(false);
   };
-
-  const InputButtons = (
-    <span className={inputBtns}>
-      <button className={'icon-cancel'} onClick={cancelChanges}></button>
-      <button className={'icon-submit'} onClick={handleEditColumn}></button>
-    </span>
-  );
-
   return (
     <>
       {isModal && <DeleteModal handler={handleDeleteColumn} closeHandler={handleModal} />}
@@ -104,14 +92,19 @@ const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props)
         <MainPaper>
           <div className={wrapper}>
             <header className={header}>
-              <input
-                className={input}
-                ref={ref}
-                defaultValue={title}
-                type="text"
-                onFocus={handleFocus}
-              />
-              {isInputActive && InputButtons}
+              {isInputActive ? (
+                <>
+                  <Input sx={{ fontSize: '24px' }} defaultValue={title} inputProps={{ ref }} />
+                  <span className={inputBtns}>
+                    <button className={'icon-cancel'} onClick={handleTextField}></button>
+                    <button className={'icon-submit'} onClick={handleEditColumn}></button>
+                  </span>
+                </>
+              ) : (
+                <h3 className={columnTitle} onClick={handleTextField}>
+                  {title}
+                </h3>
+              )}
               <button className="icon-board-column-remove" onClick={handleModal}></button>
             </header>
             <Droppable droppableId={columnId}>
