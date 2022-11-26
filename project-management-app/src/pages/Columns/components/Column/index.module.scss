@@ -16,12 +16,12 @@
   position: relative;
   padding: 10px;
   color: $primary-color;
-  height: 100%;
-  min-height: 170px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  max-height: 62vh;
+  max-height: 55vh;
+  min-height: 170px;
+  height: 100%;
   max-width: 400px;
   width: calc(100vw - 20px);
 }
