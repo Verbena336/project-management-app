@@ -1,1 +1,1 @@
-export const backendUrl = 'https://blooming-brook-52637.herokuapp.com';
+export const backendUrl = 'https://kanban-qpcj.onrender.com';
