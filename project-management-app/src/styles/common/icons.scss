@@ -12,10 +12,22 @@
   font-display: block;
 }
 
-[class^='icon-']::before,
-[class*=' icon-']::before {
+@font-face {
+  font-family: 'columnFont';
+  src: url('../../../public/assets/columnFont/icomoon.eot?bs0osu');
+  src: url('../../../public/assets/columnFont/icomoon.eot?bs0osu#iefix') format('embedded-opentype'),
+    url('../../../public/assets/columnFont/icomoon.ttf?bs0osu') format('truetype'),
+    url('../../../public/assets/columnFont/icomoon.woff?bs0osu') format('woff'),
+    url('../../../public/assets/columnFont/icomoon.svg?bs0osu#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"]::before,
+[class*=" icon-"]::before {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
+  font-family: 'icomoon', 'columnFont' !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -171,4 +183,15 @@
 
 .icon-task-edit:hover {
   color: $primary-color;
+}
+
+.icon-cancel:before {
+  content: "\e910";
+  font-size: 30px;
+}
+
+
+.icon-submit:before {
+  content: "\e911";
+  font-size: 30px;
 }

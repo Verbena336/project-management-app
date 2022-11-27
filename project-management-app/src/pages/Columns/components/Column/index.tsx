@@ -3,6 +3,8 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 
+import { Input } from '@mui/material';
+
 import Task from '../Task';
 
 import MainPaper from 'components/MainPaper';
@@ -13,20 +15,23 @@ import { useDeleteColumnMutation, useUpdateColumnMutation } from 'store/services
 import { useAddTaskMutation } from 'store/services/tasksApi';
 
 import styles from './index.module.scss';
+import { muiTitleInput } from 'data/styles';
 
 import { Props } from './types';
 import { dataValues } from 'components/Modals/CreateEditModal/types';
 
-const { column, wrapper, header, input, content, submit, cancel } = styles;
+const { column, wrapper, header, content, inputBtns, columnTitle } = styles;
 
 const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }: Props) => {
   const ref: React.RefObject<HTMLInputElement> = useRef(null);
   const [isModal, setIsModal] = useState(false);
+  const [isInputActive, setInputState] = useState(false);
   const [deleteColumn] = useDeleteColumnMutation();
   const [updateColumn] = useUpdateColumnMutation();
   const { t } = useTranslation();
   const [addTaskApi] = useAddTaskMutation();
   const [isModalTask, setIsModalTask] = useState(false);
+  const [colTitle, setTitle] = useState(title);
 
   const addTask = async (values: dataValues) => {
     try {
@@ -49,11 +54,7 @@ const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }:
 
   const handleModal = () => setIsModal(!isModal);
   const handleModalTask = () => setIsModalTask(!isModalTask);
-
-  const cancelChanges = () => {
-    if (!ref.current) return;
-    ref.current.value = title;
-  };
+  const handleTextField = () => setInputState(!isInputActive);
 
   const handleDeleteColumn = async () => {
     try {
@@ -67,6 +68,8 @@ const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }:
     if (!ref.current) return;
     const { value } = ref.current;
     const dataRequest = { boardId, columnId, body: { order, title: value } };
+    setTitle(value);
+    handleTextField();
     try {
       const { id } = await updateColumn(dataRequest).unwrap();
       if (!id) {
@@ -99,16 +102,22 @@ const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }:
             <MainPaper>
               <div className={wrapper}>
                 <header className={header}>
-                  <input className={input} ref={ref} defaultValue={title} type="text" />
-                  <button className={submit} onClick={handleEditColumn}>
-                    Submit
-                  </button>
-                  <button className={cancel} onClick={cancelChanges}>
-                    Cancel
-                  </button>
+                  {isInputActive ? (
+                    <>
+                      <Input sx={muiTitleInput} defaultValue={colTitle} inputProps={{ ref }} />
+                      <span className={inputBtns}>
+                        <button className={'icon-cancel'} onClick={handleTextField}></button>
+                        <button className={'icon-submit'} onClick={handleEditColumn}></button>
+                      </span>
+                    </>
+                  ) : (
+                    <h3 className={columnTitle} onClick={handleTextField}>
+                      {colTitle}
+                    </h3>
+                  )}
                   <button className="icon-board-column-remove" onClick={handleModal}></button>
                 </header>
-                <Droppable droppableId={columnId} type="tasks">
+                <Droppable droppableId={columnId}>
                   {(provided) => (
                     <div className={content} ref={provided.innerRef} {...provided.droppableProps}>
                       {tasks &&
@@ -127,7 +136,7 @@ const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }:
                     </div>
                   )}
                 </Droppable>
-                <button className="icon-add-task" onClick={() => setIsModalTask(!isModalTask)}>
+                <button className="icon-add-task" onClick={handleModalTask}>
                   {t('columns.columnBtn')}
                 </button>
               </div>

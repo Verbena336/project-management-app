@@ -62,3 +62,8 @@ export const muiModalInputDescription = {
   marginBottom: '20px',
   bgcolor: '#FFFFFF',
 };
+
+export const muiTitleInput = {
+  fontSize: '24px',
+  color: '#1740a9',
+};

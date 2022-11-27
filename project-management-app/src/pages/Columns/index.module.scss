@@ -1,7 +1,8 @@
 .inner {
+  height: calc(100vh - 200px);
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  justify-content: space-between;
 }
 
 .inner > a:before {
@@ -14,9 +15,18 @@
   color: black;
 }
 
+.inner > a {
+  flex: 1 0 15%;
+}
+
+.wrapper {
+  flex: 1 0 85%;
+  height: calc(100vh - 400px);
+}
+
 .content {
+  height: 100%;
   display: flex;
-  height: max-content;
   flex-grow: 1;
   width: 100%;
   flex-direction: row;
