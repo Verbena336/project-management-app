@@ -20,7 +20,7 @@ import { CreateRequest, PATH } from 'types';
 import { TColumn } from 'store/services/types/columns';
 
 const { BOARDS } = PATH;
-const { inner, content } = styles;
+const { inner, wrapper, content } = styles;
 
 const Columns = () => {
   const { boardId } = useParams();
@@ -139,7 +139,7 @@ const Columns = () => {
           {isLoading ? (
             <Spinner />
           ) : (
-            <div style={{ overflow: 'hidden' }}>
+            <div className={wrapper}>
               <DragDropContext onDragEnd={dragEndEvent}>
                 <div className={content}>
                   {columns &&
