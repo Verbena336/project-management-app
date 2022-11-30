@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import { Droppable } from 'react-beautiful-dnd';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 
 import { Input } from '@mui/material';
 
@@ -14,24 +14,32 @@ import CreateEditModal from 'components/Modals/CreateEditModal';
 import { useDeleteColumnMutation, useUpdateColumnMutation } from 'store/services/columnsApi';
 import { useAddTaskMutation } from 'store/services/tasksApi';
 
+import { Props } from './types';
+import { dataValues } from 'components/Modals/CreateEditModal/types';
+import { modalEditTaskState, modalDeleteTaskState } from './types';
+
 import styles from './index.module.scss';
 import { muiTitleInput } from 'data/styles';
 
-import { Props } from './types';
-import { dataValues } from 'components/Modals/CreateEditModal/types';
-
 const { column, wrapper, header, content, inputBtns, columnTitle } = styles;
 
-const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props) => {
+const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }: Props) => {
   const ref: React.RefObject<HTMLInputElement> = useRef(null);
-  const [isModal, setIsModal] = useState(false);
+  const [isModalDeleteColumn, setIsModalDeleteColumn] = useState(false);
   const [isInputActive, setInputState] = useState(false);
   const [deleteColumn] = useDeleteColumnMutation();
   const [updateColumn] = useUpdateColumnMutation();
   const { t } = useTranslation();
   const [addTaskApi] = useAddTaskMutation();
-  const [isModalTask, setIsModalTask] = useState(false);
+  const [isModalCreateTask, setIsModalCreateTask] = useState(false);
   const [colTitle, setTitle] = useState(title);
+  const [{ deleteProps, isDeleteTaskModal }, setModalDeleteTaskState] =
+    useState<modalDeleteTaskState>({
+      isDeleteTaskModal: false,
+    });
+  const [{ editProps, isEditTaskModal }, setModalEditTaskState] = useState<modalEditTaskState>({
+    isEditTaskModal: false,
+  });
 
   const addTask = async (values: dataValues) => {
     try {
@@ -52,8 +60,8 @@ const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props)
     }
   };
 
-  const handleModal = () => setIsModal(!isModal);
-  const handleModalTask = () => setIsModalTask(!isModalTask);
+  const handleColumnDeleteModal = () => setIsModalDeleteColumn(!isModalDeleteColumn);
+  const handleModalTask = () => setIsModalCreateTask(!isModalCreateTask);
   const handleTextField = () => setInputState(!isInputActive);
 
   const handleDeleteColumn = async () => {
@@ -80,10 +88,24 @@ const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props)
     }
   };
 
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>) => {
+    if (e.relatedTarget?.classList.contains('icon-submit')) {
+      handleEditColumn();
+    } else {
+      handleTextField();
+    }
+  };
+
+  const handleEnterButton = (e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (e.key === 'Enter') handleEditColumn();
+  };
+
   return (
     <>
-      {isModal && <DeleteModal handler={handleDeleteColumn} closeHandler={handleModal} />}
-      {isModalTask && (
+      {isModalDeleteColumn && (
+        <DeleteModal handler={handleDeleteColumn} closeHandler={handleColumnDeleteModal} />
+      )}
+      {isModalCreateTask && (
         <CreateEditModal
           title={t('createTask.title')}
           description={true}
@@ -91,50 +113,84 @@ const Column = ({ boardId, data: { title, id: columnId, order, tasks } }: Props)
           closeHandler={handleModalTask}
         />
       )}
-      <section className={column}>
-        <MainPaper>
-          <div className={wrapper}>
-            <header className={header}>
-              {isInputActive ? (
-                <>
-                  <Input sx={muiTitleInput} defaultValue={colTitle} inputProps={{ ref }} />
-                  <span className={inputBtns}>
-                    <button className={'icon-cancel'} onClick={handleTextField}></button>
-                    <button className={'icon-submit'} onClick={handleEditColumn}></button>
-                  </span>
-                </>
-              ) : (
-                <h3 className={columnTitle} onClick={handleTextField}>
-                  {colTitle}
-                </h3>
-              )}
-              <button className="icon-board-column-remove" onClick={handleModal}></button>
-            </header>
-            <Droppable droppableId={columnId}>
-              {(provided) => (
-                <div className={content} ref={provided.innerRef} {...provided.droppableProps}>
-                  {tasks &&
-                    [...tasks]
-                      .sort((a, b) => a.order - b.order)
-                      .map((task, i) => (
-                        <Task
-                          key={task.id}
-                          task={task}
-                          index={i}
-                          boardId={boardId}
-                          columnId={columnId}
-                        />
-                      ))}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-            <button className="icon-add-task" onClick={handleModalTask}>
-              {t('columns.columnBtn')}
-            </button>
-          </div>
-        </MainPaper>
-      </section>
+      {isDeleteTaskModal && deleteProps && (
+        <DeleteModal handler={deleteProps.handler} closeHandler={deleteProps.closeHandler} />
+      )}
+      {isEditTaskModal && editProps && (
+        <CreateEditModal
+          title={editProps.title}
+          editValues={editProps.editValues}
+          description={editProps.description}
+          handler={editProps.handler}
+          closeHandler={editProps.closeHandler}
+          user={editProps.user}
+        />
+      )}
+      <Draggable draggableId={columnId} index={index}>
+        {(provided) => (
+          <section
+            className={column}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            ref={provided.innerRef}
+          >
+            <MainPaper>
+              <div className={wrapper}>
+                <header className={header}>
+                  {isInputActive ? (
+                    <>
+                      <Input
+                        sx={muiTitleInput}
+                        defaultValue={colTitle}
+                        inputProps={{ ref }}
+                        autoFocus
+                        onBlur={(e) => handleBlur(e)}
+                        onKeyUp={(e) => handleEnterButton(e)}
+                      />
+                      <span className={inputBtns}>
+                        <button className={'icon-cancel'} onClick={handleTextField}></button>
+                        <button className={'icon-submit'} onClick={handleEditColumn}></button>
+                      </span>
+                    </>
+                  ) : (
+                    <h3 className={columnTitle} onClick={handleTextField}>
+                      {colTitle}
+                    </h3>
+                  )}
+                  <button
+                    className="icon-board-column-remove"
+                    onClick={handleColumnDeleteModal}
+                  ></button>
+                </header>
+                <Droppable droppableId={columnId}>
+                  {(provided) => (
+                    <div className={content} ref={provided.innerRef} {...provided.droppableProps}>
+                      {tasks &&
+                        [...tasks]
+                          .sort((a, b) => a.order - b.order)
+                          .map((task, i) => (
+                            <Task
+                              key={task.id}
+                              task={task}
+                              index={i}
+                              boardId={boardId}
+                              columnId={columnId}
+                              setDeleteModalState={setModalDeleteTaskState}
+                              setEditModalState={setModalEditTaskState}
+                            />
+                          ))}
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
+                <button className="icon-add-task" onClick={handleModalTask}>
+                  {t('columns.columnBtn')}
+                </button>
+              </div>
+            </MainPaper>
+          </section>
+        )}
+      </Draggable>
     </>
   );
 };

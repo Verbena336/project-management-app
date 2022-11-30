@@ -101,6 +101,11 @@
   font-size: 75px;
 }
 
+.icon-add-task {
+  background-color: inherit;
+  border: 0;
+}
+
 .icon-add-task:before {
   content: '\e902';
   font-size: 30px;
@@ -154,7 +159,9 @@
 }
 
 .icon-task-action {
+  background-color: inherit;
   padding: 5px;
+  border: 0;
 }
 
 .icon-task-action:before {
@@ -178,6 +185,12 @@
 
 .icon-task-edit:hover {
   color: $primary-color;
+}
+
+.icon-cancel,
+.icon-submit {
+  border: 0;
+  background-color: inherit;
 }
 
 .icon-cancel:before {

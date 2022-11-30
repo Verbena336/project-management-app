@@ -15,7 +15,18 @@ import { CreateEditModalProps, formValues, dataValues } from './types';
 import commonStyles from '../index.module.scss';
 import styles from './index.module.scss';
 const { modalCloseButton, modalOverlay, modalContainer } = commonStyles;
-const { modalWrapper, modalContent, modalTitle, modalCreate, modalEdit, userName } = styles;
+const {
+  modalWrapper,
+  modalContent,
+  modalTitle,
+  userName,
+  editTask,
+  createEditBoard,
+  createColumn,
+  createEditBoardForm,
+  editTaskForm,
+  createColumnForm,
+} = styles;
 
 const CreateEditModal = ({
   title,
@@ -33,7 +44,12 @@ const CreateEditModal = ({
     formState: { errors },
     setValue,
   } = useForm<formValues>();
-  const formClass = `${modalContent} ${description ? modalCreate : modalEdit}`;
+  const wrapperClass = `${modalWrapper} ${
+    user ? editTask : description ? createEditBoard : createColumn
+  }`;
+  const formClass = `${modalContent} ${
+    user ? editTaskForm : description ? createEditBoardForm : createColumnForm
+  }`;
 
   if (editValues) {
     setValue('title', editValues.name);
@@ -50,7 +66,7 @@ const CreateEditModal = ({
   return (
     <div className={modalContainer}>
       <div className={modalOverlay} onClick={closeHandler}></div>
-      <div className={modalWrapper}>
+      <div className={wrapperClass}>
         <MainPaper>
           <form className={formClass} onSubmit={handleSubmit(onSubmit)}>
             {isLoading ? (
@@ -91,7 +107,7 @@ const CreateEditModal = ({
                     sx={muiModalInputDescription}
                     fullWidth
                     multiline
-                    rows={4}
+                    rows={5}
                     label={
                       errors.description
                         ? errors.description.message

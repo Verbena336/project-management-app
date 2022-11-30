@@ -2,7 +2,7 @@
 
 .modalWrapper,
 .modalContent {
-  width: 400px;
+  width: 470px;
   transition: 0.3s;
   @include media-mobile {
     width: 280px;
@@ -11,19 +11,34 @@
 
 .modalWrapper {
   position: relative;
-  top: calc(50% - 150px);
-  left: calc(50% - 200px);
+  left: calc(50% - 235px);
   @include media-mobile {
     left: calc(50% - 150px);
   }
 }
 
-.modalCreate {
-  min-height: 305px;
+.createEditBoard {
+  top: calc(50% - 165px);
 }
 
-.modalEdit {
-  min-height: 160px;
+.editTask {
+  top: calc(50% - 190px);
+}
+
+.createColumn {
+  top: calc(50% - 82px);
+}
+
+.createEditBoardForm {
+  height: 332px;
+}
+
+.editTaskForm {
+  height: 380px;
+}
+
+.createColumnForm {
+  height: 164px;
 }
 
 .modalContent {
@@ -37,7 +52,7 @@
 
 .modalTitle {
   margin: 0;
-  font-size: 27px;
+  font-size: 30px;
   color: $primary-color;
 }
 
