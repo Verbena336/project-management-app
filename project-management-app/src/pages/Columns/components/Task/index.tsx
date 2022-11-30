@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { toast } from 'react-toastify';
 import { Draggable } from 'react-beautiful-dnd';
 import { useTranslation } from 'react-i18next';
-
-import DeleteModal from 'components/Modals/DeleteModal';
-import CreateEditModal from 'components/Modals/CreateEditModal';
 
 import { useDeleteTaskMutation, useUpdateTaskMutation } from 'store/services/tasksApi';
 import { useGetUserByIdQuery } from 'store/services/userApi';
@@ -20,10 +17,10 @@ const Task = ({
   index,
   boardId,
   columnId,
+  setDeleteModalState,
+  setEditModalState,
 }: PropsTask) => {
   const [deleteTaskApi] = useDeleteTaskMutation();
-  const [isModalDelete, setIsModalDelete] = useState(false);
-  const [isModalEdit, setIsModalEdit] = useState(false);
   const [updateTask] = useUpdateTaskMutation();
   const { data } = useGetUserByIdQuery(userId);
   const { t } = useTranslation();
@@ -53,46 +50,54 @@ const Task = ({
     }
   };
 
-  const handleModal = () => setIsModalEdit(!isModalEdit);
+  const handleDeleteModal = () => {
+    setDeleteModalState((s) => ({
+      ...s,
+      isDeleteTaskModal: true,
+      deleteProps: {
+        handler: deleteTask,
+        closeHandler: () =>
+          setDeleteModalState((s) => ({ ...s, isDeleteTaskModal: !s.isDeleteTaskModal })),
+      },
+    }));
+  };
+
+  const handleEditModal = () => {
+    setEditModalState((s) => ({
+      ...s,
+      isEditTaskModal: true,
+      editProps: {
+        title: t('editTask.title'),
+        editValues: { name: title, description },
+        description: true,
+        handler: handleTaskEdit,
+        closeHandler: () =>
+          setEditModalState((s) => ({ ...s, isEditTaskModal: !s.isEditTaskModal })),
+        user: data?.login,
+      },
+    }));
+  };
 
   return (
-    <>
-      {isModalEdit && (
-        <CreateEditModal
-          title={t('editTask.title')}
-          editValues={{ name: title, description }}
-          description={true}
-          handler={handleTaskEdit}
-          closeHandler={handleModal}
-          user={data?.login}
-        />
-      )}
-      {isModalDelete && (
-        <DeleteModal handler={deleteTask} closeHandler={() => setIsModalDelete(!isModalDelete)} />
-      )}
-      <Draggable draggableId={id} index={index}>
-        {(provided) => (
-          <div
-            className={task}
-            ref={provided.innerRef}
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-          >
-            <div className={text}>
-              <p className={textTitle}>{title}</p>
-              <p className={textDescr}>{description}</p>
-            </div>
-            <div className={controls}>
-              <button className="icon-task-edit" onClick={() => setIsModalEdit(!isModalEdit)} />
-              <button
-                className="icon-task-action"
-                onClick={() => setIsModalDelete(!isModalDelete)}
-              />
-            </div>
+    <Draggable draggableId={id} index={index}>
+      {(provided) => (
+        <div
+          className={task}
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+        >
+          <div className={text}>
+            <p className={textTitle}>{title}</p>
+            <p className={textDescr}>{description}</p>
           </div>
-        )}
-      </Draggable>
-    </>
+          <div className={controls}>
+            <button className="icon-task-edit" onClick={handleEditModal} />
+            <button className="icon-task-action" onClick={handleDeleteModal} />
+          </div>
+        </div>
+      )}
+    </Draggable>
   );
 };
 
