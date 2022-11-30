@@ -29,6 +29,18 @@
   top: calc(50% - 82px);
 }
 
+.createEditBoardForm {
+  height: 332px;
+}
+
+.editTaskForm {
+  height: 380px;
+}
+
+.createColumnForm {
+  height: 164px;
+}
+
 .modalContent {
   position: relative;
   display: flex;

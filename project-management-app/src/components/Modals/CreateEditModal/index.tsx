@@ -23,6 +23,9 @@ const {
   editTask,
   createEditBoard,
   createColumn,
+  createEditBoardForm,
+  editTaskForm,
+  createColumnForm,
 } = styles;
 
 const CreateEditModal = ({
@@ -44,6 +47,9 @@ const CreateEditModal = ({
   const wrapperClass = `${modalWrapper} ${
     user ? editTask : description ? createEditBoard : createColumn
   }`;
+  const formClass = `${modalContent} ${
+    user ? editTaskForm : description ? createEditBoardForm : createColumnForm
+  }`;
 
   if (editValues) {
     setValue('title', editValues.name);
@@ -62,7 +68,7 @@ const CreateEditModal = ({
       <div className={modalOverlay} onClick={closeHandler}></div>
       <div className={wrapperClass}>
         <MainPaper>
-          <form className={modalContent} onSubmit={handleSubmit(onSubmit)}>
+          <form className={formClass} onSubmit={handleSubmit(onSubmit)}>
             {isLoading ? (
               <Spinner color="inherit" />
             ) : (

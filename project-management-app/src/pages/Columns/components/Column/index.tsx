@@ -14,24 +14,32 @@ import CreateEditModal from 'components/Modals/CreateEditModal';
 import { useDeleteColumnMutation, useUpdateColumnMutation } from 'store/services/columnsApi';
 import { useAddTaskMutation } from 'store/services/tasksApi';
 
-import styles from './index.module.scss';
-import { muiTitleInput } from 'data/styles';
-
 import { Props } from './types';
 import { dataValues } from 'components/Modals/CreateEditModal/types';
+import { modalEditTaskState, modalDeleteTaskState } from './types';
+
+import styles from './index.module.scss';
+import { muiTitleInput } from 'data/styles';
 
 const { column, wrapper, header, content, inputBtns, columnTitle } = styles;
 
 const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }: Props) => {
   const ref: React.RefObject<HTMLInputElement> = useRef(null);
-  const [isModal, setIsModal] = useState(false);
+  const [isModalDeleteColumn, setIsModalDeleteColumn] = useState(false);
   const [isInputActive, setInputState] = useState(false);
   const [deleteColumn] = useDeleteColumnMutation();
   const [updateColumn] = useUpdateColumnMutation();
   const { t } = useTranslation();
   const [addTaskApi] = useAddTaskMutation();
-  const [isModalTask, setIsModalTask] = useState(false);
+  const [isModalCreateTask, setIsModalCreateTask] = useState(false);
   const [colTitle, setTitle] = useState(title);
+  const [{ deleteProps, isDeleteTaskModal }, setModalDeleteTaskState] =
+    useState<modalDeleteTaskState>({
+      isDeleteTaskModal: false,
+    });
+  const [{ editProps, isEditTaskModal }, setModalEditTaskState] = useState<modalEditTaskState>({
+    isEditTaskModal: false,
+  });
 
   const addTask = async (values: dataValues) => {
     try {
@@ -52,8 +60,8 @@ const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }:
     }
   };
 
-  const handleModal = () => setIsModal(!isModal);
-  const handleModalTask = () => setIsModalTask(!isModalTask);
+  const handleColumnDeleteModal = () => setIsModalDeleteColumn(!isModalDeleteColumn);
+  const handleModalTask = () => setIsModalCreateTask(!isModalCreateTask);
   const handleTextField = () => setInputState(!isInputActive);
 
   const handleDeleteColumn = async () => {
@@ -82,13 +90,28 @@ const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }:
 
   return (
     <>
-      {isModal && <DeleteModal handler={handleDeleteColumn} closeHandler={handleModal} />}
-      {isModalTask && (
+      {isModalDeleteColumn && (
+        <DeleteModal handler={handleDeleteColumn} closeHandler={handleColumnDeleteModal} />
+      )}
+      {isModalCreateTask && (
         <CreateEditModal
           title={t('createTask.title')}
           description={true}
           handler={addTask}
           closeHandler={handleModalTask}
+        />
+      )}
+      {isDeleteTaskModal && deleteProps && (
+        <DeleteModal handler={deleteProps.handler} closeHandler={deleteProps.closeHandler} />
+      )}
+      {isEditTaskModal && editProps && (
+        <CreateEditModal
+          title={editProps.title}
+          editValues={editProps.editValues}
+          description={editProps.description}
+          handler={editProps.handler}
+          closeHandler={editProps.closeHandler}
+          user={editProps.user}
         />
       )}
       <Draggable draggableId={columnId} index={index}>
@@ -115,7 +138,10 @@ const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }:
                       {colTitle}
                     </h3>
                   )}
-                  <button className="icon-board-column-remove" onClick={handleModal}></button>
+                  <button
+                    className="icon-board-column-remove"
+                    onClick={handleColumnDeleteModal}
+                  ></button>
                 </header>
                 <Droppable droppableId={columnId}>
                   {(provided) => (
@@ -130,6 +156,8 @@ const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }:
                               index={i}
                               boardId={boardId}
                               columnId={columnId}
+                              setDeleteModalState={setModalDeleteTaskState}
+                              setEditModalState={setModalEditTaskState}
                             />
                           ))}
                       {provided.placeholder}
