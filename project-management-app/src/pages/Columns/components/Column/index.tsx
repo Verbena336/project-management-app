@@ -88,6 +88,18 @@ const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }:
     }
   };
 
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>) => {
+    if (e.relatedTarget?.classList.contains('icon-submit')) {
+      handleEditColumn();
+    } else {
+      handleTextField();
+    }
+  };
+
+  const handleEnterButton = (e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (e.key === 'Enter') handleEditColumn();
+  };
+
   return (
     <>
       {isModalDeleteColumn && (
@@ -127,7 +139,14 @@ const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }:
                 <header className={header}>
                   {isInputActive ? (
                     <>
-                      <Input sx={muiTitleInput} defaultValue={colTitle} inputProps={{ ref }} />
+                      <Input
+                        sx={muiTitleInput}
+                        defaultValue={colTitle}
+                        inputProps={{ ref }}
+                        autoFocus
+                        onBlur={(e) => handleBlur(e)}
+                        onKeyUp={(e) => handleEnterButton(e)}
+                      />
                       <span className={inputBtns}>
                         <button className={'icon-cancel'} onClick={handleTextField}></button>
                         <button className={'icon-submit'} onClick={handleEditColumn}></button>
