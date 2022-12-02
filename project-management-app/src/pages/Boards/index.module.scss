@@ -1,14 +1,23 @@
 @import 'styles/abstracts/mixins';
 
 .boardsWrapper {
-  padding: 100px 50px;
+  padding: 40px;
+  max-width: 1920px;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 45px;
-  transition: 0.5s;
+  transition: 0.3s;
   @include media-tablet-large {
     gap: 20px;
     padding: 50px 10px;
   }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  flex: 1 0 100%;
+  align-items: center;
 }

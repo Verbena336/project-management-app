@@ -13,7 +13,7 @@ import { ExistBoardProps } from './types';
 import { addBoardRequest } from 'store/services/types/boards';
 
 import styles from './index.module.scss';
-import { PATH } from 'types';
+import { PATH, TError } from 'types';
 const {
   boardSection,
   boardContentWrapper,
@@ -44,22 +44,41 @@ const ExistBoard = ({ id, name, description }: ExistBoardProps) => {
     const dataRequest = { id, body: data };
     try {
       const response = await updateBoard(dataRequest).unwrap();
-      if (response.id) {
-        toast.success(t('toastContent.editBoard'));
-      } else {
+      if (!response.id) {
         throw new Error();
       }
-    } catch {
-      toast.error(t('toastContent.serverError'));
+    } catch (err) {
+      const error = err as TError;
+      switch (error.status || error.statusCode) {
+        case 401:
+          toast.error(t('toastContent.unauthorized'));
+          localStorage.removeItem('KanBanToken');
+          localStorage.removeItem('KanBanLogin');
+          localStorage.removeItem('KanBanId');
+          navigate(PATH.WELCOME);
+          break;
+        default:
+          toast.error(t('toastContent.serverError'));
+      }
     }
   };
 
   const handleBoardDelete = async () => {
     try {
       await deleteBoard(id).unwrap();
-      toast.success(t('toastContent.deleteBoard'));
-    } catch {
-      toast.error(t('toastContent.serverError'));
+    } catch (err) {
+      const error = err as TError;
+      switch (error.status || error.statusCode) {
+        case 401:
+          toast.error(t('toastContent.unauthorized'));
+          localStorage.removeItem('KanBanToken');
+          localStorage.removeItem('KanBanLogin');
+          localStorage.removeItem('KanBanId');
+          navigate(PATH.WELCOME);
+          break;
+        default:
+          toast.error(t('toastContent.serverError'));
+      }
     }
   };
 
@@ -84,7 +103,7 @@ const ExistBoard = ({ id, name, description }: ExistBoardProps) => {
               <p className={boardTitle}>{name}</p>
               <div className={boardButtonWrapper}>
                 <button className="icon-board-edit" onClick={handleModal}></button>
-                <button className="icon-board-column-remove" onClick={handleDeleteModal}></button>
+                <button className="icon-board-remove" onClick={handleDeleteModal}></button>
               </div>
             </header>
             <div className={boardDescriptionWrapper}>

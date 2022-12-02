@@ -1,5 +1,9 @@
+@import '../../../../styles/abstracts/mixins';
 .inner {
   display: flex;
   flex-direction: column;
   gap: 100px;
+  @include media-tablet {
+    gap: 50px;
+  }
 }

@@ -10,18 +10,28 @@
 }
 
 .wrapper {
-  transition: 0.5s;
   position: relative;
   padding: 10px;
   color: $primary-color;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  max-height: 55vh;
-  min-height: 170px;
+  max-height: calc(100vh - 320px);
+  min-height: 189px;
   height: 100%;
   max-width: 400px;
   width: calc(100vw - 20px);
+  @include media-tablet {
+    max-width: 340px;
+    min-height: 171px;
+    max-height: calc(100vh - 363px);
+  }
+  @include media-tablet-small {
+    max-height: calc(100vh - 400px);
+  }
+  @include media-mobile {
+    max-width: 280px;
+  }
 }
 
 .wrapper button {
@@ -36,6 +46,7 @@
   display: flex;
   justify-content: space-between;
   color: inherit;
+  align-items: center;
   height: 40px;
 }
 
@@ -44,12 +55,21 @@
 }
 
 .content {
-  min-height: 88px;
+  min-height: 79px;
   display: flex;
   flex-direction: column;
   padding: 0 30px;
   overflow-y: auto;
   overflow-x: hidden;
+  @include media-tablet {
+    min-height: 62px;
+  }
+  @include media-tablet {
+    padding: 0 15px;
+  }
+  @include media-mobile {
+    padding: 0 10px;
+  }
 }
 
 .content::-webkit-scrollbar {
@@ -59,17 +79,19 @@
 
 .wrapper > button {
   color: $primary-color;
-  font-size: 18px;
+  @include lora($fs: 20px);
   margin: 0 auto;
   margin-top: 20px;
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 5px;
+  width: fit-content;
+  border-radius: 5px;
 }
 
 .wrapper > button:hover {
-  color: $black-color;
+  background-color: rgba(159, 197, 238, 0.4);
+  box-shadow: 1px 1px 3px 0px rgb(34 60 80 / 20%);
 }
 
 .inputBtns {
@@ -88,10 +110,20 @@
 }
 
 .columnTitle {
-  font-size: 30px;
-  font-weight: normal;
+  @include lora($fs: 28px);
   margin: 0;
   padding: 0;
   width: 100%;
   text-align: center;
+  max-width: 325px;
+  overflow: hidden;
+  max-height: 33px;
+  text-overflow: ellipsis;
+  line-height: 33px;
+  @include media-tablet {
+    font-size: 25px;
+  }
+  @include media-mobile {
+    font-size: 20px;
+  }
 }

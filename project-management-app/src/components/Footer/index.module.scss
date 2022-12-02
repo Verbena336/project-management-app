@@ -1,31 +1,49 @@
+@import '../../styles/abstracts/mixins';
+
 .footer {
   width: 100%;
   flex: 0 0 auto;
-  //Temp
-  overflow-x: hidden;
+  padding: 20px 0;
 }
 
 .inner {
-  position: relative;
-  height: 100px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @include media-tablet {
+    justify-content: center;
+    column-gap: 90px;
+    row-gap: 20px;
+    flex-direction: column;
+  }
+}
+
+.logo {
+  position: relative;
 }
 
 .created {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(21px, -65px);
+  @include ptserif($fs: 36px);
+  text-align: center;
 }
 
 .githubs {
   display: flex;
   gap: 15px;
+  @include media-tablet {
+    font-size: 20px;
+  }
+  @include media-mobile {
+    font-size: 15px;
+  }
 }
 
+.link {
+  transition: color 0.3s;
+}
 
 .link:hover {
-  color: rgb(169, 13, 140);
+  color: $dark-white;
 }

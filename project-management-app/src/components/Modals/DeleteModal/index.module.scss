@@ -4,7 +4,7 @@
 .modalContent {
   width: 430px;
   transition: 0.3s;
-  @include media-mobile {
+  @include media-tablet-small {
     width: 280px;
   }
 }
@@ -13,8 +13,8 @@
   position: relative;
   top: calc(50% - 70px);
   left: calc(50% - 215px);
-  @include media-mobile {
-    left: calc(50% - 150px);
+  @include media-tablet-small {
+    left: calc(50% - 140px);
   }
 }
 
@@ -28,8 +28,9 @@
   padding: 25px 55px;
   height: 135px;
   transition: 0.3s;
-  @include media-mobile {
+  @include media-tablet-small {
     padding: 35px 20px;
+    height: 140px;
   }
 }
 
