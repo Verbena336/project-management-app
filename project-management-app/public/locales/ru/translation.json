@@ -113,5 +113,11 @@
   },
   "createColumn": {
     "title": "Создать Колонку"
+  },
+  "BoardColumnFilter": {
+    "boardTitle": "Название Доски",
+    "columnTitle": "Название Колонки",
+    "error": "⚠ результаты не найдены!",
+    "search": "Поиск"
   }
 }

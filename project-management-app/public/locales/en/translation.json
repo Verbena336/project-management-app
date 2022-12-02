@@ -114,5 +114,11 @@
   },
   "createColumn": {
     "title": "Create Column"
+  },
+  "BoardColumnFilter": {
+    "boardTitle": "Board Title",
+    "columnTitle": "Column Title",
+    "error": "⚠ no results found!",
+    "search": "Search"
   }
 }

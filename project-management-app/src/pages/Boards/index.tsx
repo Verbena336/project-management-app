@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
@@ -6,10 +6,11 @@ import Spinner from '@mui/material/CircularProgress';
 import AppLayout from 'components/AppLayout';
 import ExistBoard from './components/ExistBoard';
 import NewBoardOrColumn from '../../components/NewBoardOrColumn';
+import BoardColumnFilter from 'components/BoardColumnFilter';
 
 import { useGetAllBoardsQuery, useAddBoardMutation } from 'store/services/boardsApi';
 
-import { addBoardRequest } from 'store/services/types/boards';
+import { addBoardRequest, getAllBoardsResponse } from 'store/services/types/boards';
 
 import styles from './index.module.scss';
 
@@ -19,6 +20,11 @@ const Boards = () => {
   const { t } = useTranslation();
   const { data } = useGetAllBoardsQuery();
   const [addBoard] = useAddBoardMutation();
+  const [boards, setBoards] = useState<getAllBoardsResponse>([]);
+
+  useEffect(() => {
+    data && setBoards(data);
+  }, [data]);
 
   const handleNewBoard = async (data: addBoardRequest) => {
     try {
@@ -35,12 +41,17 @@ const Boards = () => {
 
   return (
     <AppLayout>
+      <BoardColumnFilter
+        title={t('BoardColumnFilter.boardTitle')}
+        data={data}
+        handleData={setBoards}
+      />
       <div className={boardsWrapper}>
         {!data ? (
           <Spinner color="inherit" />
         ) : (
           <>
-            {data.map(({ id, title, description }) => (
+            {boards.map(({ id, title, description }) => (
               <ExistBoard key={id} id={id} name={title} description={description} />
             ))}
             <NewBoardOrColumn
