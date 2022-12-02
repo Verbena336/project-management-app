@@ -1,15 +1,18 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+
+import ErrorView from 'components/ErrorView';
 
 const Page404 = () => {
-  const handleError = () => {
-    throw new Error('CABOOM');
-  };
+  const { t } = useTranslation();
 
   return (
-    <>
-      <p>Its 404 Page</p>
-      <button onClick={handleError}>errors up</button>
-    </>
+    <ErrorView
+      title={t('404.title')}
+      description={t('404.description')}
+      firstTextPart={t('404.firstText')}
+      secondTextPart={t('404.secondText')}
+    />
   );
 };
 
