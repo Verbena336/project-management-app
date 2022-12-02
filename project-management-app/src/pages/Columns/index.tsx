@@ -16,7 +16,7 @@ import { useGetBoardQuery } from 'store/services/boardsApi';
 
 import styles from './index.module.scss';
 
-import { CreateRequest, PATH } from 'types';
+import { CreateRequest, PATH, TError } from 'types';
 import { TColumn } from 'store/services/types/columns';
 
 const { BOARDS } = PATH;
@@ -27,7 +27,7 @@ const Columns = () => {
   const { t } = useTranslation();
   const [addColumn] = useAddColumnMutation();
   const [columns, setColumns] = useState<TColumn[]>([]);
-  const { data, isLoading } = useGetBoardQuery(boardId!);
+  const { data, isLoading, isError } = useGetBoardQuery(boardId!);
   const [updateTask] = useUpdateTaskMutation();
   const [updateColumn] = useUpdateColumnMutation();
   const navigate = useNavigate();
@@ -36,14 +36,32 @@ const Columns = () => {
     data && setColumns(data.columns);
   }, [data]);
 
+  useEffect(() => {
+    if (isError) {
+      toast.error(t('toastContent.notBoard'));
+      navigate(PATH.BOARDS);
+    }
+  }, [isError]);
+
   const createColumn = async ({ title }: CreateRequest) => {
     try {
       const { id } = await addColumn({ boardId: boardId!, body: { title } }).unwrap();
       if (!id) {
         throw new Error();
       }
-    } catch {
-      toast.error(t('toastContent.serverError'));
+    } catch (err) {
+      const errorLocal = err as TError;
+      switch (errorLocal.status || errorLocal.statusCode) {
+        case 401:
+          toast.error(t('toastContent.unauthorized'));
+          localStorage.removeItem('KanBanToken');
+          localStorage.removeItem('KanBanLogin');
+          localStorage.removeItem('KanBanId');
+          navigate(PATH.WELCOME);
+          break;
+        default:
+          toast.error(t('toastContent.serverError'));
+      }
     }
   };
 

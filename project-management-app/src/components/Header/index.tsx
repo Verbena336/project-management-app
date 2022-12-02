@@ -30,6 +30,7 @@ import { addBoardRequest } from 'store/services/types/boards';
 import { muiSignInBtn } from '../../data/styles';
 
 import styles from './index.module.scss';
+import { TError } from 'types';
 
 const { header, inner, control, link, logoWrapper, headerStiky } = styles;
 
@@ -52,13 +53,22 @@ const Header = () => {
   const handleNewBoard = async (data: addBoardRequest) => {
     try {
       const response = await addBoard(data).unwrap();
-      if (response.id) {
-        toast.success(t('toastContent.addBoard'));
-      } else {
+      if (!response.id) {
         throw new Error();
       }
-    } catch {
-      toast.error(t('toastContent.serverError'));
+    } catch (err) {
+      const error = err as TError;
+      switch (error.status) {
+        case 401:
+          toast.error(t('toastContent.unauthorized'));
+          navigate(PATH.WELCOME);
+          localStorage.removeItem('KanBanToken');
+          localStorage.removeItem('KanBanLogin');
+          localStorage.removeItem('KanBanId');
+          break;
+        default:
+          toast.error(t('toastContent.serverError'));
+      }
     }
   };
 

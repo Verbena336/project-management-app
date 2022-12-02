@@ -97,16 +97,13 @@
   },
   "toastContent": {
     "userGreetings": "Hello",
-    "userExist": "User already exist",
-    "userError": "User was not founded!",
-    "unknownError": "Unknown error",
-    "addBoard": "The board is added!",
-    "addColumn": "The column is added!",
-    "deleteBoard": "The board is delete!",
-    "editBoard": "The board is updated!",
-    "deleteColumn": "The column is delete!",
-    "editColumn": "The column is updated!",
-    "serverError": "Something is wrong with the server!"
+    "userExist": "User already exists.",
+    "userError": "User not found!",
+    "serverError": "Something is wrong with the server! Try one more time.",
+    "unauthorized": "Unauthorized User",
+    "deleteUser": "User was deleted!",
+    "updateUser": "User data was updated!",
+    "notBoard": "Board not found!"
   },
   "columns": {
     "backLink": "Back",
@@ -114,5 +111,6 @@
   },
   "createColumn": {
     "title": "Create Column"
-  }
+  },
+  "deletedUser": "User deleted"
 }

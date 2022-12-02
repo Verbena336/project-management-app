@@ -4,18 +4,8 @@ export type Inputs = {
   password: string;
 };
 
-type ResponseBody = {
-  statusCode: number;
-  message: string;
-};
-
 export type ResponseSignUp = {
   id: string;
   name: string;
   login: string;
-};
-
-export type ErrorSignUp = {
-  status: number;
-  data: ResponseBody;
 };

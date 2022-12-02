@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
+import { useNavigate } from 'react-router-dom';
 
 import { Input, InputAdornment } from '@mui/material';
 
@@ -17,12 +18,12 @@ import { useAddTaskMutation } from 'store/services/tasksApi';
 import { Props } from './types';
 import { dataValues } from 'components/Modals/CreateEditModal/types';
 import { modalEditTaskState, modalDeleteTaskState } from './types';
+import { PATH, TError } from 'types';
 
 import styles from './index.module.scss';
 import { muiTitleInput } from 'data/styles';
-import { useForm } from 'react-hook-form';
 
-const { column, wrapper, header, content, inputBtns, columnTitle } = styles;
+const { column, wrapper, header, content, columnTitle } = styles;
 
 const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }: Props) => {
   const ref: React.RefObject<HTMLInputElement> = useRef(null);
@@ -41,7 +42,8 @@ const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }:
   const [{ editProps, isEditTaskModal }, setModalEditTaskState] = useState<modalEditTaskState>({
     isEditTaskModal: false,
   });
-  const [errorTitle, setErrorTitle] = useState(false);
+  const [errorTitle] = useState(false);
+  const navigate = useNavigate();
 
   const addTask = async (values: dataValues) => {
     try {
@@ -57,8 +59,19 @@ const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }:
       if (!id) {
         throw new Error();
       }
-    } catch {
-      toast.error(t('toastContent.serverError'));
+    } catch (err) {
+      const error = err as TError;
+      switch (error.status || error.statusCode) {
+        case 401:
+          toast.error(t('toastContent.unauthorized'));
+          localStorage.removeItem('KanBanToken');
+          localStorage.removeItem('KanBanLogin');
+          localStorage.removeItem('KanBanId');
+          navigate(PATH.WELCOME);
+          break;
+        default:
+          toast.error(t('toastContent.serverError'));
+      }
     }
   };
 
@@ -69,14 +82,25 @@ const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }:
   const handleDeleteColumn = async () => {
     try {
       await deleteColumn({ boardId, columnId }).unwrap();
-    } catch {
-      toast.error(t('toastContent.serverError'));
+    } catch (err) {
+      const error = err as TError;
+      switch (error.status || error.statusCode) {
+        case 401:
+          toast.error(t('toastContent.unauthorized'));
+          localStorage.removeItem('KanBanToken');
+          localStorage.removeItem('KanBanLogin');
+          localStorage.removeItem('KanBanId');
+          navigate(PATH.WELCOME);
+          break;
+        default:
+          toast.error(t('toastContent.serverError'));
+      }
     }
   };
 
   const handleEditColumn = async () => {
     if (!ref.current) return;
-    const { value } = ref.current;
+    const value = ref.current.value ? ref.current.value : `Column ${order}`;
     const dataRequest = { boardId, columnId, body: { order, title: value } };
     setTitle(value);
     handleTextField();
@@ -85,8 +109,19 @@ const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }:
       if (!id) {
         throw new Error();
       }
-    } catch {
-      toast.error(t('toastContent.serverError'));
+    } catch (err) {
+      const error = err as TError;
+      switch (error.status || error.statusCode) {
+        case 401:
+          toast.error(t('toastContent.unauthorized'));
+          localStorage.removeItem('KanBanToken');
+          localStorage.removeItem('KanBanLogin');
+          localStorage.removeItem('KanBanId');
+          navigate(PATH.WELCOME);
+          break;
+        default:
+          toast.error(t('toastContent.serverError'));
+      }
     }
   };
 
