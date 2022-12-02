@@ -1,12 +1,25 @@
+@import '../../../../styles/abstracts/mixins';
 .content {
   display: flex;
   align-items: center;
-  gap: 50px;
+  column-gap: 50px;
+  row-gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 30px;
 }
 
 .participants {
-  padding-top: 30px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.img {
+  @include media-tablet-large {
+    max-width: 350px;
+  }
+  @include media-mobile {
+    max-width: 100%;
+  }
 }

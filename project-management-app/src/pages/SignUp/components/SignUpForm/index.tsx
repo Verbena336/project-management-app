@@ -99,6 +99,7 @@ function SignUpForm() {
         id="login"
         label={errors.login ? t('signUpForm.loginError') : t('signUpForm.login')}
         variant="outlined"
+        autoComplete="username"
         error={errors.login ? true : false}
         {...register('login', {
           required: true,
@@ -111,6 +112,7 @@ function SignUpForm() {
         id="password"
         label={errors.password ? t('signUpForm.passwordError') : t('signUpForm.password')}
         variant="outlined"
+        autoComplete="new-password"
         error={errors.password ? true : false}
         {...register('password', {
           required: true,

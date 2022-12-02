@@ -1,8 +1,16 @@
+@import '../../styles/abstracts/mixins';
+
 .inner {
-  height: calc(100vh - 200px);
+  height: calc(100vh - 196.7px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @include media-tablet {
+    height: calc(100vh - 240.7px);
+  }
+  @include media-tablet-small {
+    height: calc(100vh - 282.7px);
+  }
 }
 
 .inner > a:before {
@@ -20,8 +28,9 @@
 }
 
 .wrapper {
-  flex: 1 0 85%;
-  height: calc(100vh - 400px);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .content {
@@ -35,8 +44,45 @@
   transition: 0.5s;
 }
 
-.icon-back-arrow {
-  display: block;
-  position: relative;
-  top: -15px;
+.backLink {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 20px 0;
+  width: fit-content;
+  cursor: pointer;
+  &:hover {
+    .arrow {
+      background-color: rgba(159, 197, 238, 0.4);
+      box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.2);
+    }
+    .backTitle {
+      color: #1b519c;
+    }
+  }
+}
+
+.arrow {
+  transition: all 0.3s;
+  border-radius: 50%;
+}
+
+.backTitle {
+  margin: 0;
+  cursor: pointer;
+  transition: all 0.3s;
+  @include ptserif($fs: 30px, $fw: 400);
+  @include media-tablet {
+    font-size: 28px;
+  }
+  @include media-mobile {
+    font-size: 25px;
+  }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  flex: 1 0 100%;
+  align-items: center;
 }

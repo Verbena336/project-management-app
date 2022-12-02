@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 
-import { Input } from '@mui/material';
+import { Input, InputAdornment } from '@mui/material';
 
 import Task from '../Task';
 
@@ -20,6 +20,7 @@ import { modalEditTaskState, modalDeleteTaskState } from './types';
 
 import styles from './index.module.scss';
 import { muiTitleInput } from 'data/styles';
+import { useForm } from 'react-hook-form';
 
 const { column, wrapper, header, content, inputBtns, columnTitle } = styles;
 
@@ -40,6 +41,7 @@ const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }:
   const [{ editProps, isEditTaskModal }, setModalEditTaskState] = useState<modalEditTaskState>({
     isEditTaskModal: false,
   });
+  const [errorTitle, setErrorTitle] = useState(false);
 
   const addTask = async (values: dataValues) => {
     try {
@@ -146,11 +148,14 @@ const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }:
                         autoFocus
                         onBlur={(e) => handleBlur(e)}
                         onKeyUp={(e) => handleEnterButton(e)}
+                        error={errorTitle}
+                        startAdornment={
+                          <InputAdornment position="start">
+                            <button className={'icon-cancel'} onClick={handleTextField}></button>
+                            <button className={'icon-submit'} onClick={handleEditColumn}></button>
+                          </InputAdornment>
+                        }
                       />
-                      <span className={inputBtns}>
-                        <button className={'icon-cancel'} onClick={handleTextField}></button>
-                        <button className={'icon-submit'} onClick={handleEditColumn}></button>
-                      </span>
                     </>
                   ) : (
                     <h3 className={columnTitle} onClick={handleTextField}>
@@ -160,6 +165,7 @@ const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }:
                   <button
                     className="icon-board-column-remove"
                     onClick={handleColumnDeleteModal}
+                    style={{ marginLeft: '10px' }}
                   ></button>
                 </header>
                 <Droppable droppableId={columnId}>

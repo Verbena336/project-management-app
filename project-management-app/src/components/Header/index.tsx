@@ -93,11 +93,7 @@ const Header = () => {
           closeHandler={() => setIsModal(!isModal)}
         />
       )}
-      <header
-        className={
-          isStiky && !isPublic && location.pathname !== PATH.WELCOME ? headerStiky : header
-        }
-      >
+      <header className={isStiky && !isPublic ? headerStiky : header}>
         <div className="container">
           <div className={inner}>
             <div className={logoWrapper}>

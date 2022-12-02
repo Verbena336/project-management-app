@@ -1,9 +1,15 @@
+@import '../../../../styles/abstracts/mixins';
 .participant {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 150px;
+  padding: 5px 10px;
+  max-width: 649px;
+  @include media-mobile {
+    flex-wrap: wrap;
+  }
 }
 
 .info {
@@ -15,10 +21,18 @@
   align-items: center;
   text-align: center;
   gap: 10px;
+  @include ptserif($fs: 25px);
+  @include media-mobile {
+    padding: 0;
+  }
 }
 
 .definition {
-  padding-left: 20px;
+  @include lora($fs: 20px);
+  text-align: center;
+  @include media-tablet {
+    font-size: 18px;
+  }
 }
 
 .line {
@@ -28,4 +42,8 @@
   left: 0;
   width: 10px;
   height: 100%;
+}
+
+.img {
+  max-width: unset;
 }

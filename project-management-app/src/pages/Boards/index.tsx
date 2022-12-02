@@ -13,7 +13,7 @@ import { addBoardRequest } from 'store/services/types/boards';
 
 import styles from './index.module.scss';
 
-const { boardsWrapper } = styles;
+const { boardsWrapper, loading } = styles;
 
 const Boards = () => {
   const { t } = useTranslation();
@@ -35,11 +35,13 @@ const Boards = () => {
 
   return (
     <AppLayout>
-      <div className={boardsWrapper}>
-        {!data ? (
+      {!data ? (
+        <div className={loading}>
           <Spinner color="inherit" />
-        ) : (
-          <>
+        </div>
+      ) : (
+        <>
+          <div className={boardsWrapper}>
             {data.map(({ id, title, description }) => (
               <ExistBoard key={id} id={id} name={title} description={description} />
             ))}
@@ -48,9 +50,9 @@ const Boards = () => {
               iconClass="icon-add-board"
               handleNewItem={handleNewBoard}
             />
-          </>
-        )}
-      </div>
+          </div>
+        </>
+      )}
     </AppLayout>
   );
 };

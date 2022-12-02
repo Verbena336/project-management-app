@@ -4,7 +4,7 @@
 .modalContent {
   width: 470px;
   transition: 0.3s;
-  @include media-mobile {
+  @include media-tablet-small {
     width: 280px;
   }
 }
@@ -12,8 +12,8 @@
 .modalWrapper {
   position: relative;
   left: calc(50% - 235px);
-  @include media-mobile {
-    left: calc(50% - 150px);
+  @include media-tablet-small {
+    left: calc(50% - 140px);
   }
 }
 

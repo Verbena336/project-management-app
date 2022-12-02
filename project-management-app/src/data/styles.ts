@@ -64,6 +64,7 @@ export const muiModalInputDescription = {
 };
 
 export const muiTitleInput = {
-  fontSize: '24px',
+  fontSize: '20px',
   color: '#1740a9',
+  height: '33px',
 };

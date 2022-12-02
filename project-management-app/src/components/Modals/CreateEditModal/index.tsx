@@ -42,19 +42,13 @@ const CreateEditModal = ({
     register,
     handleSubmit,
     formState: { errors },
-    setValue,
-  } = useForm<formValues>();
+  } = useForm<formValues>({ mode: 'onSubmit' });
   const wrapperClass = `${modalWrapper} ${
     user ? editTask : description ? createEditBoard : createColumn
   }`;
   const formClass = `${modalContent} ${
     user ? editTaskForm : description ? createEditBoardForm : createColumnForm
   }`;
-
-  if (editValues) {
-    setValue('title', editValues.name);
-    if (editValues.description) setValue('description', editValues.description);
-  }
 
   const onSubmit = async (data: dataValues) => {
     setIsLoading(true);
@@ -91,6 +85,8 @@ const CreateEditModal = ({
                   label={errors.title ? errors.title.message : t('createEditModal.name')}
                   variant="standard"
                   error={!!errors.title}
+                  defaultValue={editValues?.name}
+                  autoFocus
                   {...register('title', {
                     required: {
                       value: true,
@@ -108,6 +104,7 @@ const CreateEditModal = ({
                     fullWidth
                     multiline
                     rows={5}
+                    defaultValue={editValues?.description}
                     label={
                       errors.description
                         ? errors.description.message

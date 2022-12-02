@@ -78,6 +78,7 @@ function SignInForm() {
         id="login"
         label={errors.login ? t('signInForm.loginError') : t('signInForm.login')}
         variant="outlined"
+        autoComplete="username"
         error={!!errors.login}
         {...register('login', {
           required: true,
@@ -90,6 +91,7 @@ function SignInForm() {
         id="password"
         label={errors.password ? t('signInForm.passwordError') : t('signInForm.password')}
         variant="outlined"
+        autoComplete="current-password"
         error={!!errors.password}
         {...register('password', {
           required: true,

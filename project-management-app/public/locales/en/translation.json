@@ -13,7 +13,7 @@
     "userName": "{{UserName}}",
     "edit": "Edit",
     "logOut": "Log Out",
-    "goToMain": "Go to Main Page"
+    "goToMain": "Go to Main"
   },
   "hero": {
     "title": "KanBan",

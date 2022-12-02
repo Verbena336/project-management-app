@@ -110,6 +110,7 @@ function EditProfileForm() {
           id="login"
           label={errors.login ? t('editForm.loginError') : t('editForm.login')}
           variant="outlined"
+          autoComplete="username"
           error={errors.login ? true : false}
           {...register('login', {
             required: true,
@@ -122,6 +123,7 @@ function EditProfileForm() {
           id="password"
           label={errors.password ? t('editForm.passwordError') : t('editForm.password')}
           variant="outlined"
+          autoComplete="new-password"
           error={errors.password ? true : false}
           {...register('password', {
             required: true,

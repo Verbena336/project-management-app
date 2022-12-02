@@ -84,7 +84,7 @@ const ExistBoard = ({ id, name, description }: ExistBoardProps) => {
               <p className={boardTitle}>{name}</p>
               <div className={boardButtonWrapper}>
                 <button className="icon-board-edit" onClick={handleModal}></button>
-                <button className="icon-board-column-remove" onClick={handleDeleteModal}></button>
+                <button className="icon-board-remove" onClick={handleDeleteModal}></button>
               </div>
             </header>
             <div className={boardDescriptionWrapper}>
