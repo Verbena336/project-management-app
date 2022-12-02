@@ -41,7 +41,7 @@ const Columns = () => {
       toast.error(t('toastContent.notBoard'));
       navigate(PATH.BOARDS);
     }
-  }, [isError]);
+  }, [isError, navigate, t]);
 
   const createColumn = async ({ title }: CreateRequest) => {
     try {
