@@ -112,5 +112,20 @@
   "createColumn": {
     "title": "Create Column"
   },
-  "deletedUser": "User deleted"
+  "deletedUser": "User deleted",
+  "ErrorView": {
+    "button": "main"
+  },
+  "boundary": {
+    "title": "Error!",
+    "description": "Something went wrong!",
+    "firstText": "You can try to return to the",
+    "secondText": "page, or reload the application after a while."
+  },
+  "404": {
+    "title": "Error 404",
+    "description": "This page does not exist!",
+    "firstText": "You may have followed the wrong link. Go to the",
+    "secondText": "page."
+  }
 }
