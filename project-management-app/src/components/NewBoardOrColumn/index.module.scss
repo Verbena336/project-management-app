@@ -12,11 +12,14 @@
   border-radius: 10px;
   cursor: pointer;
   transition: 0.3s;
+  @include media-tablet {
+    min-width: 340px;
+  }
   @include media-mobile {
     min-width: 280px;
   }
 }
 
 .newBoard:hover {
-  color: $primary-color;
+  background-color: rgba(138, 171, 255, 0.3);
 }

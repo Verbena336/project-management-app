@@ -21,8 +21,9 @@ import { setLogin } from 'store/reducers/authSlice';
 
 import '../../../../utils/i18next';
 
-import { ErrorSignUp, Inputs } from './types';
+import { Inputs } from './types';
 import { PATH } from 'components/AppRoutes/types';
+import { TError } from 'types';
 
 function EditProfileForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -48,17 +49,24 @@ function EditProfileForm() {
       localStorage.removeItem('KanBanId');
       dispatch(setLogin(''));
       setIsLoading(false);
-      toast.success('User was deleted!');
+      toast.success(t('toastContent.deleteUser'));
       navigate(PATH.WELCOME);
     } catch (err) {
-      const error = err as ErrorSignUp;
+      const error = err as TError;
       setIsLoading(false);
-      switch (error.status) {
+      switch (error.status || error.statusCode) {
         case 404:
-          toast.error('User was not found!');
+          toast.error(t('toastContent.userError'));
+          break;
+        case 401:
+          toast.error(t('toastContent.unauthorized'));
+          localStorage.removeItem('KanBanToken');
+          localStorage.removeItem('KanBanLogin');
+          localStorage.removeItem('KanBanId');
+          navigate(PATH.WELCOME);
           break;
         default:
-          toast.error('Unknown error');
+          toast.error(t('toastContent.serverError'));
       }
     }
   };
@@ -70,16 +78,23 @@ function EditProfileForm() {
       localStorage.setItem('KanBanLogin', value.login);
       dispatch(setLogin(value.login));
       setIsLoading(false);
-      toast.success('User data was updated!');
+      toast.success(t('toastContent.updateUser'));
     } catch (err) {
-      const error = err as ErrorSignUp;
+      const error = err as TError;
       setIsLoading(false);
-      switch (error.status) {
+      switch (error.status || error.statusCode) {
         case 404:
-          toast.error('User was not found!');
+          toast.error(t('toastContent.userError'));
+          break;
+        case 401:
+          toast.error(t('toastContent.unauthorized'));
+          localStorage.removeItem('KanBanToken');
+          localStorage.removeItem('KanBanLogin');
+          localStorage.removeItem('KanBanId');
+          navigate(PATH.WELCOME);
           break;
         default:
-          toast.error('Unknown error');
+          toast.error(t('toastContent.serverError'));
       }
     }
   };
@@ -110,6 +125,7 @@ function EditProfileForm() {
           id="login"
           label={errors.login ? t('editForm.loginError') : t('editForm.login')}
           variant="outlined"
+          autoComplete="username"
           error={errors.login ? true : false}
           {...register('login', {
             required: true,
@@ -122,6 +138,7 @@ function EditProfileForm() {
           id="password"
           label={errors.password ? t('editForm.passwordError') : t('editForm.password')}
           variant="outlined"
+          autoComplete="new-password"
           error={errors.password ? true : false}
           {...register('password', {
             required: true,

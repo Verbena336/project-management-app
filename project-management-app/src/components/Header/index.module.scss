@@ -1,50 +1,63 @@
 @import '../../styles/base/vars';
+@import '../../styles/abstracts/mixins';
 
 .header {
   width: 100%;
-  transition: all .3s;
-  //Temp
-  overflow-x: hidden;
+  transition: all 0.3s;
 }
 
 .headerStiky {
-  transition: all .3s;
+  transition: all 0.3s;
   width: 100%;
   position: sticky;
   top: 0;
   background-color: $white;
-  z-index: 500;
+  z-index: 1;
 }
 
 .inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100px;
+  gap: 5px;
+  padding: 15px 0;
+  @include media-tablet-small {
+    flex-direction: column;
+    justify-content: center;
+  }
+  @include media-mobile {
+    padding: 5px 0;
+  }
 }
 
 .control {
   display: flex;
   gap: 10px;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  @include media-mobile {
+    gap: 5px;
+  }
 }
 
 .link {
   position: relative;
   display: block;
   transition: all linear 0.3s;
-  width: 70px;
-  height: 70px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
+  padding: 3px;
 }
 
 .link:hover {
-  background-color: $light-gray-second-color;
+  background-color: rgba(159, 197, 238, 0.4);
   box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.2);
 }
 
 .logoWrapper {
   display: flex;
-  gap: 20px;
+  column-gap: 10px;
   align-items: center;
 }

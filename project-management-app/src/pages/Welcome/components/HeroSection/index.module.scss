@@ -1,14 +1,27 @@
 @import '../../../../styles/base/vars';
+@import '../../../../styles/abstracts/mixins';
 
 .hero {
   padding: 0 100px;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap-reverse;
+  column-gap: 5vw;
+  justify-content: center;
+  row-gap: 3vh;
 }
 
 .img {
   flex: 0 1 50%;
   height: auto;
+  @include media-tablet-large {
+    max-width: 500px;
+  }
+  @include media-tablet {
+    max-width: 390px;
+  }
+  @include media-mobile {
+    max-width: 290px;
+  }
 }
 
 .content {
@@ -17,19 +30,40 @@
   flex-direction: column;
   text-align: center;
   justify-content: center;
-  align-items: flex-end;
   max-width: 600px;
 }
 
 .title {
   font-family: 'PTSerif';
   font-size: 160px;
+  @include media-tablet {
+    font-size: 120px;
+  }
+  @include media-mobile {
+    font-size: 80px;
+  }
 }
 
 .text {
   padding: 50px 20px;
-  font-size: 30px;
+  @include ptserif($fs: 30px, $ls: 0.2px);
   color: $primary-color;
+  min-width: 600px;
+  min-height: 172px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include media-tablet {
+    min-width: 427px;
+    font-size: 25px;
+    padding: 50px 25px;
+  }
+  @include media-mobile {
+    min-width: 290px;
+    padding: 20px 11px;
+    font-size: 20px;
+    min-height: 120px;
+  }
 }
 
 .paper {

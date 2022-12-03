@@ -20,8 +20,9 @@ import { useAppDispatch } from 'store/hooks';
 
 import '../../../../utils/i18next';
 
-import { Inputs, ResponseSignIn, ErrorSignIn } from './types';
+import { Inputs, ResponseSignIn } from './types';
 import { PATH } from 'components/AppRoutes/types';
+import { TError } from 'types';
 
 function SignInForm() {
   const [signIn] = useSigninMutation();
@@ -47,20 +48,20 @@ function SignInForm() {
         const id = jwt_decode(response.token) as { userId: string };
         localStorage.setItem('KanBanId', id.userId);
         dispatch(setLogin(value.login));
-        toast.success(`${t('toastContent.userGreetings')}, ${value.login}`);
+        toast.success(`${t('toastContent.userGreetings')}, ${value.login}!`);
         navigate('/boards');
       } else {
         throw new Error();
       }
     } catch (err) {
-      const error = err as ErrorSignIn;
+      const error = err as TError;
       setIsLoading(false);
-      switch (error.status) {
+      switch (error.status || error.statusCode) {
         case 403:
           toast.error(t('toastContent.userError'));
           break;
         default:
-          toast.error(t('toastContent.unknownError'));
+          toast.error(t('toastContent.serverError'));
       }
     }
   };
@@ -78,6 +79,7 @@ function SignInForm() {
         id="login"
         label={errors.login ? t('signInForm.loginError') : t('signInForm.login')}
         variant="outlined"
+        autoComplete="username"
         error={!!errors.login}
         {...register('login', {
           required: true,
@@ -90,6 +92,7 @@ function SignInForm() {
         id="password"
         label={errors.password ? t('signInForm.passwordError') : t('signInForm.password')}
         variant="outlined"
+        autoComplete="current-password"
         error={!!errors.password}
         {...register('password', {
           required: true,

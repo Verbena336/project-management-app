@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
@@ -17,22 +17,23 @@ import { useGetBoardQuery } from 'store/services/boardsApi';
 
 import styles from './index.module.scss';
 
-import { CreateRequest, PATH } from 'types';
+import { CreateRequest, PATH, TError } from 'types';
 import { TColumn } from 'store/services/types/columns';
 
 const { BOARDS } = PATH;
-const { inner, wrapper, content } = styles;
+const { inner, wrapper, content, backLink, backTitle, arrow, loading, linkSearch, search } = styles;
 
 const Columns = () => {
   const { boardId } = useParams();
   const { t } = useTranslation();
   const [addColumn] = useAddColumnMutation();
   const [columns, setColumns] = useState<TColumn[]>([]);
-  const { data, isLoading } = useGetBoardQuery(boardId!);
+  const { data, isLoading, isError } = useGetBoardQuery(boardId!);
   const [updateTask] = useUpdateTaskMutation();
   const [updateColumn] = useUpdateColumnMutation();
   const [searchError, setSearchError] = useState(false);
   const [searchValue, setSearchValue] = useState('');
+  const navigate = useNavigate();
 
   const searchSubmitHandler = useCallback(
     (e?: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -41,7 +42,6 @@ const Columns = () => {
       if (e) value = e.target.value;
       else value = searchValue;
 
-      console.log(value);
       setSearchValue(value);
       if (searchError) setSearchError(false);
 
@@ -64,14 +64,32 @@ const Columns = () => {
     searchSubmitHandler();
   }, [data, searchSubmitHandler]);
 
+  useEffect(() => {
+    if (isError) {
+      toast.error(t('toastContent.notBoard'));
+      navigate(PATH.BOARDS);
+    }
+  }, [isError, navigate, t]);
+
   const createColumn = async ({ title }: CreateRequest) => {
     try {
       const { id } = await addColumn({ boardId: boardId!, body: { title } }).unwrap();
       if (!id) {
         throw new Error();
       }
-    } catch {
-      toast.error(t('toastContent.serverError'));
+    } catch (err) {
+      const errorLocal = err as TError;
+      switch (errorLocal.status || errorLocal.statusCode) {
+        case 401:
+          toast.error(t('toastContent.unauthorized'));
+          localStorage.removeItem('KanBanToken');
+          localStorage.removeItem('KanBanLogin');
+          localStorage.removeItem('KanBanId');
+          navigate(PATH.WELCOME);
+          break;
+        default:
+          toast.error(t('toastContent.serverError'));
+      }
     }
   };
 
@@ -179,19 +197,25 @@ const Columns = () => {
 
   return (
     <AppLayout>
-      <div className="container">
-        <div className={inner}>
-          <NavLink to={BOARDS} className="icon-back-arrow">
-            {t('columns.backLink')}
-          </NavLink>
-          <BoardColumnFilter
-            title={t('BoardColumnFilter.columnTitle')}
-            error={searchError}
-            submitHandler={searchSubmitHandler}
-          />
-          {isLoading ? (
-            <Spinner />
-          ) : (
+      {isLoading ? (
+        <div className={loading}>
+          <Spinner color="inherit" />
+        </div>
+      ) : (
+        <div className="container">
+          <div className={inner}>
+            <div className={linkSearch}>
+              <div className={backLink} onClick={() => navigate(BOARDS)}>
+                <div className={`icon-back-arrow ${arrow}`}></div>
+                <h3 className={backTitle}>{data?.title}</h3>
+              </div>
+              <BoardColumnFilter
+                selector={search}
+                title={t('BoardColumnFilter.columnTitle')}
+                error={searchError}
+                submitHandler={searchSubmitHandler}
+              />
+            </div>
             <div className={wrapper}>
               <DragDropContext onDragEnd={dragEndEvent}>
                 <Droppable droppableId="all-columns" direction="horizontal" type="columns">
@@ -222,9 +246,9 @@ const Columns = () => {
                 </Droppable>
               </DragDropContext>
             </div>
-          )}
+          </div>
         </div>
-      </div>
+      )}
     </AppLayout>
   );
 };

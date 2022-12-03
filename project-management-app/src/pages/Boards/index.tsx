@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import Spinner from '@mui/material/CircularProgress';
 import AppLayout from 'components/AppLayout';
@@ -13,8 +14,9 @@ import { useGetAllBoardsQuery, useAddBoardMutation } from 'store/services/boards
 import { addBoardRequest, getAllBoardsResponse } from 'store/services/types/boards';
 
 import styles from './index.module.scss';
+import { PATH, TError } from 'types';
 
-const { boardsWrapper } = styles;
+const { boardsWrapper, loading } = styles;
 
 const Boards = () => {
   const { t } = useTranslation();
@@ -22,6 +24,7 @@ const Boards = () => {
   const [addBoard] = useAddBoardMutation();
   const [boards, setBoards] = useState<getAllBoardsResponse>([]);
   const [searchError, setSearchError] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     data && setBoards(data);
@@ -30,13 +33,22 @@ const Boards = () => {
   const handleNewBoard = async (data: addBoardRequest) => {
     try {
       const response = await addBoard(data).unwrap();
-      if (response.id) {
-        toast.success(t('toastContent.addBoard'));
-      } else {
+      if (!response.id) {
         throw new Error();
       }
-    } catch {
-      toast.error(t('toastContent.serverError'));
+    } catch (err) {
+      const error = err as TError;
+      switch (error.status || error.statusCode) {
+        case 401:
+          toast.error(t('toastContent.unauthorized'));
+          localStorage.removeItem('KanBanToken');
+          localStorage.removeItem('KanBanLogin');
+          localStorage.removeItem('KanBanId');
+          navigate(PATH.WELCOME);
+          break;
+        default:
+          toast.error(t('toastContent.serverError'));
+      }
     }
   };
 
@@ -58,16 +70,18 @@ const Boards = () => {
 
   return (
     <AppLayout>
-      <BoardColumnFilter
-        title={t('BoardColumnFilter.boardTitle')}
-        error={searchError}
-        submitHandler={searchSubmitHandler}
-      />
-      <div className={boardsWrapper}>
-        {!data ? (
+      {!data ? (
+        <div className={loading}>
           <Spinner color="inherit" />
-        ) : (
-          <>
+        </div>
+      ) : (
+        <>
+          <BoardColumnFilter
+            title={t('BoardColumnFilter.boardTitle')}
+            error={searchError}
+            submitHandler={searchSubmitHandler}
+          />
+          <div className={boardsWrapper}>
             {boards.map(({ id, title, description }) => (
               <ExistBoard key={id} id={id} name={title} description={description} />
             ))}
@@ -76,9 +90,9 @@ const Boards = () => {
               iconClass="icon-add-board"
               handleNewItem={handleNewBoard}
             />
-          </>
-        )}
-      </div>
+          </div>
+        </>
+      )}
     </AppLayout>
   );
 };

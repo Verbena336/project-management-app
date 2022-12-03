@@ -19,15 +19,11 @@ export const authSlice = createSlice({
     setLogin: (state, action: PayloadAction<string>) => {
       state.login = action.payload;
     },
-    setColumns: (state, action: PayloadAction<TColumn[]>) => {
-      state.columns = action.payload;
-    },
   },
 });
 
-export const { setLogin, setColumns } = authSlice.actions;
+export const { setLogin } = authSlice.actions;
 
 export const loginValue = (state: RootState) => state.auth.login;
-export const columnsValue = (state: RootState) => state.auth.columns;
 
 export default authSlice.reducer;

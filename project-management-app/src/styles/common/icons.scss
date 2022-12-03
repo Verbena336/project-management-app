@@ -1,4 +1,5 @@
 @use '../base/vars' as *;
+@import '../abstracts//mixins';
 
 @font-face {
   font-family: 'icomoon';
@@ -24,8 +25,8 @@
   font-display: block;
 }
 
-[class^="icon-"]::before,
-[class*=" icon-"]::before {
+[class^='icon-']::before,
+[class*=' icon-']::before {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon', 'columnFont' !important;
   speak: never;
@@ -42,7 +43,7 @@
 
 .icon-app-logo:before {
   content: '\e903';
-  font-size: 70px;
+  font-size: 66px;
 }
 
 .icon-app-logo:hover {
@@ -56,12 +57,16 @@
 
 .icon-school-logo:hover {
   cursor: pointer;
-  color: #000;
+  color: $dark-white;
 }
 
 .icon-add-board:before {
   content: '\e900';
   font-size: 75px;
+}
+
+.icon-add-board {
+  color: $primary-color;
 }
 
 .icon-add-board-header:before {
@@ -79,9 +84,31 @@
   background-color: inherit;
   cursor: pointer;
   transition: 0.3s;
+  color: #616161;
+}
+
+.icon-board-remove {
+  border: none;
+  outline: none;
+  padding: 0;
+  background-color: inherit;
+  cursor: pointer;
+  transition: 0.3s;
+  color: #616161;
 }
 
 .icon-board-column-remove:before {
+  content: '\e905';
+  font-size: 30px;
+  @include media-tablet {
+    font-size: 28px;
+  }
+  @include media-mobile {
+    font-size: 25px;
+  }
+}
+
+.icon-board-remove:before {
   content: '\e905';
   font-size: 25px;
 }
@@ -92,13 +119,18 @@
 }
 
 .icon-board-edit:hover,
-.icon-board-column-remove:hover {
+.icon-board-column-remove:hover,
+.icon-board-remove:hover {
   color: $primary-color;
 }
 
 .icon-add-column:before {
   content: '\e901';
   font-size: 75px;
+}
+
+.icon-add-column {
+  color: $primary-color;
 }
 
 .icon-add-task {
@@ -117,13 +149,8 @@
     font-size: 45px;
     transition: all 0.3s;
     border-radius: 50%;
-  }
-}
-
-.icon-back-arrow {
-  &:hover.icon-back-arrow:before {
-    background-color: $light-gray-second-color;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+    vertical-align: top;
+    cursor: pointer;
   }
 }
 
@@ -162,11 +189,21 @@
   background-color: inherit;
   padding: 5px;
   border: 0;
+  color: #616161;
+  @include media-tablet {
+    padding: 3px;
+  }
 }
 
 .icon-task-action:before {
   content: '\e90c';
-  font-size: 30px;
+  font-size: 27px;
+  @include media-tablet {
+    font-size: 25px;
+  }
+  @include media-mobile {
+    font-size: 22px;
+  }
 }
 
 .icon-task-edit {
@@ -176,11 +213,21 @@
   background-color: inherit;
   cursor: pointer;
   transition: 0.3s;
+  color: #616161;
+  @include media-tablet {
+    padding: 3px;
+  }
 }
 
 .icon-task-edit:before {
   content: '\e906';
   font-size: 25px;
+  @include media-tablet {
+    font-size: 23px;
+  }
+  @include media-mobile {
+    font-size: 20px;
+  }
 }
 
 .icon-task-edit:hover {
@@ -190,16 +237,21 @@
 .icon-cancel,
 .icon-submit {
   border: 0;
+  padding: 0 2px;
   background-color: inherit;
 }
 
-.icon-cancel:before {
-  content: "\e910";
-  font-size: 30px;
+.icon-cancel:hover,
+.icon-submit:hover {
+  color: $primary-color;
 }
 
+.icon-cancel:before {
+  content: '\e910';
+  font-size: 25px;
+}
 
 .icon-submit:before {
-  content: "\e911";
-  font-size: 30px;
+  content: '\e911';
+  font-size: 25px;
 }

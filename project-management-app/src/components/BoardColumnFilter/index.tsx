@@ -8,11 +8,12 @@ import { props } from './types';
 import styles from './index.module.scss';
 const { filterContainer } = styles;
 
-const BoardColumnFilter = ({ title, error, submitHandler }: props) => {
+const BoardColumnFilter = ({ selector, title, error, submitHandler }: props) => {
   const { t } = useTranslation();
+  const container = selector ? `${filterContainer} ${selector}` : filterContainer;
 
   return (
-    <div className={filterContainer}>
+    <div className={container}>
       <TextField
         label={error ? t('BoardColumnFilter.error') : title}
         error={error}

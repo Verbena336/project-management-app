@@ -20,10 +20,10 @@ import { setLogin } from 'store/reducers/authSlice';
 
 import '../../../../utils/i18next';
 
-import { ErrorSignUp, Inputs, ResponseSignUp } from './types';
+import { Inputs, ResponseSignUp } from './types';
 import { PATH } from 'components/AppRoutes/types';
-
 import { ResponseSignIn } from '../../../SignIn/components/SignInForm/types';
+import { TError } from 'types';
 
 function SignUpForm() {
   const [signIn] = useSigninMutation();
@@ -53,16 +53,16 @@ function SignUpForm() {
           const id = jwt_decode(response.token) as { userId: string };
           localStorage.setItem('KanBanId', id.userId);
           dispatch(setLogin(value.login));
-          toast.success(`Hello, ${value.login}`);
+          toast.success(`${t('toastContent.userGreetings')}, ${value.login}!`);
           navigate(`${PATH.BOARDS}`);
         } else {
           throw new Error();
         }
       }
     } catch (err) {
-      const error = err as ErrorSignUp;
+      const error = err as TError;
       setIsLoading(false);
-      switch (error.status) {
+      switch (error.status || error.statusCode) {
         case 409:
           toast.error(t('toastContent.userExist'));
           break;
@@ -70,7 +70,7 @@ function SignUpForm() {
           toast.error(t('toastContent.userError'));
           break;
         default:
-          toast.error(t('toastContent.unknownError'));
+          toast.error(t('toastContent.serverError'));
       }
     }
   };
@@ -99,6 +99,7 @@ function SignUpForm() {
         id="login"
         label={errors.login ? t('signUpForm.loginError') : t('signUpForm.login')}
         variant="outlined"
+        autoComplete="username"
         error={errors.login ? true : false}
         {...register('login', {
           required: true,
@@ -111,6 +112,7 @@ function SignUpForm() {
         id="password"
         label={errors.password ? t('signUpForm.passwordError') : t('signUpForm.password')}
         variant="outlined"
+        autoComplete="new-password"
         error={errors.password ? true : false}
         {...register('password', {
           required: true,

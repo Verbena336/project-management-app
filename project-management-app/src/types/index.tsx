@@ -20,3 +20,14 @@ export type CreateRequest = {
   title: string;
   description: string;
 };
+
+type ResponseBody = {
+  statusCode: number;
+  message: string;
+};
+
+export type TError = {
+  status: number;
+  data: ResponseBody;
+  statusCode?: number;
+};
