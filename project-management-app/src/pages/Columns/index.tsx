@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
@@ -9,6 +9,7 @@ import Spinner from '@mui/material/CircularProgress';
 import AppLayout from 'components/AppLayout';
 import Column from './components/Column';
 import NewBoardOrColumn from 'components/NewBoardOrColumn';
+import BoardColumnFilter from 'components/BoardColumnFilter';
 
 import { useAddColumnMutation, useUpdateColumnMutation } from 'store/services/columnsApi';
 import { useUpdateTaskMutation } from 'store/services/tasksApi';
@@ -30,10 +31,38 @@ const Columns = () => {
   const { data, isLoading } = useGetBoardQuery(boardId!);
   const [updateTask] = useUpdateTaskMutation();
   const [updateColumn] = useUpdateColumnMutation();
+  const [searchError, setSearchError] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
+
+  const searchSubmitHandler = useCallback(
+    (e?: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      let value: string;
+
+      if (e) value = e.target.value;
+      else value = searchValue;
+
+      console.log(value);
+      setSearchValue(value);
+      if (searchError) setSearchError(false);
+
+      if (!data) return;
+      if (!value && data) return setColumns(data.columns);
+
+      const result = data.columns.filter((item) => item.title.includes(value));
+      if (data.columns.length && !result.length) {
+        setSearchError(true);
+        return;
+      }
+
+      setColumns(result);
+    },
+    [data, searchError, searchValue]
+  );
 
   useEffect(() => {
     data && setColumns(data.columns);
-  }, [data]);
+    searchSubmitHandler();
+  }, [data, searchSubmitHandler]);
 
   const createColumn = async ({ title }: CreateRequest) => {
     try {
@@ -155,6 +184,11 @@ const Columns = () => {
           <NavLink to={BOARDS} className="icon-back-arrow">
             {t('columns.backLink')}
           </NavLink>
+          <BoardColumnFilter
+            title={t('BoardColumnFilter.columnTitle')}
+            error={searchError}
+            submitHandler={searchSubmitHandler}
+          />
           {isLoading ? (
             <Spinner />
           ) : (
@@ -168,7 +202,13 @@ const Columns = () => {
                           .sort((a, b) => a.order - b.order)
                           .map((data, i) => {
                             return (
-                              <Column key={data.id} boardId={boardId!} data={data} index={i} />
+                              <Column
+                                key={data.id}
+                                isDrag={!!searchValue}
+                                boardId={boardId!}
+                                data={data}
+                                index={i}
+                              />
                             );
                           })}
                       {provided.placeholder}

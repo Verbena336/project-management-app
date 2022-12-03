@@ -21,6 +21,7 @@ const Boards = () => {
   const { data } = useGetAllBoardsQuery();
   const [addBoard] = useAddBoardMutation();
   const [boards, setBoards] = useState<getAllBoardsResponse>([]);
+  const [searchError, setSearchError] = useState(false);
 
   useEffect(() => {
     data && setBoards(data);
@@ -39,12 +40,28 @@ const Boards = () => {
     }
   };
 
+  const searchSubmitHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { value } = e.target;
+    if (searchError) setSearchError(false);
+
+    if (!data) return;
+    if (!value && data) return setBoards(data);
+
+    const result = data.filter((item) => item.title.includes(value));
+    if (data.length && !result.length) {
+      setSearchError(true);
+      return;
+    }
+
+    setBoards(result);
+  };
+
   return (
     <AppLayout>
       <BoardColumnFilter
         title={t('BoardColumnFilter.boardTitle')}
-        data={data}
-        handleData={setBoards}
+        error={searchError}
+        submitHandler={searchSubmitHandler}
       />
       <div className={boardsWrapper}>
         {!data ? (

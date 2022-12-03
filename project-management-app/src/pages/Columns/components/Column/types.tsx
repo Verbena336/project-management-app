@@ -5,6 +5,7 @@ import { DeleteModalProps } from 'components/Modals/DeleteModal/types';
 export type Props = {
   boardId: string;
   index: number;
+  isDrag: boolean;
   data: TColumn;
 };
 

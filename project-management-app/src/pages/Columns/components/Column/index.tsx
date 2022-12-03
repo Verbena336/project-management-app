@@ -23,7 +23,7 @@ import { muiTitleInput } from 'data/styles';
 
 const { column, wrapper, header, content, inputBtns, columnTitle } = styles;
 
-const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }: Props) => {
+const Column = ({ boardId, index, isDrag, data: { title, id: columnId, order, tasks } }: Props) => {
   const ref: React.RefObject<HTMLInputElement> = useRef(null);
   const [isModalDeleteColumn, setIsModalDeleteColumn] = useState(false);
   const [isInputActive, setInputState] = useState(false);
@@ -126,7 +126,7 @@ const Column = ({ boardId, index, data: { title, id: columnId, order, tasks } }:
           user={editProps.user}
         />
       )}
-      <Draggable draggableId={columnId} index={index}>
+      <Draggable draggableId={columnId} index={index} isDragDisabled={isDrag}>
         {(provided) => (
           <section
             className={column}

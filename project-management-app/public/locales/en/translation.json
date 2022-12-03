@@ -116,9 +116,8 @@
     "title": "Create Column"
   },
   "BoardColumnFilter": {
-    "boardTitle": "Board Title",
-    "columnTitle": "Column Title",
-    "error": "⚠ no results found!",
-    "search": "Search"
+    "boardTitle": "Search Board",
+    "columnTitle": "Search Column",
+    "error": "⚠ no results found!"
   }
 }
