@@ -107,20 +107,41 @@ const Columns = () => {
 
       setColumns(newColumnsArr);
 
-      await updateColumn({
-        boardId: boardId!,
-        columnId: currentColumn!.id,
-        body: {
-          title: currentColumn!.title,
-          order: destination.index + 1,
-        },
-      });
+      try {
+        await updateColumn({
+          boardId: boardId!,
+          columnId: currentColumn!.id,
+          body: {
+            title: currentColumn!.title,
+            order: destination.index + 1,
+          },
+        });
+      } catch (err) {
+        const errorLocal = err as TError;
+        switch (errorLocal.status || errorLocal.statusCode) {
+          case 401:
+            toast.error(t('toastContent.unauthorized'));
+            localStorage.removeItem('KanBanToken');
+            localStorage.removeItem('KanBanLogin');
+            localStorage.removeItem('KanBanId');
+            navigate(PATH.WELCOME);
+            break;
+          default:
+            toast.error(t('toastContent.serverError'));
+        }
+      }
       return;
     }
 
     const task = columns
       .find((column) => column.id === source.droppableId)
       ?.tasks.find((task) => task.id === draggableId);
+    try {
+      if (!task) throw new Error();
+    } catch {
+      toast.error(t('toastContent.serverError'));
+    }
+    if (!task) return;
 
     const columnStart = columns.find((item) => item.id === source.droppableId);
     const columnFinish = columns.find((item) => item.id === destination.droppableId);
@@ -186,12 +207,28 @@ const Columns = () => {
       boardId: boardId!,
       userId: task!.userId,
     };
-    await updateTask({
-      boardId: boardId!,
-      columnId: source.droppableId,
-      taskId: draggableId,
-      body,
-    });
+
+    try {
+      await updateTask({
+        boardId: boardId!,
+        columnId: source.droppableId,
+        taskId: draggableId,
+        body,
+      }).unwrap();
+    } catch (err) {
+      const errorLocal = err as TError;
+      switch (errorLocal.status || errorLocal.statusCode) {
+        case 401:
+          toast.error(t('toastContent.unauthorized'));
+          localStorage.removeItem('KanBanToken');
+          localStorage.removeItem('KanBanLogin');
+          localStorage.removeItem('KanBanId');
+          navigate(PATH.WELCOME);
+          break;
+        default:
+          toast.error(t('toastContent.serverError'));
+      }
+    }
   };
 
   return (

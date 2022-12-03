@@ -45,10 +45,7 @@ const Header = () => {
   const open = Boolean(anchorEl);
   const [isStiky, setIsStiky] = useState(window.pageYOffset > 0);
   const loginStore = useAppSelector(loginValue);
-  const isPublic =
-    location.pathname === PATH.ROUTES_404 ||
-    location.pathname === PATH.SIGN_UP ||
-    location.pathname === PATH.SIGN_IN;
+  const isPublic = location.pathname === PATH.SIGN_UP || location.pathname === PATH.SIGN_IN;
 
   const handleNewBoard = async (data: addBoardRequest) => {
     try {
