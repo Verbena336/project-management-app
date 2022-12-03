@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import TextField from '@mui/material/TextField';
-import Spiner from '@mui/material/CircularProgress';
+import Loader from 'components/Loading/components/Loader';
 
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './index.module.scss';
@@ -102,7 +102,7 @@ function EditProfileForm() {
   const onSubmit = (data: Inputs) => updateUser(data);
 
   return isLoading ? (
-    <Spiner color="inherit" />
+    <Loader />
   ) : (
     <>
       {isModal && <DeleteModal handler={deleteUser} closeHandler={() => setIsModal(!isModal)} />}

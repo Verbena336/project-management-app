@@ -47,6 +47,7 @@
 .linkSearch {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .backLink {
@@ -71,13 +72,7 @@
 }
 
 .search {
-  padding: 0 125px 0 10px;
-  @include media-tablet-small {
-    padding: 0 10px 0 10px;
-  }
-  @include media-mobile {
-    padding: 0 0 0 10px;
-  }
+  margin: unset;
 }
 
 .arrow {
@@ -91,10 +86,7 @@
   transition: all 0.3s;
   @include ptserif($fs: 29px, $fw: 400);
   @include media-tablet {
-    font-size: 28px;
-  }
-  @include media-mobile {
-    font-size: 25px;
+    display: none;
   }
 }
 

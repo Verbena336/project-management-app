@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import jwt_decode from 'jwt-decode';
 
 import TextField from '@mui/material/TextField';
-import Spinner from '@mui/material/CircularProgress';
+import Loader from 'components/Loading/components/Loader';
 
 import SignBtn from 'components/SignBtn';
 
@@ -69,7 +69,7 @@ function SignInForm() {
   const onSubmit = (data: Inputs) => loginUser(data);
 
   return isLoading ? (
-    <Spinner color="inherit" />
+    <Loader />
   ) : (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <NavLink to={PATH.WELCOME} className={'icon-back-arrow'} />

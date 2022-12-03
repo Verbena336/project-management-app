@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 
-import Spinner from '@mui/material/CircularProgress';
+import Loader from 'components/Loading/components/Loader';
 
 import AppLayout from 'components/AppLayout';
 import Column from './components/Column';
@@ -40,7 +40,7 @@ const Columns = () => {
       let value: string;
 
       if (e) value = e.target.value;
-      else value = searchValue;
+      else value = searchValue.toLowerCase();
 
       setSearchValue(value);
       if (searchError) setSearchError(false);
@@ -48,10 +48,9 @@ const Columns = () => {
       if (!data) return;
       if (!value && data) return setColumns(data.columns);
 
-      const result = data.columns.filter((item) => item.title.includes(value));
+      const result = data.columns.filter((item) => item.title.toLowerCase().includes(value));
       if (data.columns.length && !result.length) {
         setSearchError(true);
-        return;
       }
 
       setColumns(result);
@@ -199,7 +198,7 @@ const Columns = () => {
     <AppLayout>
       {isLoading ? (
         <div className={loading}>
-          <Spinner color="inherit" />
+          <Loader />
         </div>
       ) : (
         <div className="container">
@@ -214,6 +213,7 @@ const Columns = () => {
                 title={t('BoardColumnFilter.columnTitle')}
                 error={searchError}
                 submitHandler={searchSubmitHandler}
+                disable={!data?.columns.length}
               />
             </div>
             <div className={wrapper}>

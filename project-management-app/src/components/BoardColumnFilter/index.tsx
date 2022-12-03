@@ -8,7 +8,7 @@ import { props } from './types';
 import styles from './index.module.scss';
 const { filterContainer } = styles;
 
-const BoardColumnFilter = ({ selector, title, error, submitHandler }: props) => {
+const BoardColumnFilter = ({ selector, title, error, submitHandler, disable }: props) => {
   const { t } = useTranslation();
   const container = selector ? `${filterContainer} ${selector}` : filterContainer;
 
@@ -19,6 +19,7 @@ const BoardColumnFilter = ({ selector, title, error, submitHandler }: props) => 
         error={error}
         size="small"
         onChange={submitHandler}
+        disabled={disable}
       />
     </div>
   );

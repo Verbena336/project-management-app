@@ -3,11 +3,11 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import Spinner from '@mui/material/CircularProgress';
 import AppLayout from 'components/AppLayout';
 import ExistBoard from './components/ExistBoard';
 import NewBoardOrColumn from '../../components/NewBoardOrColumn';
 import BoardColumnFilter from 'components/BoardColumnFilter';
+import Loader from 'components/Loading/components/Loader';
 
 import { useGetAllBoardsQuery, useAddBoardMutation } from 'store/services/boardsApi';
 
@@ -53,16 +53,15 @@ const Boards = () => {
   };
 
   const searchSubmitHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { value } = e.target;
+    const value = e.target.value.toLowerCase();
     if (searchError) setSearchError(false);
 
     if (!data) return;
     if (!value && data) return setBoards(data);
 
-    const result = data.filter((item) => item.title.includes(value));
+    const result = data.filter((item) => item.title.toLowerCase().includes(value));
     if (data.length && !result.length) {
       setSearchError(true);
-      return;
     }
 
     setBoards(result);
@@ -72,7 +71,7 @@ const Boards = () => {
     <AppLayout>
       {!data ? (
         <div className={loading}>
-          <Spinner color="inherit" />
+          <Loader />
         </div>
       ) : (
         <>
@@ -80,6 +79,7 @@ const Boards = () => {
             title={t('BoardColumnFilter.boardTitle')}
             error={searchError}
             submitHandler={searchSubmitHandler}
+            disable={!data.length}
           />
           <div className={boardsWrapper}>
             {boards.map(({ id, title, description }) => (

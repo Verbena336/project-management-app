@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import Spinner from '@mui/material/CircularProgress';
 import { TextField } from '@mui/material';
 import MainPaper from 'components/MainPaper';
+import Loader from 'components/Loading/components/Loader';
 
 import SaveButton from '../SaveButton';
 
@@ -64,7 +64,7 @@ const CreateEditModal = ({
         <MainPaper>
           <form className={formClass} onSubmit={handleSubmit(onSubmit)}>
             {isLoading ? (
-              <Spinner color="inherit" />
+              <Loader />
             ) : (
               <>
                 <button

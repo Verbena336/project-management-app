@@ -38,6 +38,11 @@
   margin: 0;
   font-size: 25px;
   color: $primary-color;
+  text-align: center;
+  white-space: nowrap;
+  @include media-tablet-small {
+    font-size: 20px;
+  }
 }
 
 .modalButtonsWrapper {

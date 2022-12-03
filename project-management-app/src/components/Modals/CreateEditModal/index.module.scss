@@ -54,6 +54,11 @@
   margin: 0;
   font-size: 30px;
   color: $primary-color;
+  text-align: center;
+  white-space: nowrap;
+  @include media-tablet-small {
+    font-size: 20px;
+  }
 }
 
 .userName {

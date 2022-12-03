@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { ThemeProvider } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
-import Spinner from '@mui/material/CircularProgress';
 import { Button } from '@mui/material';
 import MainPaper from 'components/MainPaper';
+import Loader from 'components/Loading/components/Loader';
 
 import DeleteButton from '../DeleteButton';
 
@@ -36,7 +36,7 @@ const DeleteModal = ({ handler, closeHandler }: DeleteModalProps) => {
         <MainPaper>
           <div className={modalContent}>
             {isLoading ? (
-              <Spinner color="inherit" />
+              <Loader />
             ) : (
               <>
                 <button

@@ -5,7 +5,7 @@ import CreateEditModal from 'components/Modals/CreateEditModal';
 import { NewBoardOrColumnProps } from './types';
 
 import styles from './index.module.scss';
-const { newBoard } = styles;
+const { newBoard, newColumn } = styles;
 
 const NewBoardOrColumn = ({ modalTitle, iconClass, handleNewItem }: NewBoardOrColumnProps) => {
   const [isModal, setIsModal] = useState(false);
@@ -21,7 +21,11 @@ const NewBoardOrColumn = ({ modalTitle, iconClass, handleNewItem }: NewBoardOrCo
           closeHandler={handleModal}
         />
       )}
-      <button className={newBoard} type="button" onClick={handleModal}>
+      <button
+        className={iconClass.includes('board') ? newBoard : newColumn}
+        type="button"
+        onClick={handleModal}
+      >
         <div className={iconClass}></div>
       </button>
     </>
