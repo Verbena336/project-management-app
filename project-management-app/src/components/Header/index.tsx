@@ -150,6 +150,7 @@ const Header = () => {
                     <MuiButton
                       onClick={() => setIsModal(true)}
                       variant="text"
+                      color="inherit"
                       startIcon={<div className="icon-add-board-header"></div>}
                     >
                       {t('headerUser.newBoard')}
@@ -157,6 +158,7 @@ const Header = () => {
                     <MuiButton
                       onClick={(e) => setAnchorEl(e.currentTarget)}
                       variant="text"
+                      color="inherit"
                       startIcon={<div className="icon-profile-user"></div>}
                     >
                       {t('headerUser.userName', { UserName: loginStore })}
