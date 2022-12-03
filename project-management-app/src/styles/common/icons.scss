@@ -62,7 +62,10 @@
 
 .icon-add-board:before {
   content: '\e900';
-  font-size: 75px;
+  font-size: 80px;
+  @include media-tablet {
+    font-size: 75px;
+  }
 }
 
 .icon-add-board {
@@ -126,7 +129,10 @@
 
 .icon-add-column:before {
   content: '\e901';
-  font-size: 75px;
+  font-size: 80px;
+  @include media-tablet {
+    font-size: 75px;
+  }
 }
 
 .icon-add-column {

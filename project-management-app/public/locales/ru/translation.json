@@ -112,6 +112,11 @@
   "createColumn": {
     "title": "Создать Колонку"
   },
+  "BoardColumnFilter": {
+    "boardTitle": "Поиск Доски",
+    "columnTitle": "Поиск Колонки",
+    "error": "⚠ результаты не найдены!"
+  },
   "deletedUser": "Пользователь удалён",
   "ErrorView": {
     "button": "главную"

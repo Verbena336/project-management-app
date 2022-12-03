@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import Spinner from '@mui/material/CircularProgress';
 import AppLayout from 'components/AppLayout';
 import ExistBoard from './components/ExistBoard';
 import NewBoardOrColumn from '../../components/NewBoardOrColumn';
+import BoardColumnFilter from 'components/BoardColumnFilter';
+import Loader from 'components/Loading/components/Loader';
 
 import { useGetAllBoardsQuery, useAddBoardMutation } from 'store/services/boardsApi';
 
-import { addBoardRequest } from 'store/services/types/boards';
+import { addBoardRequest, getAllBoardsResponse } from 'store/services/types/boards';
 
 import styles from './index.module.scss';
 import { PATH, TError } from 'types';
@@ -21,7 +22,13 @@ const Boards = () => {
   const { t } = useTranslation();
   const { data } = useGetAllBoardsQuery();
   const [addBoard] = useAddBoardMutation();
+  const [boards, setBoards] = useState<getAllBoardsResponse>([]);
+  const [searchError, setSearchError] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    data && setBoards(data);
+  }, [data]);
 
   const handleNewBoard = async (data: addBoardRequest) => {
     try {
@@ -45,16 +52,37 @@ const Boards = () => {
     }
   };
 
+  const searchSubmitHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const value = e.target.value.toLowerCase();
+    if (searchError) setSearchError(false);
+
+    if (!data) return;
+    if (!value && data) return setBoards(data);
+
+    const result = data.filter((item) => item.title.toLowerCase().includes(value));
+    if (data.length && !result.length) {
+      setSearchError(true);
+    }
+
+    setBoards(result);
+  };
+
   return (
     <AppLayout>
       {!data ? (
         <div className={loading}>
-          <Spinner color="inherit" />
+          <Loader />
         </div>
       ) : (
         <>
+          <BoardColumnFilter
+            title={t('BoardColumnFilter.boardTitle')}
+            error={searchError}
+            submitHandler={searchSubmitHandler}
+            disable={!data.length}
+          />
           <div className={boardsWrapper}>
-            {data.map(({ id, title, description }) => (
+            {boards.map(({ id, title, description }) => (
               <ExistBoard key={id} id={id} name={title} description={description} />
             ))}
             <NewBoardOrColumn

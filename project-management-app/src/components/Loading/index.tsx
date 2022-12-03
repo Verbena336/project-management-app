@@ -1,12 +1,14 @@
 import React from 'react';
 
+import Loader from './components/Loader';
+
 import styles from './index.module.scss';
 
-const { loader, wrapper } = styles;
+const { wrapper } = styles;
 
 const Loading = () => (
   <div className={wrapper}>
-    <span className={loader}></span>
+    <Loader />
   </div>
 );
 

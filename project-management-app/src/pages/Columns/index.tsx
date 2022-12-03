@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 
-import Spinner from '@mui/material/CircularProgress';
+import Loader from 'components/Loading/components/Loader';
 
 import AppLayout from 'components/AppLayout';
 import Column from './components/Column';
 import NewBoardOrColumn from 'components/NewBoardOrColumn';
+import BoardColumnFilter from 'components/BoardColumnFilter';
 
 import { useAddColumnMutation, useUpdateColumnMutation } from 'store/services/columnsApi';
 import { useUpdateTaskMutation } from 'store/services/tasksApi';
@@ -20,7 +21,7 @@ import { CreateRequest, PATH, TError } from 'types';
 import { TColumn } from 'store/services/types/columns';
 
 const { BOARDS } = PATH;
-const { inner, wrapper, content, backLink, backTitle, arrow, loading } = styles;
+const { inner, wrapper, content, backLink, backTitle, arrow, loading, linkSearch, search } = styles;
 
 const Columns = () => {
   const { boardId } = useParams();
@@ -30,11 +31,37 @@ const Columns = () => {
   const { data, isLoading, isError } = useGetBoardQuery(boardId!);
   const [updateTask] = useUpdateTaskMutation();
   const [updateColumn] = useUpdateColumnMutation();
+  const [searchError, setSearchError] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
   const navigate = useNavigate();
+
+  const searchSubmitHandler = useCallback(
+    (e?: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      let value: string;
+
+      if (e) value = e.target.value;
+      else value = searchValue.toLowerCase();
+
+      setSearchValue(value);
+      if (searchError) setSearchError(false);
+
+      if (!data) return;
+      if (!value && data) return setColumns(data.columns);
+
+      const result = data.columns.filter((item) => item.title.toLowerCase().includes(value));
+      if (data.columns.length && !result.length) {
+        setSearchError(true);
+      }
+
+      setColumns(result);
+    },
+    [data, searchError, searchValue]
+  );
 
   useEffect(() => {
     data && setColumns(data.columns);
-  }, [data]);
+    searchSubmitHandler();
+  }, [data, searchSubmitHandler]);
 
   useEffect(() => {
     if (isError) {
@@ -80,20 +107,41 @@ const Columns = () => {
 
       setColumns(newColumnsArr);
 
-      await updateColumn({
-        boardId: boardId!,
-        columnId: currentColumn!.id,
-        body: {
-          title: currentColumn!.title,
-          order: destination.index + 1,
-        },
-      });
+      try {
+        await updateColumn({
+          boardId: boardId!,
+          columnId: currentColumn!.id,
+          body: {
+            title: currentColumn!.title,
+            order: destination.index + 1,
+          },
+        });
+      } catch (err) {
+        const errorLocal = err as TError;
+        switch (errorLocal.status || errorLocal.statusCode) {
+          case 401:
+            toast.error(t('toastContent.unauthorized'));
+            localStorage.removeItem('KanBanToken');
+            localStorage.removeItem('KanBanLogin');
+            localStorage.removeItem('KanBanId');
+            navigate(PATH.WELCOME);
+            break;
+          default:
+            toast.error(t('toastContent.serverError'));
+        }
+      }
       return;
     }
 
     const task = columns
       .find((column) => column.id === source.droppableId)
       ?.tasks.find((task) => task.id === draggableId);
+    try {
+      if (!task) throw new Error();
+    } catch {
+      toast.error(t('toastContent.serverError'));
+    }
+    if (!task) return;
 
     const columnStart = columns.find((item) => item.id === source.droppableId);
     const columnFinish = columns.find((item) => item.id === destination.droppableId);
@@ -159,26 +207,51 @@ const Columns = () => {
       boardId: boardId!,
       userId: task!.userId,
     };
-    await updateTask({
-      boardId: boardId!,
-      columnId: source.droppableId,
-      taskId: draggableId,
-      body,
-    });
+
+    try {
+      await updateTask({
+        boardId: boardId!,
+        columnId: source.droppableId,
+        taskId: draggableId,
+        body,
+      }).unwrap();
+    } catch (err) {
+      const errorLocal = err as TError;
+      switch (errorLocal.status || errorLocal.statusCode) {
+        case 401:
+          toast.error(t('toastContent.unauthorized'));
+          localStorage.removeItem('KanBanToken');
+          localStorage.removeItem('KanBanLogin');
+          localStorage.removeItem('KanBanId');
+          navigate(PATH.WELCOME);
+          break;
+        default:
+          toast.error(t('toastContent.serverError'));
+      }
+    }
   };
 
   return (
     <AppLayout>
       {isLoading ? (
         <div className={loading}>
-          <Spinner color="inherit" />
+          <Loader />
         </div>
       ) : (
         <div className="container">
           <div className={inner}>
-            <div className={backLink} onClick={() => navigate(BOARDS)}>
-              <div className={`icon-back-arrow ${arrow}`}></div>
-              <h3 className={backTitle}>{data?.title}</h3>
+            <div className={linkSearch}>
+              <div className={backLink} onClick={() => navigate(BOARDS)}>
+                <div className={`icon-back-arrow ${arrow}`}></div>
+                <h3 className={backTitle}>{data?.title}</h3>
+              </div>
+              <BoardColumnFilter
+                selector={search}
+                title={t('BoardColumnFilter.columnTitle')}
+                error={searchError}
+                submitHandler={searchSubmitHandler}
+                disable={!data?.columns.length}
+              />
             </div>
             <div className={wrapper}>
               <DragDropContext onDragEnd={dragEndEvent}>
@@ -190,7 +263,13 @@ const Columns = () => {
                           .sort((a, b) => a.order - b.order)
                           .map((data, i) => {
                             return (
-                              <Column key={data.id} boardId={boardId!} data={data} index={i} />
+                              <Column
+                                key={data.id}
+                                isDrag={!!searchValue}
+                                boardId={boardId!}
+                                data={data}
+                                index={i}
+                              />
                             );
                           })}
                       {provided.placeholder}

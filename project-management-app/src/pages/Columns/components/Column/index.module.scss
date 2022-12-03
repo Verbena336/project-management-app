@@ -17,13 +17,13 @@
   flex-direction: column;
   justify-content: space-between;
   max-height: calc(100vh - 320px);
-  min-height: 189px;
+  min-height: 191px;
   height: 100%;
   max-width: 400px;
   width: calc(100vw - 20px);
   @include media-tablet {
     max-width: 340px;
-    min-height: 171px;
+    min-height: 174px;
     max-height: calc(100vh - 363px);
   }
   @include media-tablet-small {

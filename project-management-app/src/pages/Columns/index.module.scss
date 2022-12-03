@@ -44,6 +44,12 @@
   transition: 0.5s;
 }
 
+.linkSearch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .backLink {
   display: flex;
   align-items: center;
@@ -60,6 +66,13 @@
       color: #1b519c;
     }
   }
+  @include media-mobile {
+    padding: 5px 0;
+  }
+}
+
+.search {
+  margin: unset;
 }
 
 .arrow {
@@ -71,12 +84,9 @@
   margin: 0;
   cursor: pointer;
   transition: all 0.3s;
-  @include ptserif($fs: 30px, $fw: 400);
+  @include ptserif($fs: 29px, $fw: 400);
   @include media-tablet {
-    font-size: 28px;
-  }
-  @include media-mobile {
-    font-size: 25px;
+    display: none;
   }
 }
 

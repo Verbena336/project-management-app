@@ -112,6 +112,11 @@
   "createColumn": {
     "title": "Create Column"
   },
+  "BoardColumnFilter": {
+    "boardTitle": "Search Board",
+    "columnTitle": "Search Column",
+    "error": "⚠ no results found!"
+  },
   "deletedUser": "User deleted",
   "ErrorView": {
     "button": "main"

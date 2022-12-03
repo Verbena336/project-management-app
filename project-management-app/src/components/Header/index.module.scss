@@ -12,7 +12,7 @@
   position: sticky;
   top: 0;
   background-color: $white;
-  z-index: 1;
+  z-index: 2;
 }
 
 .inner {
@@ -25,6 +25,9 @@
     flex-direction: column;
     justify-content: center;
   }
+  @include media-mobile {
+    padding: 5px 0;
+  }
 }
 
 .control {
@@ -33,6 +36,9 @@
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
+  @include media-mobile {
+    gap: 5px;
+  }
 }
 
 .link {

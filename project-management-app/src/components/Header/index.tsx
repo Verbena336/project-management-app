@@ -45,10 +45,7 @@ const Header = () => {
   const open = Boolean(anchorEl);
   const [isStiky, setIsStiky] = useState(window.pageYOffset > 0);
   const loginStore = useAppSelector(loginValue);
-  const isPublic =
-    location.pathname === PATH.ROUTES_404 ||
-    location.pathname === PATH.SIGN_UP ||
-    location.pathname === PATH.SIGN_IN;
+  const isPublic = location.pathname === PATH.SIGN_UP || location.pathname === PATH.SIGN_IN;
 
   const handleNewBoard = async (data: addBoardRequest) => {
     try {
@@ -150,6 +147,7 @@ const Header = () => {
                     <MuiButton
                       onClick={() => setIsModal(true)}
                       variant="text"
+                      color="inherit"
                       startIcon={<div className="icon-add-board-header"></div>}
                     >
                       {t('headerUser.newBoard')}
@@ -157,6 +155,7 @@ const Header = () => {
                     <MuiButton
                       onClick={(e) => setAnchorEl(e.currentTarget)}
                       variant="text"
+                      color="inherit"
                       startIcon={<div className="icon-profile-user"></div>}
                     >
                       {t('headerUser.userName', { UserName: loginStore })}

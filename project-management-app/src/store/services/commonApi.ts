@@ -14,6 +14,7 @@ export const commonApi = createApi({
       return headers;
     },
   }),
+  keepUnusedDataFor: 0,
   tagTypes: ['Boards', 'Users'],
   endpoints: () => ({}),
 });
