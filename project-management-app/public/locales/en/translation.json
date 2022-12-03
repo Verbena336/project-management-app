@@ -27,11 +27,11 @@
     "title": "About Team",
     "teamItems": {
       "Natasha": "Natasha",
-      "NatashaText": "SomeText",
+      "NatashaText": "Made interaction pages with user profile. Implemented dragging tasks from column to column and translating the application.",
       "Nikita": "Nikita",
-      "NikitaText": "SomeText",
+      "NikitaText": "Implemented navigation, boards page, application modal windows. Made drag and drop columns, search boards and columns.",
       "Vitalik": "Vitalik",
-      "VitalikText": "SomeText"
+      "VitalikText": "Made the layout of the welcome and columns pages. Implemented the functionality of getting and editing columns. Added an icon font."
     }
   },
   "school": {
