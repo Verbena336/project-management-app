@@ -1,4 +1,5 @@
 @import '../../../../styles/base/vars';
+@import '../../../../styles/abstracts/mixins';
 
 .form div {
   width: 100%;
@@ -37,7 +38,7 @@ hr {
   color: $primary-color;
   font-size: 22px;
   text-decoration: none;
-  transition: all .3s;
+  transition: all 0.3s;
   &:hover {
     color: $bright-blue-color;
   }
@@ -47,4 +48,22 @@ hr {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @include media-mobile {
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+  }
+}
+
+.arrow {
+  transition: all 0.3s;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: block;
+  margin-bottom: 10px;
+  &:hover {
+    background-color: rgba(159, 197, 238, 0.4);
+    box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.2);
+  }
 }

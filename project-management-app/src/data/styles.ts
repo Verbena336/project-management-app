@@ -40,6 +40,7 @@ export const muiModalButtonStyle = {
   height: 30,
   textTransform: 'capitalize',
   fontSize: 17,
+  whiteSpace: 'none',
 };
 
 export const saveButtonBg = {
