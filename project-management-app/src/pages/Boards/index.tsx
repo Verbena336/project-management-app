@@ -11,7 +11,11 @@ import Loader from 'components/Loading/components/Loader';
 
 import { useGetAllBoardsQuery, useAddBoardMutation } from 'store/services/boardsApi';
 
-import { addBoardRequest, getAllBoardsResponse } from 'store/services/types/boards';
+import {
+  addBoardRequest,
+  getAllBoardsResponse,
+  addUpdateBoardResponse,
+} from 'store/services/types/boards';
 
 import styles from './index.module.scss';
 import { PATH, TError } from 'types';
@@ -67,6 +71,12 @@ const Boards = () => {
     setBoards(result);
   };
 
+  const sortBoards = (a: addUpdateBoardResponse, b: addUpdateBoardResponse) => {
+    if (a.title > b.title) return 1;
+    if (a.title < b.title) return -1;
+    return 0;
+  };
+
   return (
     <AppLayout>
       {!data ? (
@@ -82,7 +92,7 @@ const Boards = () => {
             disable={!data.length}
           />
           <div className={boardsWrapper}>
-            {boards.map(({ id, title, description }) => (
+            {[...boards].sort(sortBoards).map(({ id, title, description }) => (
               <ExistBoard key={id} id={id} name={title} description={description} />
             ))}
             <NewBoardOrColumn
