@@ -28,7 +28,7 @@ const Columns = () => {
   const { t } = useTranslation();
   const [addColumn] = useAddColumnMutation();
   const [columns, setColumns] = useState<TColumn[]>([]);
-  const { data, isLoading, isError } = useGetBoardQuery(boardId!);
+  const { data, isLoading, isError, error } = useGetBoardQuery(boardId!);
   const [updateTask] = useUpdateTaskMutation();
   const [updateColumn] = useUpdateColumnMutation();
   const [searchError, setSearchError] = useState(false);
@@ -65,10 +65,21 @@ const Columns = () => {
 
   useEffect(() => {
     if (isError) {
-      toast.error(t('toastContent.notBoard'));
-      navigate(PATH.BOARDS);
+      const err = error as TError;
+      switch (err.status) {
+        case 401:
+          toast.error(t('toastContent.unauthorized'));
+          localStorage.removeItem('KanBanToken');
+          localStorage.removeItem('KanBanLogin');
+          localStorage.removeItem('KanBanId');
+          navigate(PATH.WELCOME);
+          break;
+        default:
+          toast.error(t('toastContent.notBoard'));
+          navigate(PATH.BOARDS);
+      }
     }
-  }, [isError, navigate, t]);
+  }, [isError, navigate, t, error]);
 
   const createColumn = async ({ title }: CreateRequest) => {
     try {

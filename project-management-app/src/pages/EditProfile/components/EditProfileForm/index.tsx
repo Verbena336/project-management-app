@@ -107,13 +107,13 @@ function EditProfileForm() {
     <>
       {isModal && <DeleteModal handler={deleteUser} closeHandler={() => setIsModal(!isModal)} />}
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <div onClick={() => navigate(-1)} className={'icon-back-arrow'} />
+        <a onClick={() => navigate(-1)} className={`icon-back-arrow ${styles.arrow}`} />
         <TextField
           sx={muiInputStyle}
           size="medium"
           id="name"
           label={errors.name ? t('editForm.nameError') : t('editForm.name')}
-          variant="outlined"
+          variant="standard"
           error={errors.name ? true : false}
           {...register('name', {
             required: true,
@@ -124,7 +124,7 @@ function EditProfileForm() {
           size="medium"
           id="login"
           label={errors.login ? t('editForm.loginError') : t('editForm.login')}
-          variant="outlined"
+          variant="standard"
           autoComplete="username"
           error={errors.login ? true : false}
           {...register('login', {
@@ -137,7 +137,7 @@ function EditProfileForm() {
           type="password"
           id="password"
           label={errors.password ? t('editForm.passwordError') : t('editForm.password')}
-          variant="outlined"
+          variant="standard"
           autoComplete="new-password"
           error={errors.password ? true : false}
           {...register('password', {

@@ -72,7 +72,7 @@ function SignInForm() {
     <Loader />
   ) : (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <NavLink to={PATH.WELCOME} className={'icon-back-arrow'} />
+      <NavLink to={PATH.WELCOME} className={`icon-back-arrow ${styles.arrow}`} />
       <TextField
         sx={muiInputStyle}
         size="medium"

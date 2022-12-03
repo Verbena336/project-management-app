@@ -20,7 +20,7 @@ const { boardsWrapper, loading } = styles;
 
 const Boards = () => {
   const { t } = useTranslation();
-  const { data } = useGetAllBoardsQuery();
+  const { data, isError } = useGetAllBoardsQuery();
   const [addBoard] = useAddBoardMutation();
   const [boards, setBoards] = useState<getAllBoardsResponse>([]);
   const [searchError, setSearchError] = useState(false);
@@ -29,6 +29,12 @@ const Boards = () => {
   useEffect(() => {
     data && setBoards(data);
   }, [data]);
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(t('toastContent.serverError'));
+    }
+  }, [isError, t]);
 
   const handleNewBoard = async (data: addBoardRequest) => {
     try {
