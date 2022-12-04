@@ -2,29 +2,29 @@
 @import 'styles/base/vars';
 
 .text {
-  padding: 0 20px;
+  padding: 0 10px 0 21px;
   width: 100%;
-  max-width: 247px;
-  max-height: 74px;
-  @include media-tablet {
-    min-width: 198px;
-    padding: 0 10px 0 20px;
-  }
+  min-height: 69px;
   @include media-mobile {
-    min-width: 145px;
+    min-height: 66px;
   }
 }
 
 .textTitle {
   @include lora($fs: 20px, $ls: 0.5px);
-  margin: 10px 0;
+  margin: 7px 0;
+  max-width: 235px;
   overflow: hidden;
+  text-align: start;
   text-overflow: ellipsis;
-  max-height: 24px;
+  max-height: 48px;
   @include media-tablet {
-    margin: 5px 0;
-    font-size: 18px;
-    max-height: 22px;
+    max-width: 206px;
+  }
+  @include media-mobile {
+    max-width: 154px;
+    margin: 7px 0 7px 0;
+    font-size: 17.5px;
   }
 }
 
@@ -33,10 +33,7 @@
   margin: 10px 0;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-height: 18px;
-  @include media-tablet {
-    margin: 5px 0;
-  }
+  white-space: pre-wrap;
 }
 
 .text::before {
@@ -52,7 +49,7 @@
 
 .task {
   position: relative;
-  width: 320px;
+  min-width: 320px;
   margin-bottom: 5px;
   display: flex;
   justify-content: space-between;
@@ -63,10 +60,10 @@
   border-radius: 10px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
   @include media-tablet {
-    width: 280px;
+    min-width: 290px;
   }
   @include media-mobile {
-    width: 230px;
+    min-width: 235px;
   }
 }
 
@@ -76,5 +73,8 @@
 
 .controls {
   display: flex;
+  position: absolute;
+  top: 0;
   align-items: center;
+  right: 0;
 }
