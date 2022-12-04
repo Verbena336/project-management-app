@@ -5,6 +5,9 @@
   padding: 0 10px 0 21px;
   width: 100%;
   min-height: 69px;
+  @include media-mobile {
+    min-height: 66px;
+  }
 }
 
 .textTitle {
@@ -14,13 +17,14 @@
   overflow: hidden;
   text-align: start;
   text-overflow: ellipsis;
-  max-height: 24px;
+  max-height: 48px;
   @include media-tablet {
     max-width: 206px;
   }
   @include media-mobile {
     max-width: 154px;
-    margin: 6px 0 5px 0;
+    margin: 7px 0 7px 0;
+    font-size: 17.5px;
   }
 }
 
