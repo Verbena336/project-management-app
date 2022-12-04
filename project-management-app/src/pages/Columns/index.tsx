@@ -39,7 +39,7 @@ const Columns = () => {
     (e?: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       let value: string;
 
-      if (e) value = e.target.value;
+      if (e) value = e.target.value.toLowerCase();
       else value = searchValue.toLowerCase();
 
       setSearchValue(value);
