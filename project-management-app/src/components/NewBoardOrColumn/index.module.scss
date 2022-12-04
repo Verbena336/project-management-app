@@ -6,7 +6,6 @@
   align-items: center;
   box-sizing: border-box;
   min-width: 400px;
-  // height: 170px;
   height: 191px;
   border: 1px dashed $new-border-dashed;
   background-color: transparent;
@@ -15,7 +14,7 @@
   transition: 0.3s;
   @include media-tablet {
     min-width: 340px;
-    height: 174px;
+    height: 191px;
   }
   @include media-mobile {
     min-width: 280px;

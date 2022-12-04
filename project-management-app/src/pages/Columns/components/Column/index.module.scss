@@ -5,7 +5,6 @@
   max-width: 400px;
   width: calc(100vw - 20px);
   height: min-content;
-  text-align: center;
   margin-right: 30px;
 }
 
@@ -23,7 +22,7 @@
   width: calc(100vw - 20px);
   @include media-tablet {
     max-width: 340px;
-    min-height: 174px;
+    min-height: 191px;
     max-height: calc(100vh - 363px);
   }
   @include media-tablet-small {
@@ -31,6 +30,7 @@
   }
   @include media-mobile {
     max-width: 280px;
+    max-height: calc(100vh - 370px);
   }
 }
 
@@ -61,9 +61,6 @@
   padding: 0 30px;
   overflow-y: auto;
   overflow-x: hidden;
-  @include media-tablet {
-    min-height: 62px;
-  }
   @include media-tablet {
     padding: 0 15px;
   }
@@ -124,6 +121,6 @@
     font-size: 25px;
   }
   @include media-mobile {
-    font-size: 20px;
+    font-size: 23px;
   }
 }
