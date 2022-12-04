@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -28,11 +28,36 @@ const Boards = () => {
   const [addBoard] = useAddBoardMutation();
   const [boards, setBoards] = useState<getAllBoardsResponse>([]);
   const [searchError, setSearchError] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
   const navigate = useNavigate();
+
+  const searchSubmitHandler = useCallback(
+    (e?: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      let value: string;
+
+      if (e) value = e.target.value.toLowerCase();
+      else value = searchValue.toLowerCase();
+
+      setSearchValue(value);
+      if (searchError) setSearchError(false);
+
+      if (!data) return;
+      if (!value && data) return setBoards(data);
+
+      const result = data.filter((item) => item.title.toLowerCase().includes(value));
+      if (data.length && !result.length) {
+        setSearchError(true);
+      }
+
+      setBoards(result);
+    },
+    [data, searchError, searchValue]
+  );
 
   useEffect(() => {
     data && setBoards(data);
-  }, [data]);
+    searchSubmitHandler();
+  }, [data, searchSubmitHandler]);
 
   useEffect(() => {
     if (isError) {
@@ -60,21 +85,6 @@ const Boards = () => {
           toast.error(t('toastContent.serverError'));
       }
     }
-  };
-
-  const searchSubmitHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const value = e.target.value.toLowerCase();
-    if (searchError) setSearchError(false);
-
-    if (!data) return;
-    if (!value && data) return setBoards(data);
-
-    const result = data.filter((item) => item.title.toLowerCase().includes(value));
-    if (data.length && !result.length) {
-      setSearchError(true);
-    }
-
-    setBoards(result);
   };
 
   const sortBoards = (a: addUpdateBoardResponse, b: addUpdateBoardResponse) => {
