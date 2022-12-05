@@ -15,7 +15,11 @@ import DeleteModal from 'components/Modals/DeleteModal';
 import SaveButton from 'components/Modals/SaveButton';
 import DeleteButton from 'components/Modals/DeleteButton';
 
-import { useDeleteUserMutation, useUpdateUserMutation } from 'store/services/userApi';
+import {
+  useDeleteUserMutation,
+  useGetUserByIdQuery,
+  useUpdateUserMutation,
+} from 'store/services/userApi';
 import { useAppDispatch } from 'store/hooks';
 import { setLogin } from 'store/reducers/authSlice';
 
@@ -33,6 +37,7 @@ function EditProfileForm() {
   const [updateUserApi] = useUpdateUserMutation();
   const dispatch = useAppDispatch();
   const [isModal, setIsModal] = useState(false);
+  const { data } = useGetUserByIdQuery(localStorage.getItem('KanBanId')!);
 
   const {
     register,
@@ -54,7 +59,7 @@ function EditProfileForm() {
     } catch (err) {
       const error = err as TError;
       setIsLoading(false);
-      switch (error.status || error.statusCode) {
+      switch (error.status || error.data.statusCode) {
         case 404:
           toast.error(t('toastContent.userError'));
           break;
@@ -82,7 +87,7 @@ function EditProfileForm() {
     } catch (err) {
       const error = err as TError;
       setIsLoading(false);
-      switch (error.status || error.statusCode) {
+      switch (error.status || error.data.statusCode) {
         case 404:
           toast.error(t('toastContent.userError'));
           break;
@@ -92,6 +97,9 @@ function EditProfileForm() {
           localStorage.removeItem('KanBanLogin');
           localStorage.removeItem('KanBanId');
           navigate(PATH.WELCOME);
+          break;
+        case 500:
+          toast.error(t('toastContent.loginExist'));
           break;
         default:
           toast.error(t('toastContent.serverError'));
@@ -106,49 +114,52 @@ function EditProfileForm() {
   ) : (
     <>
       {isModal && <DeleteModal handler={deleteUser} closeHandler={() => setIsModal(!isModal)} />}
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <a onClick={() => navigate(-1)} className={`icon-back-arrow ${styles.arrow}`} />
-        <TextField
-          sx={muiInputStyle}
-          size="medium"
-          id="name"
-          label={errors.name ? t('editForm.nameError') : t('editForm.name')}
-          variant="standard"
-          error={errors.name ? true : false}
-          {...register('name', {
-            required: true,
-          })}
-        />
-        <TextField
-          sx={muiInputStyle}
-          size="medium"
-          id="login"
-          label={errors.login ? t('editForm.loginError') : t('editForm.login')}
-          variant="standard"
-          autoComplete="username"
-          error={errors.login ? true : false}
-          {...register('login', {
-            required: true,
-          })}
-        />
-        <TextField
-          sx={muiInputStyle}
-          size="medium"
-          type="password"
-          id="password"
-          label={errors.password ? t('editForm.passwordError') : t('editForm.password')}
-          variant="standard"
-          autoComplete="new-password"
-          error={errors.password ? true : false}
-          {...register('password', {
-            required: true,
-          })}
-        />
-        <div className={styles.linkWrapper}>
-          <SaveButton textContent={t('editForm.confirmBtn')} />
-          <DeleteButton textContent={t('editForm.deleteBtn')} handler={() => setIsModal(true)} />
-        </div>
-      </form>
+      {data && (
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+          <a onClick={() => navigate(-1)} className={`icon-back-arrow ${styles.arrow}`} />
+          <TextField
+            sx={muiInputStyle}
+            size="medium"
+            id="name"
+            label={errors.name ? t('editForm.nameError') : t('editForm.name')}
+            variant="standard"
+            defaultValue={data?.name}
+            error={errors.name ? true : false}
+            {...register('name', {
+              required: true,
+            })}
+          />
+          <TextField
+            sx={muiInputStyle}
+            size="medium"
+            id="login"
+            label={errors.login ? t('editForm.loginError') : t('editForm.login')}
+            variant="standard"
+            autoComplete="username"
+            error={errors.login ? true : false}
+            {...register('login', {
+              required: true,
+            })}
+          />
+          <TextField
+            sx={muiInputStyle}
+            size="medium"
+            type="password"
+            id="password"
+            label={errors.password ? t('editForm.passwordError') : t('editForm.password')}
+            variant="standard"
+            autoComplete="new-password"
+            error={errors.password ? true : false}
+            {...register('password', {
+              required: true,
+            })}
+          />
+          <div className={styles.linkWrapper}>
+            <SaveButton textContent={t('editForm.confirmBtn')} />
+            <DeleteButton textContent={t('editForm.deleteBtn')} handler={() => setIsModal(true)} />
+          </div>
+        </form>
+      )}
     </>
   );
 }

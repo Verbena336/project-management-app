@@ -62,7 +62,7 @@ function SignUpForm() {
     } catch (err) {
       const error = err as TError;
       setIsLoading(false);
-      switch (error.status || error.statusCode) {
+      switch (error.status || error.data.statusCode) {
         case 409:
           toast.error(t('toastContent.userExist'));
           break;

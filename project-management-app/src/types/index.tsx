@@ -29,5 +29,4 @@ type ResponseBody = {
 export type TError = {
   status: number;
   data: ResponseBody;
-  statusCode?: number;
 };
