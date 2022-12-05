@@ -61,7 +61,7 @@ const Column = ({ boardId, index, isDrag, data: { title, id: columnId, order, ta
       }
     } catch (err) {
       const error = err as TError;
-      switch (error.status || error.statusCode) {
+      switch (error.status || error.data.statusCode) {
         case 401:
           toast.error(t('toastContent.unauthorized'));
           localStorage.removeItem('KanBanToken');
@@ -84,7 +84,7 @@ const Column = ({ boardId, index, isDrag, data: { title, id: columnId, order, ta
       await deleteColumn({ boardId, columnId }).unwrap();
     } catch (err) {
       const error = err as TError;
-      switch (error.status || error.statusCode) {
+      switch (error.status || error.data.statusCode) {
         case 401:
           toast.error(t('toastContent.unauthorized'));
           localStorage.removeItem('KanBanToken');
@@ -111,7 +111,7 @@ const Column = ({ boardId, index, isDrag, data: { title, id: columnId, order, ta
       }
     } catch (err) {
       const error = err as TError;
-      switch (error.status || error.statusCode) {
+      switch (error.status || error.data.statusCode) {
         case 401:
           toast.error(t('toastContent.unauthorized'));
           localStorage.removeItem('KanBanToken');

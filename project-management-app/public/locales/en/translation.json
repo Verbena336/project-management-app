@@ -103,7 +103,8 @@
     "unauthorized": "Unauthorized User",
     "deleteUser": "User was deleted!",
     "updateUser": "User data was updated!",
-    "notBoard": "Board not found!"
+    "notBoard": "Board not found!",
+    "loginExist": "Something is wrong with the server! Most likely login already taken."
   },
   "columns": {
     "backLink": "Back",

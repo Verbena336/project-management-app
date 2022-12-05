@@ -50,7 +50,7 @@ const Task = ({
       await updateTask(dataRequest).unwrap();
     } catch (err) {
       const error = err as TError;
-      switch (error.status || error.statusCode) {
+      switch (error.status || error.data.statusCode) {
         case 401:
           toast.error(t('toastContent.unauthorized'));
           localStorage.removeItem('KanBanToken');

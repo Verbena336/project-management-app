@@ -49,7 +49,7 @@ const ExistBoard = ({ id, name, description }: ExistBoardProps) => {
       }
     } catch (err) {
       const error = err as TError;
-      switch (error.status || error.statusCode) {
+      switch (error.status || error.data.statusCode) {
         case 401:
           toast.error(t('toastContent.unauthorized'));
           localStorage.removeItem('KanBanToken');
@@ -68,7 +68,7 @@ const ExistBoard = ({ id, name, description }: ExistBoardProps) => {
       await deleteBoard(id).unwrap();
     } catch (err) {
       const error = err as TError;
-      switch (error.status || error.statusCode) {
+      switch (error.status || error.data.statusCode) {
         case 401:
           toast.error(t('toastContent.unauthorized'));
           localStorage.removeItem('KanBanToken');

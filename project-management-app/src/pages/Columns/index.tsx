@@ -66,7 +66,7 @@ const Columns = () => {
   useEffect(() => {
     if (isError) {
       const err = error as TError;
-      switch (err.status) {
+      switch (err.status || err.data.statusCode) {
         case 401:
           toast.error(t('toastContent.unauthorized'));
           localStorage.removeItem('KanBanToken');
@@ -89,7 +89,7 @@ const Columns = () => {
       }
     } catch (err) {
       const errorLocal = err as TError;
-      switch (errorLocal.status || errorLocal.statusCode) {
+      switch (errorLocal.status || errorLocal.data.statusCode) {
         case 401:
           toast.error(t('toastContent.unauthorized'));
           localStorage.removeItem('KanBanToken');
@@ -129,7 +129,7 @@ const Columns = () => {
         });
       } catch (err) {
         const errorLocal = err as TError;
-        switch (errorLocal.status || errorLocal.statusCode) {
+        switch (errorLocal.status || errorLocal.data.statusCode) {
           case 401:
             toast.error(t('toastContent.unauthorized'));
             localStorage.removeItem('KanBanToken');
@@ -228,7 +228,7 @@ const Columns = () => {
       }).unwrap();
     } catch (err) {
       const errorLocal = err as TError;
-      switch (errorLocal.status || errorLocal.statusCode) {
+      switch (errorLocal.status || errorLocal.data.statusCode) {
         case 401:
           toast.error(t('toastContent.unauthorized'));
           localStorage.removeItem('KanBanToken');

@@ -56,7 +56,7 @@ function SignInForm() {
     } catch (err) {
       const error = err as TError;
       setIsLoading(false);
-      switch (error.status || error.statusCode) {
+      switch (error.status || error.data.statusCode) {
         case 403:
           toast.error(t('toastContent.userError'));
           break;
