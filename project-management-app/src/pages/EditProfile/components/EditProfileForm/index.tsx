@@ -37,7 +37,7 @@ function EditProfileForm() {
   const [updateUserApi] = useUpdateUserMutation();
   const dispatch = useAppDispatch();
   const [isModal, setIsModal] = useState(false);
-  const { data } = useGetUserByIdQuery(localStorage.getItem('KanBanId')!);
+  const { data, isLoading: isNameLoading } = useGetUserByIdQuery(localStorage.getItem('KanBanId')!);
 
   const {
     register,
@@ -109,7 +109,7 @@ function EditProfileForm() {
 
   const onSubmit = (data: Inputs) => updateUser(data);
 
-  return isLoading ? (
+  return isLoading || isNameLoading ? (
     <Loader />
   ) : (
     <>
