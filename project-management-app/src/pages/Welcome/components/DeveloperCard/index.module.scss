@@ -1,0 +1,49 @@
+@import '../../../../styles/abstracts/mixins';
+.participant {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 150px;
+  padding: 5px 10px;
+  max-width: 649px;
+  @include media-mobile {
+    flex-wrap: wrap;
+  }
+}
+
+.info {
+  padding-left: 30px;
+  padding-right: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  @include ptserif($fs: 25px);
+  @include media-mobile {
+    padding: 0;
+  }
+}
+
+.definition {
+  @include lora($fs: 20px);
+  text-align: center;
+  @include media-tablet {
+    font-size: 18px;
+  }
+}
+
+.line {
+  border-radius: 10px 0 0 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 100%;
+}
+
+.img {
+  max-width: unset;
+}

@@ -1,0 +1,42 @@
+@import 'styles/abstracts/mixins.scss';
+
+.errorViewBackground {
+  min-height: 100vh;
+  padding: 100px 50px;
+  background: linear-gradient(180deg, #daebff 0%, #84bcff 100%);
+  transition: 0.3s;
+  @include media-mobile {
+    padding: 50px 20px;
+  }
+}
+
+.errorViewContainer {
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+.errorViewTitle {
+  font-size: 42px;
+}
+
+.textContent {
+  padding: 0;
+  margin: 0;
+  font-size: 30px;
+  text-align: center;
+}
+
+.handleButton {
+  color: $primary-color;
+  background-color: inherit;
+  font-size: 30px;
+  font-family: $ff-ptserif-regular;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid $primary-color;
+  cursor: pointer;
+}

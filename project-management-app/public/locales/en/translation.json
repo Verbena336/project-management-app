@@ -1,0 +1,137 @@
+{
+  "headerWelcome": {
+    "language": "Language",
+    "en": "English",
+    "ru": "Russian",
+    "signIn": "Sign In",
+    "signUp": "Sign Up"
+  },
+  "headerUser": {
+    "en": "En",
+    "ru": "Ru",
+    "newBoard": "Create board",
+    "userName": "{{UserName}}",
+    "edit": "Edit",
+    "logOut": "Log Out",
+    "goToMain": "Go to Main"
+  },
+  "hero": {
+    "title": "KanBan",
+    "text": "Simple and clear project management tool"
+  },
+  "about": {
+    "title": "About App",
+    "text": "KanBan is a flexible application that allows you to visually track the progress of your project. You are not limited in the choice of board structure! With the help of columns and tasks on the board, each team member can understand how much work should be taken on and accomplish this amount, adhering to the principles of continuous improvement."
+  },
+  "team": {
+    "title": "About Team",
+    "teamItems": {
+      "Natasha": "Natasha",
+      "NatashaText": "Made interaction pages with user profile. Implemented dragging tasks from column to column and translating the application.",
+      "Nikita": "Nikita",
+      "NikitaText": "Implemented navigation, boards page, application modal windows. Made drag and drop columns, search boards and columns.",
+      "Vitalik": "Vitalik",
+      "VitalikText": "Made the layout of the welcome and columns pages. Implemented the functionality of getting and editing columns. Added an icon font."
+    }
+  },
+  "school": {
+    "title": "About School",
+    "text": "RSSchool is free-of-charge education program conducted by The Rolling Scopes developer community since 2013. Students of the school can not only take courses of interest to them for free, but also return as mentors to pass on their knowledge to the next generation of students."
+  },
+  "AddTask": "Add task",
+  "signUpForm": {
+    "name": "Name",
+    "nameError": "⚠Name is required!",
+    "login": "Login",
+    "loginError": "⚠Login is required!",
+    "password": "Password",
+    "passwordError": "⚠Password is required!",
+    "signUpBtn": "Sign Up",
+    "or": "OR",
+    "variant": "Sign In"
+  },
+  "signInForm": {
+    "login": "Login",
+    "loginError": "⚠Login is required!",
+    "password": "Password",
+    "passwordError": "⚠Password is required!",
+    "signInBtn": "Sign In",
+    "or": "OR",
+    "variant": "Sign Up"
+  },
+  "editForm": {
+    "name": "New Name",
+    "nameError": "⚠Name is required!",
+    "login": "New Login",
+    "loginError": "⚠Login is required!",
+    "password": "New Password",
+    "passwordError": "⚠Password is required!",
+    "confirmBtn": "Save",
+    "deleteBtn": "Delete account"
+  },
+  "deleteModal": {
+    "title": "Do you want to delete?",
+    "cancel": "Cancel",
+    "delete": "Delete"
+  },
+  "createEditModal": {
+    "name": "Title",
+    "nameRequired": "⚠ title is required!",
+    "nameLength": "⚠ max length is 15 characters!",
+    "description": "Description",
+    "descriptionRequired": "⚠ description is required!",
+    "save": "Save",
+    "userName": "Author: "
+  },
+  "createBoard": {
+    "title": "Create Board"
+  },
+  "editBoard": {
+    "title": "Edit Board"
+  },
+  "editTask": {
+    "title": "Edit Task"
+  },
+  "createTask": {
+    "title": "Create Task"
+  },
+  "toastContent": {
+    "userGreetings": "Hello",
+    "userExist": "User already exists.",
+    "userError": "User not found!",
+    "serverError": "Something is wrong with the server! Try one more time.",
+    "unauthorized": "Unauthorized User",
+    "deleteUser": "User was deleted!",
+    "updateUser": "User data was updated!",
+    "notBoard": "Board not found!",
+    "loginExist": "Something is wrong with the server! Most likely login already taken."
+  },
+  "columns": {
+    "backLink": "Back",
+    "columnBtn": "Add task"
+  },
+  "createColumn": {
+    "title": "Create Column"
+  },
+  "BoardColumnFilter": {
+    "boardTitle": "Search Board",
+    "columnTitle": "Search Column",
+    "error": "⚠ no results found!"
+  },
+  "deletedUser": "User deleted",
+  "ErrorView": {
+    "button": "main"
+  },
+  "boundary": {
+    "title": "Error!",
+    "description": "Something went wrong!",
+    "firstText": "You can try to return to the",
+    "secondText": "page, or reload the application after a while."
+  },
+  "404": {
+    "title": "Error 404",
+    "description": "This page does not exist!",
+    "firstText": "You may have followed the wrong link. Go to the",
+    "secondText": "page."
+  }
+}

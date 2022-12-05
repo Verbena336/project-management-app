@@ -1,0 +1,70 @@
+@import '../../../../styles/base/vars';
+
+.form div {
+  width: 100%;
+}
+
+.backIcon {
+  margin-bottom: 10px;
+}
+
+.icon-back-arrow:hover {
+  color: black;
+}
+
+.line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+  font-size: 22px;
+  color: $primary-color;
+}
+
+hr {
+  width: 40%;
+  background-color: $primary-color;
+  height: 1px;
+  border: none;
+}
+
+.slideLink {
+  font-size: 14px;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.link {
+  color: $primary-color;
+  font-size: 22px;
+  text-decoration: none;
+  transition: all 0.3s;
+  &:hover {
+    color: $bright-blue-color;
+  }
+}
+
+.linkWrapper {
+  display: flex;
+  width: 100%;
+  gap: 5px;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.arrow {
+  transition: all 0.3s;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: block;
+  margin-bottom: 10px;
+  &:hover {
+    background-color: rgba(159, 197, 238, 0.4);
+    box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.2);
+  }
+}

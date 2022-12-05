@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 0 100%;
+}
+
+.content {
+  padding: 0px 35px;
+  display: flex;
+  width: 80vw;
+  max-width: 450px;
+  height: 430px;
+  justify-content: center;
+  align-items: center;
+}

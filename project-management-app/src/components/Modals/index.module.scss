@@ -1,0 +1,29 @@
+.modalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+}
+
+.modalOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.modalCloseButton {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+  position: absolute;
+  top: 10px;
+  left: calc(100% - 35px);
+  cursor: pointer;
+}

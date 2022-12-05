@@ -1,0 +1,27 @@
+@import 'styles/abstracts/mixins';
+
+.boardsWrapper {
+  padding: 40px;
+  max-width: 1920px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 45px;
+  transition: 0.3s;
+  margin: 0 auto;
+  @include media-tablet-large {
+    gap: 20px;
+    padding: 40px 10px;
+  }
+  @include media-mobile {
+    padding: 20px 10px;
+  }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  flex: 1 0 100%;
+  align-items: center;
+}

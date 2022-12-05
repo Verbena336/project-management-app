@@ -1,0 +1,51 @@
+@import 'styles/abstracts/mixins';
+
+.newColumn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  min-width: 400px;
+  height: 191px;
+  border: 1px dashed $new-border-dashed;
+  background-color: transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  @include media-tablet {
+    min-width: 340px;
+    height: 191px;
+  }
+  @include media-mobile {
+    min-width: 280px;
+    height: 185px;
+  }
+}
+
+.newColumn:hover {
+  background-color: rgba(138, 171, 255, 0.3);
+}
+
+.newBoard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  min-width: 400px;
+  height: 170px;
+  border: 1px dashed $new-border-dashed;
+  background-color: transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  @include media-tablet {
+    min-width: 340px;
+  }
+  @include media-mobile {
+    min-width: 280px;
+  }
+}
+
+.newBoard:hover {
+  background-color: rgba(138, 171, 255, 0.3);
+}

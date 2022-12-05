@@ -1,0 +1,68 @@
+@import 'styles/abstracts/mixins';
+
+.modalWrapper,
+.modalContent {
+  width: 470px;
+  transition: 0.3s;
+  @include media-tablet-small {
+    width: 280px;
+  }
+}
+
+.modalWrapper {
+  position: relative;
+  left: calc(50% - 235px);
+  @include media-tablet-small {
+    left: calc(50% - 140px);
+  }
+}
+
+.createEditBoard {
+  top: calc(50% - 165px);
+}
+
+.editTask {
+  top: calc(50% - 190px);
+}
+
+.createColumn {
+  top: calc(50% - 82px);
+}
+
+.createEditBoardForm {
+  height: 332px;
+}
+
+.editTaskForm {
+  height: 380px;
+}
+
+.createColumnForm {
+  height: 164px;
+}
+
+.modalContent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 30px 20px 30px;
+}
+
+.modalTitle {
+  margin: 0;
+  font-size: 30px;
+  color: $primary-color;
+  text-align: center;
+  white-space: nowrap;
+  @include media-tablet-small {
+    font-size: 20px;
+  }
+}
+
+.userName {
+  text-transform: uppercase;
+  text-align: center;
+  @include ptserif($fs: 15px);
+}

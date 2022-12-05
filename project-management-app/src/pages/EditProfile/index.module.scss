@@ -1,0 +1,21 @@
+@import '../../styles/abstracts/mixins';
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 0 100%;
+}
+
+.content {
+  padding: 0px 35px;
+  display: flex;
+  width: 80vw;
+  max-width: 450px;
+  height: 350px;
+  justify-content: center;
+  align-items: center;
+  @include media-mobile {
+    height: 370px;
+  }
+}

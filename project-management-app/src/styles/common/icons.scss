@@ -1,0 +1,251 @@
+@use '../base/vars' as *;
+@import '../abstracts//mixins';
+
+@font-face {
+  font-family: 'icomoon';
+  src: url('../../../public/assets/iconFonts/icomoon.eot?bs0osu');
+  src: url('../../../public/assets/iconFonts/icomoon.eot?bs0osu#iefix') format('embedded-opentype'),
+    url('../../../public/assets/iconFonts/icomoon.ttf?bs0osu') format('truetype'),
+    url('../../../public/assets/iconFonts/icomoon.woff?bs0osu') format('woff'),
+    url('../../../public/assets/iconFonts/icomoon.svg?bs0osu#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'columnFont';
+  src: url('../../../public/assets/columnFont/icomoon.eot?bs0osu');
+  src: url('../../../public/assets/columnFont/icomoon.eot?bs0osu#iefix') format('embedded-opentype'),
+    url('../../../public/assets/columnFont/icomoon.ttf?bs0osu') format('truetype'),
+    url('../../../public/assets/columnFont/icomoon.woff?bs0osu') format('woff'),
+    url('../../../public/assets/columnFont/icomoon.svg?bs0osu#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^='icon-']::before,
+[class*=' icon-']::before {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon', 'columnFont' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-app-logo:before {
+  content: '\e903';
+  font-size: 66px;
+}
+
+.icon-app-logo:hover {
+  cursor: pointer;
+}
+
+.icon-school-logo:before {
+  content: '\e90b';
+  font-size: 50px;
+}
+
+.icon-school-logo:hover {
+  cursor: pointer;
+  color: $dark-white;
+}
+
+.icon-add-board:before {
+  content: '\e900';
+  font-size: 80px;
+  @include media-tablet {
+    font-size: 75px;
+  }
+}
+
+.icon-add-board {
+  color: $primary-color;
+}
+
+.icon-add-board-header:before {
+  content: '\e900';
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+}
+
+.icon-board-edit,
+.icon-board-column-remove {
+  border: none;
+  outline: none;
+  padding: 0;
+  background-color: inherit;
+  cursor: pointer;
+  transition: 0.3s;
+  color: #616161;
+}
+
+.icon-board-remove {
+  border: none;
+  outline: none;
+  padding: 0;
+  background-color: inherit;
+  cursor: pointer;
+  transition: 0.3s;
+  color: #616161;
+}
+
+.icon-board-column-remove:before {
+  content: '\e905';
+  font-size: 30px;
+  @include media-tablet {
+    font-size: 28px;
+  }
+  @include media-mobile {
+    font-size: 25px;
+  }
+}
+
+.icon-board-remove:before {
+  content: '\e905';
+  font-size: 25px;
+}
+
+.icon-board-edit:before {
+  content: '\e906';
+  font-size: 25px;
+}
+
+.icon-board-edit:hover,
+.icon-board-column-remove:hover,
+.icon-board-remove:hover {
+  color: $primary-color;
+}
+
+.icon-add-column:before {
+  content: '\e901';
+  font-size: 80px;
+  @include media-tablet {
+    font-size: 75px;
+  }
+}
+
+.icon-add-column {
+  color: $primary-color;
+}
+
+.icon-add-task {
+  background-color: inherit;
+  border: 0;
+}
+
+.icon-add-task:before {
+  content: '\e902';
+  font-size: 30px;
+}
+
+.icon-back-arrow {
+  &::before {
+    content: '\e904';
+    font-size: 45px;
+    transition: all 0.3s;
+    border-radius: 50%;
+    vertical-align: top;
+    cursor: pointer;
+  }
+}
+
+.icon-exit-modal:before {
+  content: '\e907';
+  font-size: 25px;
+  transition: 0.3s;
+}
+
+.icon-exit-modal:hover {
+  color: $primary-color;
+}
+
+.icon-profile-edit:before {
+  content: '\e908';
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+}
+
+.icon-profile-exit:before {
+  content: '\e909';
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+}
+
+.icon-profile-user:before {
+  content: '\e90a';
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+}
+
+.icon-task-action {
+  background-color: inherit;
+  padding: 5px;
+  border: 0;
+  color: #616161;
+}
+
+.icon-task-action:before {
+  content: '\e90c';
+  font-size: 25px;
+  @include media-mobile {
+    font-size: 23px;
+  }
+}
+
+.icon-task-edit {
+  border: none;
+  outline: none;
+  padding: 5px;
+  background-color: inherit;
+  cursor: pointer;
+  transition: 0.3s;
+  color: #616161;
+}
+
+.icon-task-edit:before {
+  content: '\e906';
+  font-size: 25px;
+  @include media-mobile {
+    font-size: 23px;
+  }
+}
+
+.icon-task-edit:hover {
+  color: $primary-color;
+}
+
+.icon-cancel,
+.icon-submit {
+  border: 0;
+  padding: 0 2px;
+  background-color: inherit;
+}
+
+.icon-cancel:hover,
+.icon-submit:hover {
+  color: $primary-color;
+}
+
+.icon-cancel:before {
+  content: '\e910';
+  font-size: 25px;
+}
+
+.icon-submit:before {
+  content: '\e911';
+  font-size: 25px;
+}
