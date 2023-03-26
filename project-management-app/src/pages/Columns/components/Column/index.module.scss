@@ -1,0 +1,128 @@
+@import 'styles/abstracts/mixins';
+@import 'styles/base/vars';
+
+.column {
+  max-width: 400px;
+  width: calc(100vw - 20px);
+  height: min-content;
+  margin-right: 30px;
+}
+
+.wrapper {
+  position: relative;
+  padding: 10px;
+  color: $primary-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-height: calc(100vh - 320px);
+  min-height: 191px;
+  height: 100%;
+  max-width: 400px;
+  width: calc(100vw - 20px);
+  @include media-tablet {
+    max-width: 340px;
+    min-height: 191px;
+    max-height: calc(100vh - 363px);
+  }
+  @include media-tablet-small {
+    max-height: calc(100vh - 400px);
+  }
+  @include media-mobile {
+    max-width: 280px;
+    max-height: calc(100vh - 370px);
+    min-height: 185px;
+  }
+}
+
+.wrapper button {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.header {
+  padding-left: 30px;
+  position: relative;
+  padding-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  color: inherit;
+  align-items: center;
+  height: 40px;
+}
+
+.header button {
+  color: $gray-color;
+}
+
+.content {
+  min-height: 79px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 30px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  @include media-tablet {
+    padding: 0 15px;
+  }
+  @include media-mobile {
+    padding: 0 10px;
+    min-height: 73px;
+  }
+}
+
+.content::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.wrapper > button {
+  color: $primary-color;
+  @include lora($fs: 20px);
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+  border-radius: 5px;
+}
+
+.wrapper > button:hover {
+  background-color: rgba(159, 197, 238, 0.4);
+  box-shadow: 1px 1px 3px 0px rgb(34 60 80 / 20%);
+}
+
+.inputBtns {
+  position: absolute;
+  top: 0;
+  right: 50px;
+}
+
+.inputBtns button:first-child {
+  position: relative;
+  left: 10px;
+}
+
+.inputBtns button:hover {
+  color: $primary-color;
+}
+
+.columnTitle {
+  @include lora($fs: 28px);
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+  max-width: 325px;
+  overflow: hidden;
+  max-height: 33px;
+  text-overflow: ellipsis;
+  line-height: 33px;
+  @include media-tablet {
+    font-size: 25px;
+  }
+  @include media-mobile {
+    font-size: 23px;
+  }
+}

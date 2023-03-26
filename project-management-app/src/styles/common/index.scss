@@ -1,0 +1,70 @@
+@use '../abstracts/mixins' as *;
+// @use '../base/vars' as *;
+
+@import './icons.scss';
+
+body {
+  @include ptserif;
+}
+
+html {
+  background: linear-gradient(180deg, #daebff 0%, #84bcff 100%);
+}
+
+.container {
+  max-width: $content-width;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 40px;
+  @include media-tablet {
+    padding: 0 30px;
+  }
+  @include media-mobile {
+    padding: 0 20px;
+  }
+}
+
+a {
+  color: $primary-color;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+a:link {
+  color: $primary-color;
+}
+
+a:visited {
+  color: $primary-color;
+}
+
+a:focus {
+  color: $primary-color;
+}
+
+a:hover {
+  color: $primary-color;
+}
+
+a:active {
+  color: $primary-color;
+}
+
+::-webkit-scrollbar {
+  width: 13px;
+  height: 13px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #999a9c;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #c2c2c3;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-corner {
+  border-radius: 50%;
+}

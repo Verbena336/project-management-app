@@ -1,0 +1,71 @@
+@import '../base/vars';
+
+//fonts
+@mixin ptserif(
+  $ff: $ff-ptserif-regular,
+  $fs: 1.6rem,
+  $fw: 400,
+  $lh: 1.2,
+  $ls: 0,
+  $color: $primary-color
+) {
+  font-family: $ff;
+  font-size: $fs;
+  font-weight: $fw;
+  line-height: $lh;
+  letter-spacing: $ls;
+  color: $color;
+}
+
+@mixin lora(
+  $ff: $ff-lora-regular,
+  $fs: 1.6rem,
+  $fw: 400,
+  $lh: 1.2,
+  $ls: 0,
+  $color: $primary-color
+) {
+  font-family: $ff;
+  font-size: $fs;
+  font-weight: $fw;
+  line-height: $lh;
+  letter-spacing: $ls;
+  color: $color;
+}
+
+//media
+@mixin media-laptop {
+  @media (max-width: $content-width) {
+    @content;
+  }
+}
+
+@mixin media-tablet-large {
+  @media (max-width: $tablet-large-width) {
+    @content;
+  }
+}
+
+@mixin media-tablet {
+  @media (max-width: $tablet-width) {
+    @content;
+  }
+}
+
+@mixin media-tablet-small {
+  @media (max-width: $tablet-small) {
+    @content;
+  }
+}
+
+@mixin media-mobile {
+  @media (max-width: $mobile-big-width) {
+    @content;
+  }
+}
+
+@mixin media-mobile-small {
+  @media (max-width: $mobile-small-width) {
+    @content;
+  }
+}

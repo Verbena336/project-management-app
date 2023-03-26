@@ -1,0 +1,52 @@
+@import 'styles/abstracts/mixins';
+
+.modalWrapper,
+.modalContent {
+  width: 430px;
+  transition: 0.3s;
+  @include media-tablet-small {
+    width: 280px;
+  }
+}
+
+.modalWrapper {
+  position: relative;
+  top: calc(50% - 70px);
+  left: calc(50% - 215px);
+  @include media-tablet-small {
+    left: calc(50% - 140px);
+  }
+}
+
+.modalContent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  padding: 25px 55px;
+  height: 135px;
+  transition: 0.3s;
+  @include media-tablet-small {
+    padding: 35px 20px;
+    height: 140px;
+  }
+}
+
+.modalTitle {
+  margin: 0;
+  font-size: 25px;
+  color: $primary-color;
+  text-align: center;
+  white-space: nowrap;
+  @include media-tablet-small {
+    font-size: 20px;
+  }
+}
+
+.modalButtonsWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

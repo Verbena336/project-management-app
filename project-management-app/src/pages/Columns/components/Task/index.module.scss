@@ -1,0 +1,81 @@
+@import 'styles/abstracts/mixins';
+@import 'styles/base/vars';
+
+.text {
+  padding: 0 10px 0 21px;
+  width: 100%;
+  min-height: 69px;
+  @include media-mobile {
+    min-height: 66px;
+  }
+}
+
+.textTitle {
+  @include lora($fs: 20px, $ls: 0.5px);
+  margin: 7px 0;
+  max-width: 235px;
+  overflow: hidden;
+  text-align: start;
+  text-overflow: ellipsis;
+  max-height: 48px;
+  @include media-tablet {
+    max-width: 206px;
+  }
+  @include media-mobile {
+    max-width: 154px;
+    margin: 7px 0 7px 0;
+    font-size: 17.5px;
+  }
+}
+
+.textDescr {
+  @include lora($fs: 15px, $ls: 0.3px);
+  margin: 10px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+  max-height: 305px;
+}
+
+.text::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 11px;
+  height: 100%;
+  background-color: $task-pseudo-elem;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.task {
+  position: relative;
+  min-width: 320px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: $white;
+  border: 1px solid $task-border-color;
+  border-left-style: none;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+  @include media-tablet {
+    min-width: 290px;
+  }
+  @include media-mobile {
+    min-width: 235px;
+  }
+}
+
+.task button:hover {
+  color: $primary-color;
+}
+
+.controls {
+  display: flex;
+  position: absolute;
+  top: 0;
+  align-items: center;
+  right: 0;
+}

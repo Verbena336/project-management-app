@@ -1,0 +1,86 @@
+@import 'styles/abstracts/mixins';
+
+.boardSection,
+.boardContentWrapper {
+  width: 400px;
+  height: 170px;
+  cursor: pointer;
+  transition: 0.3s;
+  @include media-tablet {
+    width: 340px;
+  }
+  @include media-mobile {
+    font-size: 18px;
+    width: 280px;
+  }
+}
+
+.boardContentWrapper {
+  padding: 10px;
+  font-size: 24px;
+  color: $primary-color;
+  transition: 0.3s;
+  min-width: 400px;
+  @include media-tablet {
+    min-width: 340px;
+  }
+  @include media-mobile {
+    font-size: 18px;
+    min-width: 280px;
+  }
+}
+
+.boardTitle,
+.boardDescription {
+  margin: 0;
+}
+
+.boardTitle {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  line-height: 29px;
+  height: 29px;
+  @include media-tablet {
+    max-width: 205px;
+  }
+  @include media-mobile {
+    max-width: 143px;
+  }
+}
+
+.boardHeader {
+  position: relative;
+  padding-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid $primary-color;
+}
+
+.boardButtonWrapper {
+  position: absolute;
+  left: calc(100% - 60px);
+  top: 3px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  @include media-mobile {
+    top: 0;
+    gap: 5px;
+    font-size: 18px;
+  }
+}
+
+.boardDescriptionWrapper {
+  overflow-y: auto;
+  padding-top: 10px;
+  height: calc(100% - 35px);
+  display: flex;
+  justify-content: center;
+}
+
+.boardDescription {
+  word-break: break-word;
+  text-align: center;
+}
