@@ -41,7 +41,7 @@ const ExistBoard = ({ id, name, description }: ExistBoardProps) => {
   };
 
   const handleBoardEdit = async (data: addBoardRequest) => {
-    const dataRequest = { id, body: data };
+    const dataRequest = { id, body: { ...data, sharedWith: [] } };
     try {
       const response = await updateBoard(dataRequest).unwrap();
       if (!response.id) {

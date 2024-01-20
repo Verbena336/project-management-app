@@ -1,1 +1,1 @@
-export const backendUrl = 'https://kanban-qpcj.onrender.com';
+export const backendUrl = 'https://kanban-backend-jije.onrender.com';

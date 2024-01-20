@@ -1,6 +1,7 @@
 export type dataValues = {
   title: string;
   description: string;
+  sharedWith: string;
 };
 
 export type CreateEditModalProps = {
@@ -20,4 +21,5 @@ export type editValues = {
 export type formValues = {
   title: string;
   description: string;
+  sharedWith: string;
 };

@@ -22,9 +22,10 @@ export type addUpdateBoardResponse = {
 export type addBoardRequest = {
   title: string;
   description: string;
+  sharedWith: string;
 };
 
 export type updateBoardRequest = {
   id: string;
-  body: { title: string; description: string };
+  body: { title: string; description: string; sharedWith: string[] };
 };

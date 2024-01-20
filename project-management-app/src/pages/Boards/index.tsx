@@ -67,7 +67,7 @@ const Boards = () => {
 
   const handleNewBoard = async (data: addBoardRequest) => {
     try {
-      const response = await addBoard(data).unwrap();
+      const response = await addBoard({ ...data, sharedWith: '[]' }).unwrap();
       if (!response.id) {
         throw new Error();
       }
